@@ -61,7 +61,8 @@ a:hover {
 }
 
 #schedule {
-    width: 46%;
+    width: 42%;
+    white-space: nowrap;
     font-size: 15px;
     font-family: verdana, bitstream vera sans, sans-serif;
     margin-left: auto;
@@ -77,8 +78,20 @@ a:hover {
 
 #schedule .date {
     display: inline-block;
-    width: 80px;
+    width: 50px;
     font-weight: bold;
+    color: #47959E;
+    text-align: right;
+    padding-right: 25px;
+}
+
+#current {
+    color: #b8d2d9;
+    font-weight: bold;
+}
+
+#current .date {
+    color: #CF4F88;
 }
 
 /** contact */
