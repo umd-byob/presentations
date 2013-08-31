@@ -1,4 +1,4 @@
-Bring Your Own Bioinformatics - Presentations
+Bring Your Own Bioinformatics: Presentations
 =============================================
 
 This folder contains materials relating to presentations given at BYOB. This
@@ -47,15 +47,25 @@ about the source of the dataset.
    additional files that are relevant to the presenation, and do not fit well
    in any of the above categories may be included.
 
-### A Note of Knitr Markdown output
+When in doubt, look at examples of other presentations that have been uploaded
+in the past to get an idea for what to include.
 
-If you used Knitr/RMarkdown to generate all or part of your presntation, it
-may be more convenient to rename the generated .md file README.md and use it
-as your prensentation overview file described above. If you do this, please
-be sure to include your name and presentation title in the output as well.
+### A Note on using Knitr output
+
+If you used [Knitr/RMarkdown](http://www.rstudio.com/ide/docs/authoring/using_markdown)
+to generate all or part of your presntation, it may be more convenient to 
+rename the generated .md file README.md and use it as your prensentation 
+overview file described above. If you do this, please be sure to include your 
+name and presentation title in the output as well.
 
 Uploading to Github
 -------------------
+
+If this is your first time using Git or Github, it is advisable to first take
+a little bit of time familiarising yourself with the basics of these tools.
+Some tutorials have been included at the bottom of the page to help get you
+started. Once you feel more comfortable with these tools, continue reading
+below.
 
 ### 1. Create a fork of the BYOB repo
 The first step is to [create a fork](https://help.github.com/articles/fork-a-repo)
@@ -69,7 +79,7 @@ your fork
 Enter the 'presentations' directory, and then the directory for the current
 year. Create a new directory with the format:
 
-  mmdd-short_presentation_title
+> mmdd-short_presentation_title
 
 All of your materials will go inside this directory.
 
@@ -86,9 +96,9 @@ Create a README.md as described above.
 
 If you have not already commited all of your changes, do so now. E.g.:
 
-  git add .
-  git commit -am "Adding presentation xxx"
-  git push
+> git add .
+> git commit -am "Adding presentation xxx"
+> git push
 
 The last command will push the changes to your fork of the BYOB repository.
 
@@ -111,8 +121,8 @@ At this point you are finished. If you wish to make additional changes later
 on, however, the same steps above may be followed to submit additional pull
 requests.
 
-Useful Links
-============
+More Information
+================
 1. http://net.tutsplus.com/tutorials/other/easy-version-control-with-git/
 2. http://git-scm.com/docs/gittutorial
 3. http://daringfireball.net/projects/markdown/
