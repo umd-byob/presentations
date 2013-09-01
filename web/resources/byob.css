@@ -6,7 +6,7 @@
 
 /** body **/
 body {
-    background: #151515;
+    background: #080808;
     font-family: courier new;
     text-align: center;
     color: #899CA1;
@@ -61,6 +61,7 @@ a:hover {
 }
 
 #schedule {
+    width: 930px;
     white-space: nowrap;
     font-size: 15px;
     font-family: verdana, bitstream vera sans, sans-serif;
