@@ -6,6 +6,7 @@
     <meta name="keywords" content="UMD, BYOB, bioinformatics, computational biology, research, genomics, transcriptomics, python, R" />
     <title>UMD Bring Your Own Bioinformatics</title>
     <link rel='stylesheet' href='resources/byob.css' />
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 </head>
 <body>
     <!-- title -->
@@ -43,5 +44,17 @@
         <a href='https://groups.google.com/forum/#!forum/umd-byob'>Mailing List</a> |
         <a href='https://github.com/umd-byob/byob'>Github</a>
     </div>
+
+    <!-- js -->
+    <script type='text/javascript'>
+    $(function () {
+        var scheduleWidth = $("#schedule ul").width();
+
+        $(window).resize(function() {
+            var width = scheduleWidth / $("body").width() * 100;
+            $('#schedule').width(width + '%');
+        }).trigger('resize');
+    })
+    </script>
 </body>
 </html>
