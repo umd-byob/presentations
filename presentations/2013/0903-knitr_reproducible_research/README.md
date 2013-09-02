@@ -63,18 +63,34 @@ The Basics
 The basic structure of an RMarkdown knitr document is to have block of R code,
 surrounded by Markdown text.
 
-**1.1** A simple example
+### e. A simple example
+
+**Code**
 
     Here is some *text* written in [Markdown](http://daringfireball.net/projects/markdown/)
     followed by a short block of R code.
     
-    
-    ```r
+    ```[r]
     print("Hello World")
     ```
     
-    ```
-    ## [1] "Hello World"
-    ```
+    Some more text can then follow the code block.
+
+**Output**
+
+Here is some *text* written in [Markdown](http://daringfireball.net/projects/markdown/)
+followed by a short block of R code.
+
+
+```r
+print("Hello World")
+```
+
+```
+## [1] "Hello World"
+```
+
+
+Some more text can then follow the code block.
 
 

@@ -36,7 +36,7 @@ To get started, let's load up an R console and install and load a few useful
 packages:
 
 ```{r load_libs, message=FALSE, eval=FALSE}
-install.packages(c("devtools", "knitr"), dependencies=TRUE)
+install.packages(c("devtools", "knitr", "ggplot2"), dependencies=TRUE)
 library(devtools)
 library(knitr)
 
@@ -61,12 +61,40 @@ The Basics
 The basic structure of an RMarkdown knitr document is to have block of R code,
 surrounded by Markdown text.
 
-**1.1** A simple example
+### 1. A simple example
+
+**Code**
 
     Here is some *text* written in [Markdown](http://daringfireball.net/projects/markdown/)
     followed by a short block of R code.
     
-    ```{r}
+    ```[r]
     print("Hello World")
     ```
+    
+    Some more text can then follow the code block.
+
+**Output**
+
+Here is some *text* written in [Markdown](http://daringfireball.net/projects/markdown/)
+followed by a short block of R code.
+
+```{r}
+print("Hello World")
+```
+
+Some more text can then follow the code block.
+
+As you can see, the Markdown formatting in the first sentence has been applied,
+and the R code, in this case a simple print statement, has been evaluated, and
+the results appending in a quote block following the command.
+
+Although the example is trivial, you can already start to image how this could
+be useful by including the output of more complex calculations along-side of
+some explantory text.
+
+Things get much more interesting, however, when we start to look at how
+plotting is handled by Knitr.
+
+
 
