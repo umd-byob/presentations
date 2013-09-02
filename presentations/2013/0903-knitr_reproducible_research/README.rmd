@@ -35,16 +35,14 @@ that you are working with R.
 To get started, let's load up an R console and install and load a few useful
 packages:
 
-
-```r
-install.packages(c("devtools", "knitr"), dependencies = TRUE)
+```{r load_libs, message=FALSE, eval=FALSE}
+install.packages(c("devtools", "knitr"), dependencies=TRUE)
 library(devtools)
 library(knitr)
 
 install_github("knitcitations", "cboettig")
 library(knitcitations)
 ```
-
 Although knitr has support for embedding R code in a number of popular
 languages, this tutorial focuses on one particular markup language, Markdown,
 which has a clear and simple syntax, and is supported by many other useful
