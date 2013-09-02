@@ -65,10 +65,16 @@ surrounded by Markdown text.
 
 **1.1** A simple example
 
-> Here is some *text* written in [Markdown](http://daringfireball.net/projects/markdown/)
-> followed by a short block of R code.
->
-> ```{r}
-> print("Hello World")
-> ```
+    Here is some *text* written in [Markdown](http://daringfireball.net/projects/markdown/)
+    followed by a short block of R code.
+    
+    
+    ```r
+    print("Hello World")
+    ```
+    
+    ```
+    ## [1] "Hello World"
+    ```
+
 
