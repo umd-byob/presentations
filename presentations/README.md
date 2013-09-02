@@ -96,9 +96,9 @@ Create a README.md as described above.
 
 If you have not already commited all of your changes, do so now. E.g.:
 
-> git add .
-> git commit -am "Adding presentation xxx"
-> git push
+    git add .
+    git commit -am "Adding presentation xxx"
+    git push
 
 The last command will push the changes to your fork of the BYOB repository.
 
