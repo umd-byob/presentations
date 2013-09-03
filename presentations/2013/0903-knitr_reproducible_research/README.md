@@ -214,10 +214,70 @@ is an excellent free repository that can be used to host your code.  Moreover,
 Github's built-in support for displaying Markdown makes it especially useful for
 knitr-based workflows. The present tutorial, for example, is [hosted on Github](https://github.com/umd-byob/byob/blob/master/presentations/2013/0903-knitr_reproducible_research).
 
+### 2. Make all steps of the analysis transparent
 
+The second important factor to make research clear and reproducible is to
+make all of the different steps of the analysis as transparent as possible.
+
+At a minimum, provenance information should be included for any datasets used
+in the analysis. Further, if possible, all steps used to prepare the data,
+however mundane, should also be included directly in the workflow.
+
+Finally, if certain steps in the middle of the analysis involve calling external
+scripts that you wrote, consider including those scripts inline in a knitr 
+block, or at the very least, include the code for those scripts with your final
+document.
+
+### 3. Describe the environment used to perform the analysis
+
+In addition to describing any hardware used to collect data, where relevant,
+the software environment used to perform the analysis should also be described
+thoroughly.
+
+Fortunately, knitr makes this especially easy since it can collect much of this
+information for you.
+
+See the `System Information` section below for an example of how this can be
+performed.
 
 System Information
 ------------------
+
+
+```r
+system("uname -a")
+system("python --version")
+sessionInfo()
+```
+
+```
+## R version 3.0.1 (2013-05-16)
+## Platform: x86_64-unknown-linux-gnu (64-bit)
+## 
+## locale:
+##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+##  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+##  [7] LC_PAPER=C                 LC_NAME=C                 
+##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+## [1] ggplot2_0.9.3.1 knitr_1.4.1     colorout_1.0-0  vimcom_0.9-8   
+## [5] setwidth_1.0-3 
+## 
+## loaded via a namespace (and not attached):
+##  [1] colorspace_1.2-2   dichromat_2.0-0    digest_0.6.3      
+##  [4] evaluate_0.4.7     formatR_0.9        grid_3.0.1        
+##  [7] gtable_0.1.2       labeling_0.2       markdown_0.6.3    
+## [10] MASS_7.3-26        munsell_0.4.2      plyr_1.8          
+## [13] proto_0.3-10       RColorBrewer_1.0-5 reshape2_1.2.2    
+## [16] scales_0.2.3       stringr_0.6.2      tools_3.0.1
+```
+
 
 References
 ==========

@@ -191,10 +191,40 @@ is an excellent free repository that can be used to host your code.  Moreover,
 Github's built-in support for displaying Markdown makes it especially useful for
 knitr-based workflows. The present tutorial, for example, is [hosted on Github](https://github.com/umd-byob/byob/blob/master/presentations/2013/0903-knitr_reproducible_research).
 
+### 2. Make all steps of the analysis transparent
 
+The second important factor to make research clear and reproducible is to
+make all of the different steps of the analysis as transparent as possible.
+
+At a minimum, provenance information should be included for any datasets used
+in the analysis. Further, if possible, all steps used to prepare the data,
+however mundane, should also be included directly in the workflow.
+
+Finally, if certain steps in the middle of the analysis involve calling external
+scripts that you wrote, consider including those scripts inline in a knitr 
+block, or at the very least, include the code for those scripts with your final
+document.
+
+### 3. Describe the environment used to perform the analysis
+
+In addition to describing any hardware used to collect data, where relevant,
+the software environment used to perform the analysis should also be described
+thoroughly.
+
+Fortunately, knitr makes this especially easy since it can collect much of this
+information for you.
+
+See the `System Information` section below for an example of how this can be
+performed.
 
 System Information
 ------------------
+
+```{r system_info}
+system('uname -a')
+system('python --version')
+sessionInfo()
+```
 
 References
 ==========
