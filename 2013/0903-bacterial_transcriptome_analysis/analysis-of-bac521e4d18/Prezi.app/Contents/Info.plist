@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>CFBundleAllowMixedLocalizations</key>
+        <true/>
+        <key>CFBundlePackageType</key>
+        <string>APPL</string>
+        <key>CFBundleInfoDictionaryVersion</key>
+        <string>6.0</string>
+        <key>LSMinimumSystemVersion</key>
+        <string>10.6</string>
+        <key>LSRequiresCarbon</key>
+        <true/>
+        <key>CFBundleIdentifier</key>
+        <string>Prezi</string>
+        <key>CFBundleGetInfoString</key>
+        <string>1.0,</string>
+        <key>CFBundleShortVersionString</key>
+        <string>1.0</string>
+        <key>NSHumanReadableCopyright</key>
+        <string/>
+        <key>CFBundleExecutable</key>
+        <string>Prezi</string>
+        <key>NSHighResolutionCapable</key>
+        <false/>
+        <key>CFBundleIconFile</key>
+        <string>Icon.icns</string>
+    </dict>
+</plist>
