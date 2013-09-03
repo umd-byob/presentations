@@ -209,6 +209,25 @@ A full list of features is available in the [knitr documentation](http://yihui.n
 An [extensive repository of knitr examples](https://github.com/yihui/knitr-examples)
 written in Markdown, LaTeX, HTML, etc is also available on Github.
 
+Finally, several other tools exist which can serve to extend the functionality
+of knitr. One such tool, described below, is knitcitations. Another useful
+tool for working with the output knitr is [Pandoc](http://johnmacfarlane.net/pandoc/).
+Pandoc is a universal document converter, capable of converting between formats
+such as LaTeX, Markdown, docx, etc. Especially useful is the ability to go
+from RMarkdown to PDF. For example, to convert this tutorial into a PDF, one
+could simply do:
+
+    pandoc README.md -o reproducible_research.pdf
+
+Pandoc also has it's own syntax which can be combined with knitr's to produce
+even nicer results. For example, to create an elegant-looking title page in
+the Pandoc output, you could include a short comment block at the top of
+the Markdown file with the following format:
+
+    % Reproducible Research Using Knitr/R
+    % [Keith Hughitt](mailto:khughitt@umd.edu)
+    % 2013/09/03
+
 Knitcitations
 -------------
 
@@ -224,8 +243,9 @@ the relevant [DOIs](http://en.wikipedia.org/wiki/Digital_object_identifier).
     cleanbib()
     citep('10.1126/science.1213847')
     citep('10.1093/biostatistics/kxq029')
-    bibliography("markdown")
+    bibliography()
     ```
+
 **Output**
 
 
@@ -248,7 +268,7 @@ citep("10.1093/biostatistics/kxq029")
 ```
 
 ```r
-bibliography("markdown")
+bibliography()
 ```
 
 ```
@@ -257,6 +277,11 @@ bibliography("markdown")
 ## - R. D. Peng,   (2011) Reproducible Research in Computational Science.  *Science*  **334**  1226-1227  [10.1126/science.1213847](http://dx.doi.org/10.1126/science.1213847)
 ```
 
+
+Which, when embedded in a Markdown document, looks like:
+
+- P. J. Diggle, S. L. Zeger,   (2010) Editorial.  *Biostatistics*  **11**  375-375  [10.1093/biostatistics/kxq029](http://dx.doi.org/10.1093/biostatistics/kxq029)
+- R. D. Peng,   (2011) Reproducible Research in Computational Science.  *Science*  **334**  1226-1227  [10.1126/science.1213847](http://dx.doi.org/10.1126/science.1213847)
 
 Best Practices for Reproducible Research
 ----------------------------------------
@@ -368,7 +393,18 @@ sessionInfo()
 
 References
 ==========
+- Carl Boettiger,   (2013) knitcitations: Citations for knitr markdown files.  [https://github.com/cboettig/knitcitations](https://github.com/cboettig/knitcitations)
+- Yihui Xie,   (2013) knitr: A general-purpose package for dynamic report generation in R.  [http://yihui.name/knitr/](http://yihui.name/knitr/)
+- Yihui Xie,   (2013) Dynamic Documents with {R} and knitr.  [http://yihui.name/knitr/](http://yihui.name/knitr/)
+- Yihui Xie,   (2013) knitr: A Comprehensive Tool for Reproducible Research in {R}.  [http://www.crcpress.com/product/isbn/9781466561595](http://www.crcpress.com/product/isbn/9781466561595)>
 
 Aknowledgements
 ===============
+I would like to thank the authors of knitr and knitcitations, Yihui Xie and 
+Carl Boettiger, for their hard work on these excellent tools, and also for
+[taking](https://groups.google.com/forum/#!topic/knitr/4uIVaLMGpKQ)
+[the](https://groups.google.com/forum/#!topic/knitr/1J8e6JwvBcQ) [time](https://groups.google.com/forum/#!topic/knitr/yg_WnFTUWTc)
+to answer questions from pestering knitr newbies.
+
+Keep up the good work!
 
