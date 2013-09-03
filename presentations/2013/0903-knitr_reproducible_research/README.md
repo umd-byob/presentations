@@ -70,7 +70,7 @@ surrounded by Markdown text.
     Here is some *text* written in [Markdown](http://daringfireball.net/projects/markdown/)
     followed by a short block of R code.
     
-    ```[r]
+    ```{r}
     print("Hello World")
     ```
     
@@ -112,7 +112,7 @@ For example:
 
 **Code**
 
-    ```[r, plot_example]
+    ```{r, plot_example}
     library(ggplot2)
     x = seq(1, 100)
     y = x + rnorm(100, sd=5)
@@ -136,4 +136,18 @@ qplot(x, y) + geom_smooth(aes(x, y))
 ```
 
 ![plot of chunk plot_example](figure/plot_example.png) 
+
+
+For the above example, the figure is generated and saved as a PNG in the
+`figure` directory. The plot is then referenced in the resulting Markdown, etc.
+output file so that the image appears directly after the code used to generate
+the image.
+
+Notice also in the above example the 'plot_example' string that was added to
+opening line of the R code block. This is simply an identifier that we can
+give to that particular block or "chunk" of R code. It is not necessary to
+give a code chunk an identifier, but it can be helpful for identifying problems
+down the road, and also results in more descriptive filenames for the plot
+images.
+
 
