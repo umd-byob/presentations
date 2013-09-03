@@ -246,7 +246,7 @@ step towards making it easy for other scientists to reproduce your work.
 If you are able to share the code used for the analysis openly, then [Github](github.com)
 is an excellent free repository that can be used to host your code.  Moreover,
 Github's built-in support for displaying Markdown makes it especially useful for
-knitr-based workflows. The present tutorial, for example, is [hosted on Github](https://github.com/umd-byob/byob/blob/master/presentations/2013/0903-knitr_reproducible_research).
+knitr-based workflows. The present tutorial, for example, is [hosted on Github](https://github.com/umd-byob/presentations/blob/master/2013/0903-knitr_reproducible_research).
 
 ### 2. Make all steps of the analysis transparent
 

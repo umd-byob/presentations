@@ -247,6 +247,19 @@ the relevant [DOIs](http://en.wikipedia.org/wiki/Digital_object_identifier).
 
 ```r
 library(knitcitations)
+```
+
+```
+## Loading required package: bibtex
+## 
+## Attaching package: 'knitcitations'
+## 
+## The following object is masked from 'package:utils':
+## 
+## cite
+```
+
+```r
 cleanbib()
 citep("10.1126/science.1213847")
 ```
@@ -297,7 +310,7 @@ step towards making it easy for other scientists to reproduce your work.
 If you are able to share the code used for the analysis openly, then [Github](github.com)
 is an excellent free repository that can be used to host your code.  Moreover,
 Github's built-in support for displaying Markdown makes it especially useful for
-knitr-based workflows. The present tutorial, for example, is [hosted on Github](https://github.com/umd-byob/byob/blob/master/presentations/2013/0903-knitr_reproducible_research).
+knitr-based workflows. The present tutorial, for example, is [hosted on Github](https://github.com/umd-byob/presentations/blob/master/2013/0903-knitr_reproducible_research).
 
 ### 2. Make all steps of the analysis transparent
 
@@ -360,12 +373,12 @@ sessionInfo()
 ## Platform: x86_64-unknown-linux-gnu (64-bit)
 ## 
 ## locale:
-##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
-##  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
-##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
-##  [7] LC_PAPER=C                 LC_NAME=C                 
-##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
-## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+##  [1] LC_CTYPE=en_US.utf8       LC_NUMERIC=C             
+##  [3] LC_TIME=en_US.utf8        LC_COLLATE=en_US.utf8    
+##  [5] LC_MONETARY=en_US.utf8    LC_MESSAGES=en_US.utf8   
+##  [7] LC_PAPER=C                LC_NAME=C                
+##  [9] LC_ADDRESS=C              LC_TELEPHONE=C           
+## [11] LC_MEASUREMENT=en_US.utf8 LC_IDENTIFICATION=C      
 ## 
 ## attached base packages:
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
@@ -379,11 +392,10 @@ sessionInfo()
 ##  [1] colorspace_1.2-2   dichromat_2.0-0    digest_0.6.3      
 ##  [4] evaluate_0.4.7     formatR_0.9        grid_3.0.1        
 ##  [7] gtable_0.1.2       httr_0.2           labeling_0.2      
-## [10] markdown_0.6.3     MASS_7.3-26        munsell_0.4.2     
-## [13] plyr_1.8           proto_0.3-10       RColorBrewer_1.0-5
-## [16] RCurl_1.95-4.1     reshape2_1.2.2     scales_0.2.3      
-## [19] stringr_0.6.2      tools_3.0.1        XML_3.98-1.1      
-## [22] xtable_1.7-1
+## [10] MASS_7.3-26        munsell_0.4.2      plyr_1.8          
+## [13] proto_0.3-10       RColorBrewer_1.0-5 RCurl_1.95-4.1    
+## [16] reshape2_1.2.2     scales_0.2.3       stringr_0.6.2     
+## [19] tools_3.0.1        XML_3.98-1.1       xtable_1.7-1
 ```
 
 
