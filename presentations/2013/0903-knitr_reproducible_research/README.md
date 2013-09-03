@@ -192,7 +192,16 @@ bowtie2 - -version
 
 ### 4. What else can knitr do?
 
-...
+Hopefully the above examples provide an idea of some of the basic functionality
+of knitr.
+
+Knitr is actually capable of much more, however. For example, you can embed
+LaTeX commands, images, and movies, and conditionally include child knitr
+documents.
+
+A full list of features is available in the [knitr documentation](http://yihui.name/knitr/options).
+An [extensive repository of knitr examples](https://github.com/yihui/knitr-examples)
+written in Markdown, LaTeX, HTML, etc is also available on Github.
 
 Best Practices for Reproducible Research
 ----------------------------------------
