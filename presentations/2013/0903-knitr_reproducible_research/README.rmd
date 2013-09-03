@@ -22,10 +22,10 @@ approach where figures are generated separately from the rest of a manuscript,
 knitr makes it easy to combine all of these elements in such a way so that
 another scientist can easily reconstruct the entire manuscript from scratch.
 
-Pre-requisities
----------------
+Prerequisites
+--------------
 
-The main pre-requisite for this tutorial is that at least part of your analysis
+The main prerequisite for this tutorial is that at least part of your analysis
 is being performed in R. Some excellent tools exist to achieve a similar effect
 in other programming languages (e.g. [IPython Notebook](http://www.youtube.com/watch?v=F4rFuIb1Ie4)),
 and some of the general practices discussed are relevant regardless of what
@@ -51,7 +51,7 @@ tools such as Github.
 Development Environment
 -----------------------
 No special development environment is actually needed to work create knitr
-documents: any text-editor will work. If you are famililar with [RStudio](http://www.rstudio.com),
+documents: any text-editor will work. If you are familiar with [RStudio](http://www.rstudio.com),
 however, there is [built-in support](http://www.rstudio.com/ide/docs/authoring/using_markdown)
 or compiling RMarkdown documents written using the knitr syntax.
 
@@ -91,7 +91,7 @@ the results appending in a quote block following the command.
 
 Although the example is trivial, you can already start to image how this could
 be useful by including the output of more complex calculations along-side of
-some explantory text.
+some explanatory text.
 
 Things get much more interesting, however, when we start to look at how
 plotting is handled by Knitr.
@@ -145,5 +145,60 @@ drawing from the Normal distribution above, it is a good practice to set a
 known seed: otherwise it is very unlikely that someone else running your code
 will arrive at the same results.
 
+### 3. Running code written in another language
 
+Another useful feature of knitr is the ability to run [code written in other
+languages besides R](http://yihui.name/knitr/demo/engines/).
+
+For example, you can include a [Bash](http://en.wikipedia.org/wiki/Bash_(Unix_shell))
+chunk to execute arbitrary shell commands, including other software and scripts.
+Similar to above, all of the output of those commands will be appended to the
+knitted report.
+
+**Code**
+
+    ```{r bash_example}`r ''`
+    bowtie2 --version
+    ```
+
+**Output**
+
+```{r bash_example}
+bowtie2 --version
+```
+
+### 4. What else can knitr do?
+
+...
+
+Best Practices for Reproducible Research
+----------------------------------------
+
+Although there has already been [a lot](http://www.youtube.com/watch?v=7gYIs7uYbMo)
+of [discussion](http://simplystatistics.org/2013/08/21/treading-a-new-path-for-reproducible-research-part-1/)
+recently on [reproducible research](http://ivory.idyll.org/blog/research-software-reuse.html),
+I thought I would put together a short list of "best practices".
+
+### 1. Make your data and code available
+
+This is a pretty obvious first step, but people are going to have a difficult
+time reproducing your results if they are missing either the code or data.
+Making both of these available in public repositories is already a big first
+step towards making it easy for other scientists to reproduce your work.
+
+If you are able to share the code used for the analysis openly, then [Github](github.com)
+is an excellent free repository that can be used to host your code.  Moreover,
+Github's built-in support for displaying Markdown makes it especially useful for
+knitr-based workflows. The present tutorial, for example, is [hosted on Github](https://github.com/umd-byob/byob/blob/master/presentations/2013/0903-knitr_reproducible_research).
+
+
+
+System Information
+------------------
+
+References
+==========
+
+Aknowledgements
+===============
 
