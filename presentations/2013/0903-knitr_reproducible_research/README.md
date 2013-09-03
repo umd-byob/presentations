@@ -174,19 +174,25 @@ knitted report.
 
 **Code**
 
-    ```{r bash_example}
+    ```{r bash_example, engine='bash'}
     bowtie2 --version
     ```
 
 **Output**
 
 
-```r
-bowtie2 - -version
+```bash
+bowtie2 --version
 ```
 
 ```
-## Error: object 'bowtie2' not found
+## /usr/bin/bowtie2-align version 2.1.0
+## 64-bit
+## Built on Europa
+## Sat May  4 07:20:58 EDT 2013
+## Compiler: gcc version 4.8.0 20130425 (prerelease) (GCC) 
+## Options: -O3 -m64 -msse2 -funroll-loops -g3 
+## Sizeof {int, long, long long, void*, size_t, off_t}: {4, 8, 8, 8, 8, 8}
 ```
 
 
@@ -202,6 +208,55 @@ documents.
 A full list of features is available in the [knitr documentation](http://yihui.name/knitr/options).
 An [extensive repository of knitr examples](https://github.com/yihui/knitr-examples)
 written in Markdown, LaTeX, HTML, etc is also available on Github.
+
+Knitcitations
+-------------
+
+Another useful tool for writing manuscripts directly in Knitr is the
+[knitcitations package](https://github.com/cboettig/knitcitations).
+Knitcitations makes it easy to build up and display a bibliography with just 
+the relevant [DOIs](http://en.wikipedia.org/wiki/Digital_object_identifier).
+
+**Code**
+
+    ```{r knit_citations}
+    library(knitcitations)
+    cleanbib()
+    citep('10.1126/science.1213847')
+    citep('10.1093/biostatistics/kxq029')
+    bibliography("markdown")
+    ```
+**Output**
+
+
+```r
+library(knitcitations)
+cleanbib()
+citep("10.1126/science.1213847")
+```
+
+```
+## [1] "(<a href=\"http://dx.doi.org/10.1126/science.1213847\">Peng, 2011</a>)"
+```
+
+```r
+citep("10.1093/biostatistics/kxq029")
+```
+
+```
+## [1] "(<a href=\"http://dx.doi.org/10.1093/biostatistics/kxq029\">Diggle & Zeger, 2010</a>)"
+```
+
+```r
+bibliography("markdown")
+```
+
+```
+## 
+## - P. J. Diggle, S. L. Zeger,   (2010) Editorial.  *Biostatistics*  **11**  375-375  [10.1093/biostatistics/kxq029](http://dx.doi.org/10.1093/biostatistics/kxq029)
+## - R. D. Peng,   (2011) Reproducible Research in Computational Science.  *Science*  **334**  1226-1227  [10.1126/science.1213847](http://dx.doi.org/10.1126/science.1213847)
+```
+
 
 Best Practices for Reproducible Research
 ----------------------------------------
@@ -259,9 +314,9 @@ achieve this.
 Summary
 -------
 
-That's it! Hopefully this tutorial provided you with an idea of the kinds of
-tools and practices that can be used to make your research as easily reproduced
-as possible.
+That's it! Hopefully this tutorial provided you with an idea of some of
+tools and practices that can be used to make your research as easily 
+reproducible as possible.
 
 With that, I'll leave you with this story of some of the dangers of *non*-reproducible
 research.
@@ -295,16 +350,19 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] ggplot2_0.9.3.1 knitr_1.4.1     colorout_1.0-0  vimcom_0.9-8   
-## [5] setwidth_1.0-3 
+## [1] knitcitations_0.5-0 bibtex_0.3-6        ggplot2_0.9.3.1    
+## [4] knitr_1.4.1         colorout_1.0-0      vimcom_0.9-8       
+## [7] setwidth_1.0-3     
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] colorspace_1.2-2   dichromat_2.0-0    digest_0.6.3      
 ##  [4] evaluate_0.4.7     formatR_0.9        grid_3.0.1        
-##  [7] gtable_0.1.2       labeling_0.2       markdown_0.6.3    
-## [10] MASS_7.3-26        munsell_0.4.2      plyr_1.8          
-## [13] proto_0.3-10       RColorBrewer_1.0-5 reshape2_1.2.2    
-## [16] scales_0.2.3       stringr_0.6.2      tools_3.0.1
+##  [7] gtable_0.1.2       httr_0.2           labeling_0.2      
+## [10] markdown_0.6.3     MASS_7.3-26        munsell_0.4.2     
+## [13] plyr_1.8           proto_0.3-10       RColorBrewer_1.0-5
+## [16] RCurl_1.95-4.1     reshape2_1.2.2     scales_0.2.3      
+## [19] stringr_0.6.2      tools_3.0.1        XML_3.98-1.1      
+## [22] xtable_1.7-1
 ```
 
 
