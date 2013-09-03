@@ -1,7 +1,3 @@
-% Reproducible Research Using Knitr/R
-% [Keith Hughitt](mailto:khughitt@umd.edu)
-% 2013/09/03
-
 Reproducible Research Using Knitr/R
 ===================================
 
@@ -295,7 +291,7 @@ reproducible as possible.
 With that, I'll leave you with this story of some of the dangers of *non*-reproducible
 research.
 
-[![The Importance of Reproducible Research in High-Throughput Biology](http://img.youtube.com/vi/7gYIs7uYbMo/0.jpg)](http://www.youtube.com/watch?v=7gYIs7uYbMo)
+[![The Importance of Reproducible Research in High-Throughput Biology](images/0.jpg)](http://www.youtube.com/watch?v=7gYIs7uYbMo)
 
 
 System Information
@@ -314,8 +310,8 @@ References
 - Yihui Xie,   (2013) Dynamic Documents with {R} and knitr.  [http://yihui.name/knitr/](http://yihui.name/knitr/)
 - Yihui Xie,   (2013) knitr: A Comprehensive Tool for Reproducible Research in {R}.  [http://www.crcpress.com/product/isbn/9781466561595](http://www.crcpress.com/product/isbn/9781466561595)>
 
-Aknowledgements
-===============
+Acknowledgements
+================
 I would like to thank the authors of knitr and knitcitations, Yihui Xie and 
 Carl Boettiger, for their hard work on these excellent tools, and also for
 [taking](https://groups.google.com/forum/#!topic/knitr/4uIVaLMGpKQ)
