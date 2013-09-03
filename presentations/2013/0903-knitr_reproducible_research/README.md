@@ -241,13 +241,33 @@ document.
 
 In addition to describing any hardware used to collect data, where relevant,
 the software environment used to perform the analysis should also be described
-thoroughly.
+thoroughly. This includes information about the OS, software versions, and
+library versions.
 
 Fortunately, knitr makes this especially easy since it can collect much of this
 information for you.
 
 See the `System Information` section below for an example of how this can be
 performed.
+
+### 4. Be less random
+
+Set a seed for the random number generator in R or whichever language you are
+using. As described above, the `set.seed()` function can be used in R to
+achieve this.
+
+Summary
+-------
+
+That's it! Hopefully this tutorial provided you with an idea of the kinds of
+tools and practices that can be used to make your research as easily reproduced
+as possible.
+
+With that, I'll leave you with this story of some of the dangers of *non*-reproducible
+research.
+
+[![The Importance of Reproducible Research in High-Throughput Biology](http://img.youtube.com/vi/7gYIs7uYbMo/0.jpg)](http://www.youtube.com/watch?v=7gYIs7uYbMo)
+
 
 System Information
 ------------------
