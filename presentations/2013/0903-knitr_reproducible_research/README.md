@@ -112,8 +112,9 @@ For example:
 
 **Code**
 
-    ```{r, plot_example}
+    ```{r, plot_example, fig.width=8, fig.height=8, fig.dpi=96}
     library(ggplot2)
+    set.seed(1)
     x = seq(1, 100)
     y = x + rnorm(100, sd=5)
 
@@ -124,6 +125,7 @@ For example:
 
 ```r
 library(ggplot2)
+set.seed(1)
 x = seq(1, 100)
 y = x + rnorm(100, sd = 5)
 
@@ -143,11 +145,22 @@ For the above example, the figure is generated and saved as a PNG in the
 output file so that the image appears directly after the code used to generate
 the image.
 
+[Chunk options](http://yihui.name/knitr/options#chunk_options) allow you to
+control various aspects of the code block. In the above example we specified
+a desired figure width, height, and DPI; other options provide a way to control
+the verbosity of the code output, skip blocks, etc.'
+
 Notice also in the above example the 'plot_example' string that was added to
 opening line of the R code block. This is simply an identifier that we can
 give to that particular block or "chunk" of R code. It is not necessary to
 give a code chunk an identifier, but it can be helpful for identifying problems
 down the road, and also results in more descriptive filenames for the plot
 images.
+
+Finally, whenever parts of your analysis include a random component, such as
+drawing from the Normal distribution above, it is a good practice to set a
+known seed: otherwise it is very unlikely that someone else running your code
+will arrive at the same results.
+
 
 
