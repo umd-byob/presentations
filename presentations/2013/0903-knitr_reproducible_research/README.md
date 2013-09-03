@@ -37,7 +37,7 @@ packages:
 
 
 ```r
-install.packages(c("devtools", "knitr"), dependencies = TRUE)
+install.packages(c("devtools", "knitr", "ggplot2"), dependencies = TRUE)
 library(devtools)
 library(knitr)
 
@@ -63,7 +63,7 @@ The Basics
 The basic structure of an RMarkdown knitr document is to have block of R code,
 surrounded by Markdown text.
 
-### e. A simple example
+### 1. A simple example
 
 **Code**
 
@@ -93,4 +93,47 @@ print("Hello World")
 
 Some more text can then follow the code block.
 
+As you can see, the Markdown formatting in the first sentence has been applied,
+and the R code, in this case a simple print statement, has been evaluated, and
+the results appending in a quote block following the command.
+
+Although the example is trivial, you can already start to image how this could
+be useful by including the output of more complex calculations along-side of
+some explantory text.
+
+Things get much more interesting, however, when we start to look at how
+plotting is handled by Knitr.
+
+### 2. A plotting example
+
+Using the same syntax as above, you can also embed plots directly in the output.
+
+For example:
+
+**Code**
+
+    ```[r, plot_example]
+    library(ggplot2)
+    x = seq(1, 100)
+    y = x + rnorm(100, sd=5)
+
+    qplot(x, y) + geom_smooth(aes(x, y))
+    ```
+**Output**
+
+
+```r
+library(ggplot2)
+x = seq(1, 100)
+y = x + rnorm(100, sd = 5)
+
+qplot(x, y) + geom_smooth(aes(x, y))
+```
+
+```
+## geom_smooth: method="auto" and size of largest group is <1000, so using
+## loess. Use 'method = x' to change the smoothing method.
+```
+
+![plot of chunk plot_example](figure/plot_example.png) 
 
