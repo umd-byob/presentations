@@ -19,12 +19,21 @@ body {
 
 /** text **/
 a {
+    text-decoration: none;
+}
+#schedule a {
+    color: #899CA1;
+}
+#schedule a:hover {
+    color: #7F62B3;
+}
+a.link {
     cursor: pointer;
     text-decoration: none;
     font-weight: bold;
     color: #BF85CC;
 }
-a:hover {
+a.link:hover {
     color: #914E89;
 }
 
@@ -87,7 +96,7 @@ a:hover {
     padding-right: 25px;
 }
 
-#current {
+#current, #current a {
     color: #b8d2d9;
     font-weight: bold;
 }
