@@ -1,0 +1,1431 @@
+<zuiprezi>
+  <version>8</version>
+  <zui-table>
+    <settings>
+      
+      <autoplay>
+        
+        <delay>4000</delay>
+        
+      </autoplay>
+      
+      <bounds x="-39941.2123540934" y="-22448.57990387408" width="79882.4247081868" height="44897.15980774816"/>
+      <aspectratio>off</aspectratio>
+      <languages>
+        <language>en</language>
+      </languages>
+      <mode type="normal"/>
+    </settings>
+    <object id="0_943378" type="button" x="2.264240435356985e-12" y="-1.0079372333774993e-12" r="0" s="71.61773776957754" class="invisible">
+      <type>invisible</type>
+      <size>
+        <w>1116.5692083075191</w>
+        <h>628.0701796729796</h>
+      </size>
+      <meta>
+        <parentTemplate>explain_a_topic_dark-quick</parentTemplate>
+        <notModifiedByUser>from-template</notModifiedByUser>
+      </meta>
+      <layout>
+        <frametype value="OVERVIEW"/>
+      </layout>
+    </object>
+    <object id="1_943378" type="button" x="-20639.634945488935" y="5994.353049369932" r="0" s="13.859728765190589" class="circle">
+      <type>circle</type>
+      <size>
+        <w>800</w>
+        <h>800</h>
+      </size>
+      <meta>
+        <parentObjlib>linearporcess</parentObjlib>
+        <parentTemplate>explain_a_topic_dark-quick</parentTemplate>
+        <notModifiedByUser>from-template</notModifiedByUser>
+      </meta>
+      <layout>
+        <frametype value="SECTION"/>
+      </layout>
+    </object>
+    <object id="2_943378" type="button" x="-327.8773707210089" y="194.50757029799433" r="0" s="23.530405312227774" class="circle">
+      <type>circle</type>
+      <size>
+        <w>800</w>
+        <h>800</h>
+      </size>
+      <meta>
+        <parentObjlib>linearporcess</parentObjlib>
+        <parentTemplate>explain_a_topic_dark-quick</parentTemplate>
+        <notModifiedByUser>from-template</notModifiedByUser>
+      </meta>
+      <layout>
+        <frametype value="SECTION"/>
+      </layout>
+    </object>
+    <object id="3_943378" type="shape" x="-11717.671598056813" y="5591.696913360565" r="-8.82787006671686" s="45.313371816225825" class="line3">
+      <geom type="arrow">
+        <sp>60.318608383180695 -5.833236783071967</sp>
+        <ep>-60.31860838318069 -5.833236783071997</ep>
+        <b>-11.666473566143964</b>
+        <t>8</t>
+      </geom>
+      <meta>
+        <parentTemplate>explain_a_topic_dark-quick</parentTemplate>
+        <notModifiedByUser>from-template</notModifiedByUser>
+      </meta>
+    </object>
+    <object id="4_943378" type="button" x="-15053.376119300216" y="-8376.482565288612" r="0" s="9.936930924261365" class="circle">
+      <type>circle</type>
+      <size>
+        <w>800</w>
+        <h>800</h>
+      </size>
+      <meta>
+        <parentTemplate>explain_a_topic_dark-quick</parentTemplate>
+        <notModifiedByUser>from-template</notModifiedByUser>
+      </meta>
+      <layout>
+        <frametype value="SECTION"/>
+      </layout>
+    </object>
+    <object id="5_943378" type="button" x="17156.050000000007" y="3753.750000000001" r="0" s="12.171484578034685" class="circle">
+      <type>circle</type>
+      <size>
+        <w>800</w>
+        <h>800</h>
+      </size>
+      <meta>
+        <parentTemplate>explain_a_topic_dark-quick</parentTemplate>
+        <notModifiedByUser>from-template</notModifiedByUser>
+      </meta>
+      <layout>
+        <frametype value="SECTION"/>
+      </layout>
+    </object>
+    <object id="6_943378" type="shape" x="-10114.200271792071" y="-5460.106764047796" r="-151.75574892919897" s="45.31337181622574" class="line3">
+      <geom type="arrow">
+        <sp>-31.786658243000566 0</sp>
+        <ep>31.786658243000566 0</ep>
+        <t>8</t>
+      </geom>
+      <meta>
+        <parentTemplate>explain_a_topic_dark-quick</parentTemplate>
+        <notModifiedByUser>from-template</notModifiedByUser>
+      </meta>
+    </object>
+    <object id="7_943378" type="shape" x="18961.483625734545" y="-2903.1634912047675" r="-99.4623222080253" s="32.36669415444697" class="line3">
+      <geom type="arrow">
+        <sp>42.16936739846157 -7.332975533988259</sp>
+        <ep>-42.16936739846157 -7.332975533988263</ep>
+        <b>-14.665951067976522</b>
+        <t>8</t>
+      </geom>
+      <meta>
+        <parentTemplate>explain_a_topic_dark-quick</parentTemplate>
+        <notModifiedByUser>from-template</notModifiedByUser>
+      </meta>
+    </object>
+    <object id="3_13415665" type="text" x="10706.974672499626" y="13373.720872997663" r="0" s="107.54869789888643" class="head">
+      <height>27.144</height>
+      <width>462.82569698792935</width>
+      <p align="center">
+        <text><![CDATA[Analysis of Bacterial Transcriptome Data]]></text>
+      </p>
+    </object>
+    <object id="25_4" type="text" x="-291.68974913032287" y="994.5628519637326" r="0" s="29.60342620749692" class="body">
+      <height>207.78515625</height>
+      <width>463.5017398246525</width>
+      <p listType="bullet" indent="1">
+        <text><![CDATA[Obtain Data from an Illumina Sequencer]]></text>
+      </p>
+      <p listType="bullet" indent="1">
+        <text><![CDATA[Perform Quality Control on the data]]></text>
+      </p>
+      <p listType="bullet" indent="1">
+        <text><![CDATA[Align the data to the reference genome]]></text>
+      </p>
+      <p listType="bullet" indent="1">
+        <text><![CDATA[Extract usuable information from the assembly]]></text>
+      </p>
+      <p listType="bullet" indent="1">
+        <text><![CDATA[Start asking questions (Science!)]]></text>
+      </p>
+      <layout>
+        <layout-element role="body" parent-id="2_943378"/>
+      </layout>
+    </object>
+    <object id="0_30863873" type="text" x="-20640.31507062302" y="2805.433424103256" r="0" s="28.399366445197643" class="strong">
+      <height>57.6</height>
+      <width>220.4993900181616</width>
+      <p align="center">
+        <text><![CDATA[Understanding the File Types you will be working with]]></text>
+      </p>
+      <meta>
+        <parentTemplate>explain_a_topic_dark-quick</parentTemplate>
+      </meta>
+      <layout>
+        <layout-element role="title" parent-id="1_943378"/>
+      </layout>
+    </object>
+    <object id="2_30863873" type="text" x="-15081.243719580129" y="-10720.39164444961" r="0" s="17.52534962567195" class="strong">
+      <height>28.8</height>
+      <width>220.4993900181616</width>
+      <p align="center">
+        <text><![CDATA[Quality Control]]></text>
+      </p>
+      <meta>
+        <parentTemplate>explain_a_topic_dark-quick</parentTemplate>
+      </meta>
+      <layout>
+        <layout-element role="title" parent-id="4_943378"/>
+      </layout>
+    </object>
+    <object id="6_30863873" type="text" x="17113.382139367408" y="1315.2147867819172" r="0" s="26.832923102636407" class="strong">
+      <height>28.8</height>
+      <width>220.4993900181616</width>
+      <p align="center">
+        <text><![CDATA[Further Analysis]]></text>
+      </p>
+      <meta>
+        <parentTemplate>explain_a_topic_dark-quick</parentTemplate>
+      </meta>
+      <layout>
+        <layout-element role="title" parent-id="5_943378"/>
+      </layout>
+    </object>
+    <object id="7_30863873" type="text" x="17188.808322326156" y="4001.1999928953924" r="0" s="15.482461196337654" class="body">
+      <height>237.46875</height>
+      <width>515.4460878832252</width>
+      <p listType="bullet" indent="1">
+        <text><![CDATA[Differential gene expression analysis]]></text>
+      </p>
+      <p listType="bullet" indent="2">
+        <text><![CDATA[Cuffdiff, DESeq2, edgeR]]></text>
+      </p>
+      <p listType="bullet" indent="2">
+        <text><![CDATA[Needs replicates]]></text>
+      </p>
+      <p listType="bullet" indent="1">
+        <text><![CDATA[Gene Ontology enrichment analysis (topGO)]]></text>
+      </p>
+      <p listType="bullet" indent="1">
+        <text><![CDATA[Creation of Bedgraph files for easy automated or manual scanning of genome]]></text>
+      </p>
+      <p listType="bullet" indent="1">
+        <text><![CDATA[Similar process to look for mutations in DNA-seq data]]></text>
+      </p>
+      <layout>
+        <layout-element role="body" parent-id="5_943378"/>
+      </layout>
+    </object>
+    <object id="3" type="text" x="-220.07913908932147" y="-5038.367971107254" r="0" s="70.61172646208993" class="head">
+      <height>27.144</height>
+      <width>139.40064165900452</width>
+      <p>
+        <text><![CDATA[The Process]]></text>
+      </p>
+    </object>
+    <object id="15" type="button" x="-23091.280367154217" y="6201.248103766541" r="0" s="5.980721854503291" class="circle">
+      <type>circle</type>
+      <size>
+        <w>800</w>
+        <h>800</h>
+      </size>
+      <layout>
+        <layout-element role="child" parent-id="1_943378"/>
+      </layout>
+    </object>
+    <object id="26" type="image" x="-22442.483061079976" y="7065.119500282848" r="0" s="5.6271329058629025">
+      <source w="189" h="33">803537213.png<url>803537213.png</url>
+      </source>
+      <sourceUrl>quality scores.png</sourceUrl>
+    <resource><id>
+        803537213
+        </id><url>http://0103.static.prezi.com.s3.amazonaws.com/media/1/4/8/c064b7b97fe591b5b37aadb121d96f82b161a.png</url></resource></object>
+    <object id="12_4" type="text" x="-23181.441686887305" y="4961.232331693535" r="-3.6067699470306326e-16" s="21.336864346504612" class="strong">
+      <height>28.8</height>
+      <width>220.4993900181616</width>
+      <p align="center">
+        <text><![CDATA[Sequence Files]]></text>
+      </p>
+      <layout>
+        <layout-element role="title" parent-id="15"/>
+      </layout>
+    </object>
+    <object id="16" type="text" x="-24297.354089752873" y="5625.810510722081" r="-3.125477900776724e-16" s="7.669996162678044" class="strong">
+      <height>28.8</height>
+      <width>73.89434064226407</width>
+      <p>
+        <text><![CDATA[Fasta]]></text>
+      </p>
+      <layout>
+        <layout-element role="body" parent-id="15"/>
+      </layout>
+    </object>
+    <object id="18" type="button" x="-18063.637500291075" y="6201.5341065463845" r="0" s="6.029741578148052" class="circle">
+      <type>circle</type>
+      <size>
+        <w>778.2187668085098</w>
+        <h>778.2187668085098</h>
+      </size>
+      <layout>
+        <layout-element role="child" parent-id="1_943378"/>
+      </layout>
+    </object>
+    <object id="19" type="text" x="-18064.392081773985" y="5053.0914817556895" r="0" s="21.408515728271276" class="strong">
+      <height>28.8</height>
+      <width>220.4993900181616</width>
+      <p align="center">
+        <text><![CDATA[Data Files]]></text>
+      </p>
+      <layout>
+        <layout-element role="title" parent-id="18"/>
+      </layout>
+    </object>
+    <object id="20" type="text" x="-17694.264910123617" y="5481.808111071041" r="0" s="9.280695356840434" class="strong">
+      <height>28.8</height>
+      <width>390.9237784827681</width>
+      <p>
+        <text><![CDATA[Almost always in tab-seperated value form]]></text>
+      </p>
+      <layout>
+        <layout-element role="body" parent-id="18"/>
+      </layout>
+    </object>
+    <object id="21" type="text" x="-22038.647135941414" y="5610.015388553986" r="-3.125477900776724e-16" s="7.669996162678044" class="strong">
+      <height>28.8</height>
+      <width>73.89434064226407</width>
+      <p>
+        <text><![CDATA[Fastq]]></text>
+      </p>
+      <layout>
+        <layout-element role="body" parent-id="15"/>
+      </layout>
+    </object>
+    <object id="22" type="text" x="-24366.13775830515" y="5960.290761748673" r="0" s="4.3675062002345175" class="body body-background">
+      <height>59.3671875</height>
+      <width>-311.51953125</width>
+      <p>
+        <text><![CDATA[>Sequence Name - Other info]]></text>
+      </p>
+      <p>
+        <text><![CDATA[ATCGTAGCGGATCGTAGCGAT]]></text>
+      </p>
+    </object>
+    <object id="23" type="text" x="-22137.111647292553" y="6089.993022407551" r="0" s="4.3675062002345175" class="body body-background">
+      <height>118.734375</height>
+      <width>-307.6875</width>
+      <p>
+        <text><![CDATA[@Sequence_identifying_info]]></text>
+      </p>
+      <p>
+        <text><![CDATA[ATCGTAGCGGATCGTAGCGAT]]></text>
+      </p>
+      <p>
+        <text><![CDATA[+]]></text>
+      </p>
+      <p>
+        <text><![CDATA[I?F0=CCHCDH@FGGHHBE@?]]></text>
+      </p>
+    </object>
+    <object id="24" type="text" x="-24416.699721813427" y="6456.37795333611" r="0" s="5.143512532017422" class="body">
+      <height>59.3671875</height>
+      <width>-251.56640625</width>
+      <p listType="bullet" indent="1">
+        <text><![CDATA[Very simple]]></text>
+      </p>
+      <p listType="bullet" indent="1">
+        <text><![CDATA[Name and sequence]]></text>
+      </p>
+    </object>
+    <object id="25" type="text" x="-22094.70368079068" y="7072.478236086752" r="0" s="5.143512532017422" class="body">
+      <height>207.78515625</height>
+      <width>414.00658954769585</width>
+      <p listType="bullet" indent="1">
+        <text><![CDATA[Contains the same information]]></text>
+      </p>
+      <p listType="bullet" indent="1">
+        <text><![CDATA[Also contains quality information for each base]]></text>
+      </p>
+      <p listType="bullet" indent="1">
+        <text><![CDATA[]]></text>
+      </p>
+      <p listType="bullet" indent="1">
+        <text><![CDATA[Typically from 0-40]]></text>
+      </p>
+      <p listType="bullet" indent="1">
+        <text><![CDATA[Represents 0-40 as sequence        of characters]]></text>
+      </p>
+    </object>
+    <object id="27" type="text" x="-18063.351497511238" y="5812.8563287395145" r="0" s="5.762581639878319" class="body">
+      <height>29.68359375</height>
+      <width>-496.32421875</width>
+      <p>
+        <text><![CDATA[Gene_name(tab)length(tab)position(tab)strand]]></text>
+      </p>
+    </object>
+    <object id="38" type="button" x="-19069.3662756096" y="6826.1641777238765" r="0" s="3.091218174038791" class="circle">
+      <type>circle</type>
+      <size>
+        <w>600.0415224913494</w>
+        <h>600</h>
+      </size>
+    </object>
+    <object id="39" type="button" x="-17110.390235073784" y="6826.021176333953" r="0" s="3.091218174038791" class="circle">
+      <type>circle</type>
+      <size>
+        <w>600.0415224913494</w>
+        <h>600</h>
+      </size>
+    </object>
+    <object id="40" type="text" x="-19081.254193963305" y="6238.63458604392" r="0" s="7.418175537858703" class="head">
+      <height>27.144</height>
+      <width>-119.208</width>
+      <p>
+        <text><![CDATA[SAM/BAM]]></text>
+      </p>
+    </object>
+    <object id="41" type="text" x="-17124.527549660954" y="6235.409508315636" r="0" s="7.418175537858702" class="head">
+      <height>27.144</height>
+      <width>-108.432</width>
+      <p>
+        <text><![CDATA[Bedgraph]]></text>
+      </p>
+    </object>
+    <object id="42" type="text" x="-19081.37839236301" y="6448.783509720809" r="0" s="2.860027798431728" class="strong">
+      <height>28.8</height>
+      <width>-418.36800000000005</width>
+      <p>
+        <text><![CDATA[Contains data for each read mapping (or not) to a genome]]></text>
+      </p>
+    </object>
+    <object id="44" type="button" x="-19429.157772652317" y="6942.710310509968" r="0" s="1.1732242718846104" class="invisible">
+      <type>invisible</type>
+      <size>
+        <w>611.3818114190067</w>
+        <h>600</h>
+      </size>
+    </object>
+    <object id="43" type="image" x="-19427.870760143014" y="6936.561250743341" r="0" s="0.9116336879014281">
+      <source w="728" h="725">803582333.png<url>803582333.png</url>
+      </source>
+      <sourceUrl>sam.png</sourceUrl>
+    <resource><id>
+        803582333
+        </id><url>http://0103.static.prezi.com.s3.amazonaws.com/media/a/c/5/e7503c6139fca7e1f0f4729679edac5865718.png</url></resource></object>
+    <object id="45" type="text" x="-18673.252425526807" y="6903.24192689161" r="0" s="2.860027798431728" class="body">
+      <height>237.46875</height>
+      <width>320.2220380064605</width>
+      <p listType="bullet" indent="1">
+        <text><![CDATA[Very large files (>500Mb)]]></text>
+      </p>
+      <p listType="bullet" indent="1">
+        <text><![CDATA[Center of all analysis]]></text>
+      </p>
+      <p listType="bullet" indent="1">
+        <text><![CDATA[BAM files are computer-readable formatted SAM files]]></text>
+      </p>
+      <p listType="bullet" indent="1">
+        <text><![CDATA[Can be sorted/indexed for high speed access and reduced disk space]]></text>
+      </p>
+    </object>
+    <object id="46" type="image" x="-17124.404371286102" y="7051.10536407053" r="0" s="1.638916974128764">
+      <source w="794" h="322">803599485.png<url>803599485.png</url>
+      </source>
+      <sourceUrl>begraph.png</sourceUrl>
+    <resource><id>
+        803599485
+        </id><url>http://0103.static.prezi.com.s3.amazonaws.com/media/3/e/5/ffa1b9c1b3cb64562eff3c8c3c8fd5ef64010.png</url></resource></object>
+    <object id="47" type="text" x="-17110.39023507379" y="6550.720039569365" r="0" s="2.860027798431728" class="body">
+      <height>118.734375</height>
+      <width>425.4266254675484</width>
+      <p align="center">
+        <text><![CDATA[Tab-seperated value file, each line contains a span of the genome (bases 1-24) and a number of reads that map to each base.]]></text>
+      </p>
+    </object>
+    <object id="48" type="button" x="-16706.995385928858" y="-8319.820865637894" r="0" s="4.756737462554517" class="circle">
+      <type>circle</type>
+      <size>
+        <w>800</w>
+        <h>800.0000000000016</h>
+      </size>
+      <layout>
+        <layout-element role="child" parent-id="4_943378"/>
+      </layout>
+    </object>
+    <object id="49" type="text" x="-16758.904890470396" y="-9597.53828458728" r="-3.1944298541908284e-15" s="19.787538692750434" class="strong">
+      <height>28.8</height>
+      <width>70.72206288763411</width>
+      <p align="center">
+        <text><![CDATA[FastQC]]></text>
+      </p>
+      <layout>
+        <layout-element role="title" parent-id="48"/>
+      </layout>
+    </object>
+    <object id="55" type="button" x="-13211.469410685606" y="-8342.987090805193" r="0" s="4.756737462554517" class="circle">
+      <type>circle</type>
+      <size>
+        <w>800</w>
+        <h>800.0000000000016</h>
+      </size>
+      <layout>
+        <layout-element role="child" parent-id="4_943378"/>
+      </layout>
+    </object>
+    <object id="0_20565765" type="image" x="-13206.249999999996" y="-7442.3499999999985" r="-4.235775545541092e-15" s="3.7307161145269974">
+      <source w="688" h="148">805223897.png<url>805223897.png</url>
+      </source>
+      <sourceUrl>prinseq.png</sourceUrl>
+    <resource><id>
+        805223897
+        </id><url>http://0103.static.prezi.com.s3.amazonaws.com/media/f/9/3/7f7bd7f1af1ca550f2f9af40b48ff0251c1d2.png</url></resource></object>
+    <object id="56" type="text" x="-13228.199999999995" y="-9488.850000000006" r="-6.027698456008189e-15" s="10.486573739944278" class="strong">
+      <height>28.8</height>
+      <width>220.4993900181616</width>
+      <p align="center">
+        <text><![CDATA[Filtering the Data]]></text>
+      </p>
+      <layout>
+        <layout-element role="title" parent-id="55"/>
+      </layout>
+    </object>
+    <object id="57" type="text" x="-13199.049999999994" y="-8437.099999999999" r="5.2233545786056125e-15" s="6.050700119036547" class="body">
+      <height>237.46875</height>
+      <width>390.9237784827681</width>
+      <p listType="bullet" indent="1">
+        <text><![CDATA[Remove low quality reads]]></text>
+      </p>
+      <p listType="bullet" indent="1">
+        <text><![CDATA[Trim adapter sequences and low quality bases from ends of reads]]></text>
+      </p>
+      <p listType="bullet" indent="1">
+        <text><![CDATA[Remove low-complexity reads that will not map properly to genome]]></text>
+      </p>
+      <p listType="bullet" indent="1">
+        <text><![CDATA[Lots of tools available, Prinseq, HTQC, Cutadapt]]></text>
+      </p>
+      <layout>
+        <layout-element role="body" parent-id="55"/>
+      </layout>
+    </object>
+    <object id="58" type="image" x="-16722.86854021016" y="-8202.702727292119" r="0" s="3.2880930080132487">
+      <source w="800" h="600">803605821.png<url>803605821.png</url>
+      </source>
+      <sourceUrl>fastqc.png</sourceUrl>
+    <resource><id>
+        803605821
+        </id><url>http://0103.static.prezi.com.s3.amazonaws.com/media/2/0/5/67aaf8432e1926204c071a401cf1880ac4a77.png</url></resource></object>
+    <object id="59" type="shape" x="-11224.095560689007" y="-13048.73252973548" r="-38.82761291850221" s="32.366694154446954" class="line3">
+      <geom type="arrow">
+        <sp>-50.51556253281633 4.850504825201454</sp>
+        <ep>50.51556253281633 4.850504825201454</ep>
+        <b>-9.701009650402908</b>
+        <t>8</t>
+      </geom>
+    </object>
+    <object id="60" type="button" x="-5485.104313222291" y="-14940.070212057746" r="0" s="9.936930924261365" class="circle">
+      <type>circle</type>
+      <size>
+        <w>800</w>
+        <h>800</h>
+      </size>
+      <meta>
+        <parentTemplate>explain_a_topic_dark-quick</parentTemplate>
+        <notModifiedByUser>from-template</notModifiedByUser>
+      </meta>
+      <layout>
+        <frametype value="SECTION"/>
+      </layout>
+    </object>
+    <object id="61" type="text" x="-5485.957397193812" y="-17085.434481673572" r="2.2395203674802584e-15" s="28.22475082564095" class="strong">
+      <height>28.8</height>
+      <width>220.4993900181616</width>
+      <p align="center">
+        <text><![CDATA[Alignment to the genome]]></text>
+      </p>
+      <meta>
+        <parentTemplate>explain_a_topic_dark-quick</parentTemplate>
+      </meta>
+      <layout>
+        <layout-element role="title" parent-id="60"/>
+      </layout>
+    </object>
+    <object id="69" type="text" x="-5439.057865667539" y="-16243.384879803089" r="-1.0045977425899454e-14" s="12.584122313099607" class="strong">
+      <height>28.8</height>
+      <width>-280.752</width>
+      <p>
+        <text><![CDATA[Using the Bowtie2 alignment software]]></text>
+      </p>
+    </object>
+    <object id="70" type="text" x="-5530.435753827435" y="-14288.126875405234" r="0" s="10.400101085206284" class="body">
+      <height>207.78515625</height>
+      <width>617.5473390705281</width>
+      <p listType="bullet" indent="1">
+        <text><![CDATA[Build an index]]></text>
+      </p>
+      <p listType="bullet" indent="2">
+        <text><![CDATA[bowtie2-build genome.fasta genome_name]]></text>
+      </p>
+      <p listType="bullet" indent="1">
+        <text><![CDATA[Align the data to the genome (unpaired)]]></text>
+      </p>
+      <p listType="bullet" indent="2">
+        <text><![CDATA[bowtie2 genome_name -r reads.fq > alignment.sam]]></text>
+      </p>
+      <p listType="bullet" indent="1">
+        <text><![CDATA[Align the data to the genome (paired)]]></text>
+      </p>
+      <p listType="bullet" indent="2">
+        <text><![CDATA[bowtie2 genome_name -1 reads1.fq -2 reads2.fq > alignment.sam]]></text>
+      </p>
+    </object>
+    <object id="71" type="button" x="6274.757988369289" y="-14646.345357158805" r="0" s="9.936930924261365" class="circle">
+      <type>circle</type>
+      <size>
+        <w>800</w>
+        <h>800</h>
+      </size>
+      <meta>
+        <parentTemplate>explain_a_topic_dark-quick</parentTemplate>
+        <notModifiedByUser>from-template</notModifiedByUser>
+      </meta>
+      <layout>
+        <frametype value="SECTION"/>
+      </layout>
+    </object>
+    <object id="75" type="shape" x="310.9846441899796" y="-15358.434814266333" r="-4.002899722359321" s="32.366694154446954" class="line3">
+      <geom type="arrow">
+        <sp>-45.73929925036923 4.850504825201454</sp>
+        <ep>45.73929925036923 4.850504825201454</ep>
+        <b>-9.701009650402908</b>
+        <t>8</t>
+      </geom>
+    </object>
+    <object id="76" type="text" x="6239.923488019402" y="-16637.191733767333" r="0" s="30.669361844925906" class="strong">
+      <height>28.8</height>
+      <width>220.4993900181616</width>
+      <p align="center">
+        <text><![CDATA[Preparing the Alignment]]></text>
+      </p>
+      <layout>
+        <layout-element role="title" parent-id="71"/>
+      </layout>
+    </object>
+    <object id="77" type="text" x="6425.4229425151425" y="-15359.608219210333" r="0" s="12.64004784783665" class="body">
+      <height>59.3671875</height>
+      <width>390.9237784827681</width>
+      <p align="center">
+        <text><![CDATA[SAM file needs to be converted to BAM, sorted, and indexed]]></text>
+      </p>
+      <layout>
+        <layout-element role="body" parent-id="71"/>
+      </layout>
+    </object>
+    <object id="78" type="text" x="6229.998553323833" y="-13624.314423389227" r="0" s="12.64004784783665" class="strong">
+      <height>172.8</height>
+      <width>-464.87999999999994</width>
+      <p listType="bullet" indent="1">
+        <text><![CDATA[Convert only mapped reads to BAM]]></text>
+      </p>
+      <p listType="bullet" indent="2">
+        <text><![CDATA[samtools view -bSF 4 alignment.sam > alignment.bam]]></text>
+      </p>
+      <p listType="bullet" indent="1">
+        <text><![CDATA[Sort the reads by position in the genome]]></text>
+      </p>
+      <p listType="bullet" indent="2">
+        <text><![CDATA[samtools sort alignment.bam alignment.sorted]]></text>
+      </p>
+      <p listType="bullet" indent="1">
+        <text><![CDATA[Prepare indexing file for fast access]]></text>
+      </p>
+      <p listType="bullet" indent="2">
+        <text><![CDATA[samtools index alignment.sorted.bam]]></text>
+      </p>
+    </object>
+    <object id="79" type="button" x="15813.983611158334" y="-8148.920175212666" r="0" s="9.936930924261365" class="circle">
+      <type>circle</type>
+      <size>
+        <w>800</w>
+        <h>800</h>
+      </size>
+      <meta>
+        <parentTemplate>explain_a_topic_dark-quick</parentTemplate>
+        <notModifiedByUser>from-template</notModifiedByUser>
+      </meta>
+      <layout>
+        <frametype value="SECTION"/>
+      </layout>
+    </object>
+    <object id="83" type="shape" x="11639.71538790658" y="-11891.433952914911" r="40.288823247748695" s="32.36669415444695" class="line3">
+      <geom type="arrow">
+        <sp>-44.75592527280807 4.850504825201454</sp>
+        <ep>44.75592527280807 4.850504825201454</ep>
+        <b>-9.701009650402908</b>
+        <t>8</t>
+      </geom>
+    </object>
+    <object id="87" type="text" x="15773.625313910668" y="-10117.491338342164" r="0" s="30.669361844925906" class="strong">
+      <height>28.8</height>
+      <width>220.4993900181616</width>
+      <p align="center">
+        <text><![CDATA[Processing the alignment]]></text>
+      </p>
+      <layout>
+        <layout-element role="title" parent-id="79"/>
+      </layout>
+    </object>
+    <object id="88" type="text" x="15678.53389454855" y="-8042.404639027981" r="0" s="11.490952588942404" class="body">
+      <height>178.1015625</height>
+      <width>554.9996293368029</width>
+      <p listType="bullet" indent="1">
+        <text><![CDATA[Use HTSeq to count the number of reads in each gene (needs data in SAM format)]]></text>
+      </p>
+      <p listType="bullet" indent="2">
+        <text><![CDATA[samtools view alignment.sorted.bam > alignment.sorted.sam ]]></text>
+      </p>
+      <p listType="bullet" indent="2">
+        <text><![CDATA[htseq-count -s yes(/no) -t gene -i locus_tag alignment.sorted.sam genome.gff > reads.txt]]></text>
+      </p>
+      <layout>
+        <layout-element role="body" parent-id="79"/>
+      </layout>
+    </object>
+    <object id="89" type="text" x="15631.052928158842" y="-6002.769344738432" r="0" s="9.496655032183806" class="body body-background">
+      <height>178.1015625</height>
+      <width>-198.984375</width>
+      <p>
+        <text><![CDATA[OG1RF_10001	2594]]></text>
+      </p>
+      <p>
+        <text><![CDATA[OG1RF_10002	4056]]></text>
+      </p>
+      <p>
+        <text><![CDATA[OG1RF_10003	890]]></text>
+      </p>
+      <p>
+        <text><![CDATA[OG1RF_10004	2321]]></text>
+      </p>
+      <p>
+        <text><![CDATA[OG1RF_10005	6291]]></text>
+      </p>
+      <p>
+        <text><![CDATA[OG1RF_10006	8930]]></text>
+      </p>
+    </object>
+    <object id="1_20565765" type="button" x="-28395.150000000005" y="-7139.85" r="0" s="12.237778306881085" class="circle">
+      <type>circle</type>
+      <size>
+        <w>800</w>
+        <h>800.3286770747741</h>
+      </size>
+      <layout>
+        <frametype value="SECTION"/>
+      </layout>
+    </object>
+    <object id="2_20565765" type="text" x="-28429.47" y="-10401.313173349423" r="0" s="21.58325796005238" class="strong">
+      <height>28.8</height>
+      <width>220.4993900181616</width>
+      <p align="center">
+        <text><![CDATA[Installing the software]]></text>
+      </p>
+      <layout>
+        <layout-element role="title" parent-id="1_20565765"/>
+      </layout>
+    </object>
+    <object id="3_20565765" type="text" x="-28017.290122727925" y="-9556.639550353895" r="0" s="12.453430905715388" class="body">
+      <height>29.68359375</height>
+      <width>390.9237784827681</width>
+      <p>
+        <text><![CDATA[Bowtie2, Samtools, IGV, HTSeq]]></text>
+      </p>
+      <layout>
+        <layout-element role="body" parent-id="1_20565765"/>
+      </layout>
+    </object>
+    <object id="4_20565765" type="button" x="-30558.04470017128" y="-7329.330629167339" r="0" s="4.644422992033437" class="circle">
+      <type>circle</type>
+      <size>
+        <w>800</w>
+        <h>800.0000000000035</h>
+      </size>
+      <layout>
+        <layout-element role="child" parent-id="1_20565765"/>
+      </layout>
+    </object>
+    <object id="5_20565765" type="button" x="-26109.011100417458" y="-7329.682640833321" r="0" s="4.876831487517205" class="circle">
+      <type>circle</type>
+      <size>
+        <w>800</w>
+        <h>800</h>
+      </size>
+      <layout>
+        <layout-element role="child" parent-id="1_20565765"/>
+      </layout>
+    </object>
+    <object id="6_20565765" type="text" x="-26109.567719327944" y="-8574.136504688993" r="0" s="10.75132975358006" class="strong">
+      <height>28.8</height>
+      <width>220.4993900181616</width>
+      <p align="center">
+        <text><![CDATA[Linux (Ubuntu)]]></text>
+      </p>
+      <layout>
+        <layout-element role="title" parent-id="5_20565765"/>
+      </layout>
+    </object>
+    <object id="7_20565765" type="text" x="-26091.40338584723" y="-8053.135272258655" r="0" s="6.203463002600672" class="body">
+      <height>59.3671875</height>
+      <width>439.5069436457671</width>
+      <p>
+        <text><![CDATA[Using Linux is ideal because everything will just work out of the box.]]></text>
+      </p>
+      <layout>
+        <layout-element role="body" parent-id="5_20565765"/>
+      </layout>
+    </object>
+    <object id="10_20565765" type="text" x="-30537.73657558563" y="-8709.030958370686" r="0" s="10.23896831995761" class="strong">
+      <height>28.8</height>
+      <width>220.4993900181616</width>
+      <p align="center">
+        <text><![CDATA[OSX]]></text>
+      </p>
+      <layout>
+        <layout-element role="title" parent-id="4_20565765"/>
+      </layout>
+    </object>
+    <object id="11_20565765" type="text" x="-30473.68191346876" y="-8324.591504122447" r="0" s="5.907833041443733" class="body">
+      <height>59.3671875</height>
+      <width>424.3809986002539</width>
+      <p>
+        <text><![CDATA[Use Homebrew to manage programs]]></text>
+      </p>
+      <p>
+        <text><![CDATA[]]></text>
+      </p>
+      <layout>
+        <layout-element role="body" parent-id="4_20565765"/>
+      </layout>
+    </object>
+    <object id="12_20565765" type="text" x="-30565.009452356764" y="-7226.572821446616" r="0" s="4.140323144490077" class="body body-background">
+      <height>178.1015625</height>
+      <width>730.9800229012088</width>
+      <p>
+        <text><![CDATA[ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"]]></text>
+      </p>
+      <p>
+        <text><![CDATA[brew tap homebrew/science]]></text>
+      </p>
+      <p>
+        <text><![CDATA[brew install samtools bowtie2]]></text>
+      </p>
+      <p>
+        <text><![CDATA[wget http://python-distribute.org/distribute_setup.py | sudo python]]></text>
+      </p>
+      <p>
+        <text><![CDATA[sudo easy_install pip]]></text>
+      </p>
+      <p>
+        <text><![CDATA[sudo pip install htseq]]></text>
+      </p>
+    </object>
+    <object id="13_20565765" type="text" x="-30550.726815236354" y="-8040.730298595044" r="0" s="4.03512945935642" class="body">
+      <height>118.734375</height>
+      <width>552</width>
+      <p>
+        <text><![CDATA[Install XCode Command Line Tools from either within XCode or the standalone installers available from http://developer.apple.com/downloads/index.action]]></text>
+      </p>
+    </object>
+    <object id="8_20565765" type="text" x="-26101.52246450419" y="-7255.0499999999965" r="0" s="4.706918519956247" class="body body-background">
+      <height>118.734375</height>
+      <width>647.8181818181819</width>
+      <p>
+        <text><![CDATA[sudo apt-get install build-essential python-pip python2.7-dev python-numpy python-matplotlib]]></text>
+      </p>
+      <p>
+        <text><![CDATA[sudo apt-get install samtools bowtie2]]></text>
+      </p>
+      <p>
+        <text><![CDATA[sudo pip install htseq]]></text>
+      </p>
+    </object>
+    <object id="15_20565765" type="button" x="-28404.38930289326" y="-4376.839126242492" r="0" s="3.45308864596101" class="circle">
+      <type>circle</type>
+      <size>
+        <w>800</w>
+        <h>800</h>
+      </size>
+      <layout>
+        <layout-element role="child" parent-id="1_20565765"/>
+      </layout>
+    </object>
+    <object id="16_20565765" type="text" x="-28416.4943098177" y="-5068.659273863232" r="0" s="7.61258509671626" class="strong">
+      <height>28.8</height>
+      <width>220.4993900181616</width>
+      <p align="center">
+        <text><![CDATA[Other Software]]></text>
+      </p>
+      <layout>
+        <layout-element role="title" parent-id="15_20565765"/>
+      </layout>
+    </object>
+    <object id="17_20565765" type="text" x="-28231.3" y="-4788.750000000002" r="0" s="4.392423177784444" class="strong">
+      <height>28.8</height>
+      <width>390.9237784827681</width>
+      <p>
+        <text><![CDATA[Most other software comes with installers]]></text>
+      </p>
+      <layout>
+        <layout-element role="body" parent-id="15_20565765"/>
+      </layout>
+    </object>
+    <object id="18_20565765" type="text" x="-28302.399999999994" y="-4250.699999999999" r="0" s="3.3000925452925953" class="body">
+      <height>118.734375</height>
+      <width>732.8365000000001</width>
+      <p listType="bullet" indent="1">
+        <text><![CDATA[IGV (http://www.broadinstitute.org/igv/)]]></text>
+      </p>
+      <p listType="bullet" indent="1">
+        <text><![CDATA[FastQC (http://www.bioinformatics.babraham.ac.uk/projects/fastqc/)]]></text>
+      </p>
+      <p listType="bullet" indent="1">
+        <text><![CDATA[R (http://www.r-project.org/)]]></text>
+      </p>
+    </object>
+    <object id="19_20565765" type="text" x="9677.952155021392" y="16439.610210558563" r="0" s="70.61172646208993" class="strong">
+      <height>28.8</height>
+      <width>-133.416</width>
+      <p>
+        <text><![CDATA[Jonathan Goodson]]></text>
+      </p>
+    </object>
+  </zui-table>
+  <background>
+    <layer depth="61.30654237005894" fadescale="0.035885240219883">
+      <object id="background431450532" type="image" x="0" y="0" r="0" s="107.7004868475129">
+        <source w="1920" h="1200">431450532.png<url>431450532.png</url>
+        </source>
+        <sourceUrl>bg3.png</sourceUrl>
+      <resource><id>
+          431450532
+          </id><url>http://0103.static.prezi.com.s3.amazonaws.com/media/f/9/9/9cfa47e19b4e7ea4d27acc7bc9609dac04ee5.png</url></resource></object>
+    </layer>
+  </background>
+  <path>
+    <s>
+      <eagle o="0_943378"/>
+    </s>
+    <s>
+      <eagle o="2_943378"/>
+    </s>
+    <s>
+      <eagle o="1_943378"/>
+    </s>
+    <s>
+      <eagle o="15"/>
+    </s>
+    <s>
+      <eagle o="18"/>
+    </s>
+    <s>
+      <eagle o="38"/>
+    </s>
+    <s>
+      <eagle o="44"/>
+    </s>
+    <s>
+      <eagle o="38"/>
+    </s>
+    <s>
+      <eagle o="39"/>
+    </s>
+    <s>
+      <eagle o="4_943378"/>
+    </s>
+    <s>
+      <eagle o="48"/>
+    </s>
+    <s>
+      <eagle o="55"/>
+    </s>
+    <s>
+      <eagle o="60"/>
+    </s>
+    <s>
+      <eagle o="71"/>
+    </s>
+    <s>
+      <eagle o="79"/>
+    </s>
+    <s>
+      <eagle o="5_943378"/>
+    </s>
+    <s>
+      <eagle o="0_943378"/>
+    </s>
+    <s>
+      <eagle o="1_20565765"/>
+    </s>
+    <s>
+      <eagle o="4_20565765"/>
+    </s>
+    <s>
+      <eagle o="5_20565765"/>
+    </s>
+    <s>
+      <eagle o="15_20565765"/>
+    </s>
+  </path>
+  <style type="text/css"><![CDATA[
+@font-face
+{
+	src: url('Fontin.keg');
+	fontFamily: body;
+}
+
+@font-face
+{
+	src: url('Raleway-B.keg');
+	fontFamily: head;
+}
+
+@font-face
+{
+	src: url('YanoneKaffeesatz.keg');
+	fontFamily: strong;
+}
+
+background
+{
+	gradEnd: #808080;
+	gradStart: #808080;
+}
+
+text
+{
+	padding: 1.2;
+}
+
+text.title
+{
+	color: #fff808;
+	fontFamily: head;
+}
+
+text.subtitle
+{
+	color: #fff;
+	fontFamily: strong;
+}
+
+text.body
+{
+	color: #fff;
+	fontFamily: body;
+}
+
+frame.circle
+{
+	borderColor: #999;
+	borderThickness: 0;
+	gradEndColor: #333;
+	gradStartColor: #333;
+}
+
+frame.bracket
+{
+	borderColor: #fff;
+	borderThickness: 0;
+	gradEndColor: #c5c3c3;
+	gradStartColor: #fff;
+	thickness: 7;
+}
+
+frame.rectangle
+{
+	borderColor: #fff;
+	borderThickness: 0;
+	gradEndColor: #000;
+	gradStartColor: #000;
+	radius: 0;
+}
+
+arrow
+{
+	borderColor: #fff;
+	borderThickness: -1;
+	gradEndColor: #fff808;
+	gradStartColor: #fff808;
+}
+
+line
+{
+	color: #fff808;
+}
+
+line-arrow.style1
+{
+	color: #fff;
+	gradEndColor: #fff;
+	gradStartColor: #fff;
+}
+
+line-arrow.style2
+{
+	color: #c5c3c3;
+	gradEndColor: #c5c3c3;
+	gradStartColor: #c5c3c3;
+}
+
+line-arrow.style3
+{
+	color: #fff808;
+	gradEndColor: #fff808;
+	gradStartColor: #fff808;
+}
+
+line-arrow.style4
+{
+	color: #333;
+	gradEndColor: #333;
+	gradStartColor: #333;
+}
+
+line-arrow.style5
+{
+	color: #000;
+	gradEndColor: #000;
+	gradStartColor: #000;
+}
+
+circle
+{
+	borderAlpha: 1;
+	lockTintAlpha: 0.6;
+	radius: 0;
+	thickness: 100;
+}
+
+shape
+{
+	borderAlpha: 1;
+	gradEndAlpha: 0.8;
+	gradStartAlpha: 0.7;
+	lockTintAlpha: 0.6;
+	radius: 0;
+	thickness: 100;
+}
+
+shape.style1
+{
+	borderColor: #fff;
+	borderThickness: 0;
+	gradEndColor: #fff;
+	gradStartColor: #fff;
+}
+
+shape.style2
+{
+	borderColor: #c5c3c3;
+	borderThickness: 0;
+	gradEndColor: #c5c3c3;
+	gradStartColor: #c5c3c3;
+}
+
+shape.style3
+{
+	borderColor: #fff808;
+	borderThickness: 0;
+	gradEndColor: #fff808;
+	gradStartColor: #fff808;
+}
+
+shape.style4
+{
+	borderColor: #333;
+	borderThickness: 0;
+	gradEndColor: #333;
+	gradStartColor: #333;
+}
+
+shape.style5
+{
+	borderColor: #000;
+	borderThickness: 0;
+	gradEndColor: #000;
+	gradStartColor: #000;
+}
+
+free-line
+{
+	color: #fff808;
+}
+
+free-marker
+{
+	alpha: 0.3;
+	color: #ffff0d;
+}
+
+grid
+{
+	color: #ddd;
+}
+
+ZCircle
+{
+	borderAlpha: 1;
+	gradEndAlpha: 1;
+	gradStartAlpha: 1;
+	lockTintAlpha: 0;
+	radius: 0;
+	thickness: 100;
+}
+
+ZPoly
+{
+	gradEndAlpha: 1;
+	gradStartAlpha: 1;
+	lockTintAlpha: 0;
+	radius: 0;
+	thickness: 100;
+}
+
+Background
+{
+	gradEnd: #09334a;
+	gradStart: #09334a;
+}
+
+ZLabel
+{
+	padding: 1.2;
+}
+
+ZLabel.head
+{
+	color: #fff;
+	fontFamily: head;
+}
+
+.line5
+{
+	color: #000;
+	gradEndColor: #000;
+	gradStartColor: #000;
+}
+
+.poly5
+{
+	borderAlpha: 0.6;
+	borderColor: #000;
+	borderThickness: 4;
+	color: #09334a;
+	gradEndAlpha: 0.9;
+	gradEndColor: #0e506f;
+	gradStartAlpha: 0.9;
+	gradStartColor: #0e506f;
+}
+
+ZLabel.strong
+{
+	color: #fff;
+	fontFamily: strong;
+}
+
+.line1
+{
+	color: #3fc0ff;
+	gradEndColor: #3fc0ff;
+	gradStartColor: #3fc0ff;
+}
+
+.poly1
+{
+	borderAlpha: 0.6;
+	borderColor: #3fc0ff;
+	borderThickness: 4;
+	color: #09334a;
+	gradEndAlpha: 0.9;
+	gradEndColor: #0e506f;
+	gradStartAlpha: 0.9;
+	gradStartColor: #0e506f;
+}
+
+ZLabel.body
+{
+	color: #fff;
+	fontFamily: body;
+}
+
+ZFrame.circle
+{
+	borderColor: #fff;
+	borderThickness: 20;
+	gradEndAlpha: 1;
+	gradEndColor: #fff;
+	gradStartAlpha: 0.4;
+	gradStartColor: #fff;
+	padding: 1.03;
+	thickness: 8;
+}
+
+.line4
+{
+	color: #ffbe00;
+	gradEndColor: #ffbe00;
+	gradStartColor: #ffbe00;
+}
+
+.poly4
+{
+	borderColor: #fff;
+	borderThickness: 1;
+	color: #09334a;
+	gradEndAlpha: 0.7;
+	gradEndColor: #fff;
+	gradStartAlpha: 0.4;
+	gradStartColor: #fff;
+}
+
+ZFrame.bracket
+{
+	borderColor: #fff;
+	borderThickness: 20;
+	gradEndAlpha: 1;
+	gradEndColor: #fff;
+	gradStartAlpha: 0.4;
+	gradStartColor: #fff;
+	padding: 1.03;
+	thickness: 8;
+}
+
+.line2
+{
+	borderColor: #fff;
+	color: #f00;
+	gradEndColor: #f00;
+	gradStartColor: #f00;
+}
+
+.poly2
+{
+	borderColor: #3fc0ff;
+	borderThickness: 0;
+	color: #09334a;
+	gradEndAlpha: 0.9;
+	gradEndColor: #3fc0ff;
+	gradStartAlpha: 0.6;
+	gradStartColor: #3fc0ff;
+}
+
+ZFrame.roundrect
+{
+	borderAlpha: 0;
+	borderColor: #fff;
+	borderThickness: 0;
+	gradEndAlpha: 0;
+	gradEndColor: #fff;
+	gradStartAlpha: 0.3;
+	gradStartColor: #fff;
+	padding: 1.03;
+}
+
+ZArrow
+{
+	borderAlpha: 0;
+	borderColor: #fff;
+	borderThickness: 0;
+	gradEndAlpha: 0.1;
+	gradEndColor: #fff;
+	gradStartAlpha: 1;
+	gradStartColor: #fff;
+}
+
+.line3
+{
+	color: #fff;
+	gradEndColor: #fff;
+	gradStartColor: #fff;
+}
+
+.poly3
+{
+	borderAlpha: 0.8;
+	borderColor: #fff;
+	borderThickness: 4;
+	color: #09334a;
+	gradEndAlpha: 0.9;
+	gradEndColor: #0e506f;
+	gradStartAlpha: 0.9;
+	gradStartColor: #0e506f;
+}
+
+ZLine
+{
+	color: #fff;
+}
+
+ZCurveLine
+{
+	color: #fff;
+}
+
+ZMarker
+{
+	alpha: 0.3;
+	color: #00e1ff;
+}
+
+Grid
+{
+	color: #0e5175;
+}
+
+ZPath
+{
+	alpha: 1;
+	color: #40abe6;
+	textColor: #fff;
+	thickness: 3;
+}
+
+ZPath Ball.mid
+{
+	alpha: .5;
+	fillColor: #40abe6;
+	radius: 8;
+}
+
+ZPath Ball.base
+{
+	alpha: 1;
+	fillColor: #40abe6;
+	radius: 12;
+}
+
+ZLabel.head-background
+{
+	background-alpha: 0.7;
+	background-color: #00cfff;
+	background-padding: 4;
+	background-padding-bottom: 4;
+}
+
+ZLabel.strong-background
+{
+	background-alpha: 0.7;
+	background-color: #000;
+	background-padding: 4;
+	background-padding-bottom: 4;
+}
+
+ZLabel.body-background
+{
+	background-alpha: 0.6;
+	background-color: #7a8082;
+	background-padding: 7;
+	background-padding-bottom: 5;
+}
+
+]]></style>
+  <hash>-4cd4e581</hash>
+<sync><oid>iodqld3a4ppx</oid><title>analysis-of-bacterial-transcriptome-data</title><hash>-4cd4e581</hash></sync><config>Rmj0vitcYl7CK7pW2qrK09lYZiDEXJ6pJw9A3fQ8E5QtBc7hdS8fqPDIxGW+ntcVMVBw0A824XziHOFur/pPc2aAbwazH6zS73oub34NieRtE7OxbrOJe+5QJVeHPCvFxfWrZcJlDeTO/Tu/fb3t6IVyij4SbWC8H/HlLcDTjptEd7KmKSFRHsCrWzXY3kphMFhp4eEgrS2a4F4f2NDaPH0b1hHj5naowSwgI5NH2T6nWf4wq0ykNlVSaJ8RD/cDR0RjG0LLtlIDost6svMwYg3NsEbvQBcyJNLSuy2+rnGhiqn2eLNBhkZ7LqUq1tNO9E43FyL74bJxry9gJz4n8Q==</config></zuiprezi>
