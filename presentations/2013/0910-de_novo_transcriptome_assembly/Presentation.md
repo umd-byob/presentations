@@ -245,24 +245,30 @@ First, open `/etc/apt/sources.list` as root using your-favorite-text-editor.  I 
 sudo vim /etc/apt/sources.list
 ```
 
-Add these lines to the end:
+Add these lines to the end (I normally use the [NCI mirror](http://watson.nci.nih.gov/cran_mirror/), but I wasn't able to reach it while I was making this tutorial, so I used the [CMU mirror](http://lib.stat.cmu.edu/R/CRAN/) instead):
 
 ```
 ## R 3.0 (manually added by tgibbons 2013-09-03)
-deb http://watson.nci.nih.gov/cran_mirror/bin/linux/ubuntu precise/
+deb http://lib.stat.cmu.edu/R/CRAN/bin/linux/ubuntu precise/
 ```
 
+Then install R and some useful libraries (everything except `plyr`, `ggplot2`, and `knitr` are on this list because `R` complained about them being out of date).
+
 ```
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
 sudo apt-get update
 sudo apt-get install r-base
 sudo apt-get install r-base-dev
 sudo R
-install.packages("knitr", dependencies=True)
-install.packages("ggplot2", dependencies=True)
+install.packages("codetools", dependencies=True)
 install.packages("plyr", dependencies=True)
+install.packages("MASS", dependencies=True)
+install.packages("lattice", dependencies=True)
+install.packages("survival", dependencies=True)
+install.packages("rpart", dependencies=True)
+install.packages("foreign", dependencies=True)
+install.packages("cluster", dependencies=True)
+install.packages("ggplot2", dependencies=True)
+install.packages("knitr", dependencies=True)
 ```
 Press ctrl+d to close the R session, then [install Rstudio from the web](http://www.rstudio.com/) and enjoy the simple nostalgic pleasure of clicking buttons for a few minutes.
-
-
-
-
