@@ -1,8 +1,7 @@
 Bacterial Transcriptomics
 =========================
 
-Such as it is
--------------
+An overview of handling of data received from sequencing facilities, from quality control and trimming to alignment of reads and parsing of alignments into data files for analysis.
 
 The presentation as it was given at the first meeting is available on the [Prezi website](http://prezi.com/mtiw5z9i0gfu/copy-of-analysis-of-bacterial-transcriptome-data/).
 
