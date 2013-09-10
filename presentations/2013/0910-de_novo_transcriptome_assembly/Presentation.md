@@ -153,7 +153,7 @@ sudo cp scripts/oases_pipeline.py /usr/local/bin/
 
 --------------------------------------
 
-# Practice Data
+# Sample Data
 Many software packages come with small test data sets that can be used by end users verify that they have the software installed and running properly.  Trinity and Oases both come with test data sets, but the Oases reads are stored in an interleaved FASTA file, which pretty much only Velvet uses.  I'm therefore going to focus on the Trinity practice reads for this demo.  
 
 Interestingly, the most recent version of Trinity lacks support for compressed read files, even though the practice reads still come gzipped, so we first have to uncompress them.
@@ -166,13 +166,78 @@ gunzip -c /local/source/code/repository/trinityrnaseq_r2013_08_14/sample_data/te
 --------------------------------------
 
 # Running Trinity
+Trinity is relatively simple to run, for an assembler.  If the `Trinity.pl` script has been linked to the user's `$PATH`, and the user is in the directory containing the reads file `reads.left.fq` and `reads.right.fq`, then Trinity can be run as follows:
 
+```
+Trinity.pl --seqType fq --JM 1G --left reads.left.fq --right reads.right.fq
+```
 
+Arguably, a better way to run it is to be more specific about the paths and the parameters:
 
+```
+/usr/local/src/trinityrnaseq/r2013_02_25/Trinity.pl --seqType fq --JM 1G --left ~/Desktop/BYOB_2013-09-10/reads.left.fq --right ~/Desktop/BYOS_2013-09-10/reads.right.fq --output byob_trinity_r2013_02_25_demo --CPU 2
+```
+
+This is pretty difficult to read though, so a nicer way to run Trinity is to create `run.sh` script that lays out the commands in a way that makes it easier to read, and therefor to catch potential errors.
+
+```
+#!/bin/bash
+
+left=~/Desktop/BYOB_2013-09-10/reads.left.fq
+right=~/Desktop/BYOS_2013-09-10/reads.right.fq
+
+time nice /usr/local/src/trinityrnaseq/r2013_02_25/Trinity.pl \
+--seqType fq \
+--JM 1G \
+--left $left \
+--right $right \
+--output byob_trinity_r2013_02_25_demo \
+--CPU 2 \
+| tee byob_trinity_r2013_02_25_demo.log
+```
+
+To run a different version of Trinity, just link to the corresponding `Trinity.pl` script.
 
 --------------------------------------
 
 # Running Oases
+Oases also contains a wrapper script called `oases_pipeline.py`, which I also prefer to call from a `run.sh` shell script within each working directory:
+
+```
+#!/bin/bash
+
+reads1=~/Desktop/BYOB_2013-09-10/reads.left.fq
+reads2=~/Desktop/BYOB_2013-09-10/reads.right.fq
+
+kmin=15
+kmax=63
+step=2
+merge=25
+insLen=300
+
+time nice oases_pipeline.py \
+-m $kmin \
+-M $kmax \
+-s $step \
+-g $merge \
+-o byob_oases_demo \
+-d " -shortPaired -separate -fastq $reads1 $reads2 " \
+-p " -ins_length $insLen "
+```
+
+Unlike trinity, Oases does not provide verbose output as it works, so I use the following command to monitor it's progress:
+
+```
+while true; do ls -lhd */; sleep 5; done
+```
+
+After this completes, the merged assembly can be tweaked by using the `-r` command with the `oases_pipeline.py` script:
+
+```
+time nice oases_pipeline.py -m 21 -M 41 -g 21 -r -o byob_oases_demo
+```
+
+--------------------------------------
 
 ### Install Bowtie2
 ```
@@ -187,7 +252,7 @@ sudo cp bowtie2* /usr/local/bin/
 
 # Comparing the Assemblies
 
-### Installin NCBI-BLAST+
+### Installing NCBI-BLAST+
 ```
 cd /local/source/code/repository/
 wget ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/ncbi-blast-2.2.28+-x64-linux.tar.gz
@@ -197,10 +262,40 @@ sudo cp bin/* /usr/local/bin/
 ```
 
 ### Downloading NCBI BLAST databases
+There is a "proper" way to do this using wget options, but I don't know those options, and I *do* know how to use BASH for-loops, so I did this instead:
 ```
-sudo apt-get install perl-doc
 cd /local/database/repository/
+for i in seq $(seq -f "%02g" 0 15); do wget ftp://ftp.ncbi.nlm.nih.gov/blast/db/nt.${i}.tar.gz; done
+wget ftp://ftp.ncbi.nlm.nih.gov/blast/db/est_mouse.tar.gz.md5
+```
 
+I'm pretty sure this next part doesn't require a loop, but I used one anyway.  Note that I dropped the dash (-) on the `tar` options.  This was not a typo.  The `tar` command will accept this, though it is good to be in a habit of using normal command line option syntax.
+
+```
+for file in *.tar.gz; do tar xzvf $file; done
+```
+
+### Installing HMMer3
+```
+cd /local/source/code/repository/
+wget ftp://selab.janelia.org/pub/software/hmmer3/3.1b1/hmmer-3.1b1-linux-intel-x86_64.tar.gz
+tar xzvf hmmer-3.1b1-linux-intel-x86_64.tar.gz
+cd hmmer-3.1b1-linux-intel-x86_64
+sudo cp binaries/* /usr/local/bin/
+```
+
+### Downloading Pfam-A
+```
+cd /local/database/repository/
+wget ftp://ftp.sanger.ac.uk/pub/databases/Pfam/current_release/Pfam-A.hmm.gz
+gunzip Pfam-A.hmm.gz
+```
+
+Then prepare it for use with either `hmmsearch` or `hmmscan` by formatting it with `hmmpress`:
+
+```
+cd /local/database/repository/
+hmmpress Pfam-A.hmm
 ```
 
 ### Installing Google sparehash
@@ -245,10 +340,9 @@ First, open `/etc/apt/sources.list` as root using your-favorite-text-editor.  I 
 sudo vim /etc/apt/sources.list
 ```
 
-Add these lines to the end (I normally use the [NCI mirror](http://watson.nci.nih.gov/cran_mirror/), but I wasn't able to reach it while I was making this tutorial, so I used the [CMU mirror](http://lib.stat.cmu.edu/R/CRAN/) instead):
+Add this line to the end (I normally use the [NCI mirror](http://watson.nci.nih.gov/cran_mirror/), but I wasn't able to reach it while I was making this tutorial, so I used the [CMU mirror](http://lib.stat.cmu.edu/R/CRAN/) instead):
 
 ```
-## R 3.0 (manually added by tgibbons 2013-09-03)
 deb http://lib.stat.cmu.edu/R/CRAN/bin/linux/ubuntu precise/
 ```
 
