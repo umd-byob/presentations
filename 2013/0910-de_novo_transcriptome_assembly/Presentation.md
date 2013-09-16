@@ -2,6 +2,16 @@ De novo assembly for short-read mRNA-Seq
 ========================================
 --------------------------------
 
+# Overview
+This presentation will include a live demo of both the Trinity and Oases 
+_de novo_ RNA-Seq assemblers, which are arguably, currently the two most 
+popular _de novo_ RNA-Seq assemblers at the moment.  The presentation will 
+also include a chalk talk comparing the theory underlying the approaches taken 
+by each assembler.  Discussion will then turn towards practical considerations,
+as well as any other issues brought up during the presentation.  If time 
+permits, there may also be very brief demonstrations of potential "next steps" 
+to take with newly assembly mRNA contigs.
+
 # Getting Started with a new system
 Most modern operating systems, even Linux, do not come with prepackaged with comprehensive development environments.  This saves both bandwidth and space for the vast majority of users who will never use any part of their computer that can't be navigated by mouse clicks alone.  For the rest of us, this means that we have to do a bit of tinkering before we can really get started using a new system.
 
