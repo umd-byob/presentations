@@ -49,16 +49,7 @@ We were also interested in whether genes were expressed differentially in the me
 ####Samples:
 RNA from two POOLS each of testes from outbred individuals carrying the meiotic drive X or a standard X chromosome (determined by genotyping).  Each pool represents data from approximately 30 individuals.  Sequence these 4 pools - 2 4x multiplexed lanes of Illumina GA (not Hi-seq)
 
-#### Analysis:
-
-1. **Generate reference transcriptome** - Assemble transcriptome from raw reads  sequenced from a variety of tissues using Trinity 
-3. **Align** - Align reads using bwa to obtain SAM alignments against the transcripts
-4. **DE analysis** - I used RSEM and DESeq to obtain measures of differential expression (with replication) for each transcript.  I also use these measures to filter out weakly expressed transcripts (mostly things that are specifically expressed in other tissues).
-5. **Samtools** - Use "samtools sort" and "samtools pileup" to obtain sequence data at each basepair for all transcripts in drive and nondrive samples. **insert example**.  At this point, I pooled the data from drive samples and nondrive samples.
-4. **Coverage filter** - Filter positions that have insufficient coverage in one sample or  the other (I used a 10x floor).  Now I have a file with matched positional information for the two samples.  **insert example**
-5. **Output** - Estimate allele frequency within and between populations, and then Calculate a metric of genetic differentiation (FST) between the two samples at each position after applying some additional filters (toss any trialleles or singletons). Identify the most highly differentiated sites (FST=1).
-
-#### FST and whole-genome sequencing
+#### FST and whole-genome sequencing:
 
 FST is the "fixation index".  It is a measure of the extent of genetic differentiation between
 two groups.  
@@ -97,13 +88,30 @@ across population estimate of allele frequency.
 
 **However** - If a site is fixed between two populations (FST=1), these problems don't apply.  This is because the allele frequency at fixed sites = 0 for both populations.  Further, a fixed difference call is actually conservative to the high coverage positions (e.g., a fixed difference will NOT be called in case 3 above).  
 
-After some deliberation, although I found a lot of sites with intermediate allele frequencies, I decided to report only fixed differences (FST=1) in the final paper.  
+After some deliberation, although there are a lot of sites with intermediate allele frequencies, I decided to report only fixed differences (FST=1) in the final paper.  
+
+#### Specific steps in analysis:
+
+1. **Generate reference transcriptome** - Assemble transcriptome from raw reads  sequenced from a variety of tissues using Trinity 
+3. **Align** - Align reads using bwa to obtain SAM alignments against the transcripts
+4. **DE analysis** - I used RSEM and DESeq to obtain measures of differential expression (with replication) for each transcript.  I also use these measures to filter out weakly expressed transcripts (mostly things that are specifically expressed in other tissues).
+5. **Samtools** - Use "samtools sort" and "samtools pileup" to obtain sequence data at each basepair for all transcripts in drive and nondrive samples. **See examples** [drive](FST_example/drive.shared.ex.pu) and [nondrive](FST_example/nondrive.shared.ex.pu)  At this point, I pooled the data across replicates.
+4. **Transcript name filter** - Filter any transcripts that are not present in both files.  this reduces file size and reduces complexity of final step
+5. **Calculate FST** - Run 
+[my script](FST_example/FST_from_transcript_pileups_count_fixsites_rmtri.pl) on these two files.  Briefly, For each transcript, go site by site.  Estimate heterozygosity within and between populations, and then calculate FST between the two samples at each position after applying some additional filters (toss any trialleles or singletons). Identify the most highly differentiated sites (FST=1).
+
+Example output:
+
+[raw output](FST_example/out.raw.txt)
+
+[summary output](FST_example/out.summary.txt)
 
 ##Results and validation
 
 Remember that we expected only genes on the X Chromosome should have fixed differences (assuming that there are not unknown inversions on other chromosomes that are also drive associated...
 
 ![table2](figure/table2.png) 
+
 
 Genes with fixed differences of interest...
 
@@ -113,8 +121,13 @@ Figure 2 - a simulation demonstrating fewer genes carry fixed differences than w
 
 ![simulation](figure/simulation3.jpg) 
 
+For details of the simulation please see
 
-### To be added
-I will add example code and data by tomorrow afternoon, as well as explanation of the simulation (I will try to use knitr)...
+[R code and sample data](R_example/)
 
-###TEST TEST
+
+### Conclusions
+
+There are many fixed differences between genes on the X chromosome and Autosomes!  However, not so many that we think the whole X chromosome is nonrecombining.  Some of them might contribute to meiotic drive or associated phenotypic changes (e.g. we identified some candidates).
+
+In general - it is fairly straightforward to call fixed differences using RNAseq data (even if the way I explained it wasn't).  It is possible to calculate FST using this method, but at this point it's theoretical how biologically correct such estimates would be...  Does anyone happen to have a matched set of pooled RNAseq and WGS sitting around so we could validate the method?
