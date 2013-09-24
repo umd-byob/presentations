@@ -1,3 +1,3 @@
-drive.comp122095.txt nondrive.comp122095.txt 10 60 60 out.raw
-name	cnt	totcnt	mean	median	stdev
+/Users/jerrywilkinson/presentations/2013/0924-RNAseq-SNPs/example/drive.shared.ex.pu.txt /Users/jerrywilkinson/presentations/2013/0924-RNAseq-SNPs/example/nondrive.shared.ex.pu.txt 10 60 60 /Users/jerrywilkinson/presentations/2013/0924-RNAseq-SNPs/example/out.raw.txt
+name	cnt	totcnt	mean	median	stdev	fixdiffs	fixdiffs2	poly1	poly2	both
 comp115911_c0_seq1	12	267	0.383666491683583	0.0430677302585499	0.455112740313141	3	3	1	8	3

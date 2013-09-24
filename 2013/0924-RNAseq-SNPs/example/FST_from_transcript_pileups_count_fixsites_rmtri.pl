@@ -202,8 +202,11 @@ until (eof IN) {
 				$piw = (((length $seq1) * $Hp1) + ((length $seq2) * $Hp2)) / (length $ptseq);
 				
 				# calculate FST
-				$fst = ($pit - $piw) / $pit;
-				
+				if ($pit > 0) {
+					$fst = ($pit - $piw) / $pit;
+				} else {
+					print "pit = 0??\n";
+				}
 				# if this was an example where we removed a 
 				if ($totsorted[2] == 1) {
 					$tris = "yes";
@@ -320,7 +323,6 @@ sub CALCHET {
 		$het = "triallele";
 	}
 	
-	#print "method1: " . $seq . "\t" . $n  . "\t" . $m  . "\t" . $p . "\t" . $het . "\n";
 	return $het;
 }
 
