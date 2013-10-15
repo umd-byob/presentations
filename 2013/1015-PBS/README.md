@@ -29,60 +29,75 @@ servers as well as facilities to make many jobs run in parrallel.
 # Cluster resources on campus
 =============================
 There are two main clusters on campus: (that I am aware of)
+
 1.  deepthought.umd.edu
-   a) Accessible through login.deepthought.umd.edu
-   b) Provides free low-priority queues, paid high-priority
-   c) Makes use of the university shared filesystem (AFS and NFS)
-   d) Available to anyone on campus
-   e) Maintained by the univeristy IT department
+ - Accessible through login.deepthought.umd.edu
+ - Provides free low-priority queues, paid high-priority
+ - Makes use of the university shared filesystem (AFS and NFS)
+ - Available to anyone on campus
+ - Maintained by the univeristy IT department
 2.  www.umiacs.umd.edu
-   a) Accessible through ibissub0[0-2].umiacs.umd.edu
-   b) Requires some arrangement between a professor and umiacs
-   c) Uses the umiacs file system (NFS)
-   d) Maintained by the umiacs staff
+ - Accessible through ibissub0[0-2].umiacs.umd.edu
+ - Requires some arrangement between a professor and umiacs
+ - Uses the umiacs file system (NFS)
+ - Maintained by the umiacs staff
 
 
 
 # Setting up
 ============
+
 1.  The shell environment
-   a) .bashrc .bash_profile .bash_aliases
+ - .bashrc .bash_profile .bash_aliases
 2.  Public/Private key exchange with SSH
-   b) ssh-keygen
+ - ssh-keygen
 3.  Screen / VNC (optional)
-   c) .screenrc vncserver
+ - .screenrc vncserver
+
 > scriptreplay -s ssh_keygen.log -t ssh_keygen.time
 
 
 # First Submission
 ==================
+
 1.  Submitting with parameters in the script
 2.  Parameters on the command line
 3.  Submission embedded in the script
 
 ## First submission version 1:
 ------------------------------
+
 In order to view this, go into the 02-first_submission directory and run:
+
 > scriptreplay -s 01-first_submission.log -t 01-first_submission.time
+
 Note the following:
+
 1.  The current working directory did not stay the same
 2.  The shell's environment changed significantly
-  a)  New variables were created including a bunch that start with 'PBS'
-  b)  Two of those are of particular interest: PBS_O_WORKDIR PBS_O_PATH
+ - New variables were created including a bunch that start with 'PBS'
+ - Two of those are of particular interest: PBS_O_WORKDIR PBS_O_PATH
 
 ## First submission version 2:
 ------------------------------
+
 In order to see what happened this time, do:
+
 > scriptreplay -s 02-first_submission.log -t 02-first_submission.time
+
 Note the following:
+
 1.  One is no longer allowed to bare-echo a "!", it will try to substitute my previous command now.
 2.  The execution node 'beech' has gotten two jobs in a row from me.
 3.  Options specified on the command line trump those included in a job file
 
 ## First submission version 3:
 ------------------------------
+
 > scriptreplay -s 03-first_submission.log -t 03-first_submission.time
+
 I made it a bit more complex this time:
+
 1.  I have a file in $DONE which tells me when my script is finished
     running on the compute node.
 2.  I have an environment variable $PBS_ARGS which I use for
@@ -96,7 +111,9 @@ I made it a bit more complex this time:
 
 # Some real examples!
 =====================
+
 Check out the 03-real_examples directory.
+
 1. 01-wdarocha_bwa2.sh:  An initial bwa submission
 2. 02-tophat.sh:  Submitting a quick tophat run.  Note that the long
 arguments are split into separate lines.
@@ -118,6 +135,7 @@ similar splitting process without -T but for blast/fasta alignments.
 
 # Gotcha!
 =========
+
 1. The most common error:  relative paths!  (look at 01-bwa.sh above)
 2. The second most common error:  STDOUT vs STDERR
 3. File permissions!
@@ -127,8 +145,9 @@ similar splitting process without -T but for blast/fasta alignments.
 
 # Advanced usage
 ================
+
 1.  queue.sh is actually not very advanced, but uses a couple of
-tricks to make it an infinitely running job to saturate a cluster.
+  tricks to make it an infinitely running job to saturate a cluster.
   It requires the scripts 01-nn depending on the number of jobs one
   wishes to use.  This was written before the -T option was available
   in torque.
@@ -136,4 +155,4 @@ tricks to make it an infinitely running job to saturate a cluster.
   This job renders movies in pymol by submitting separate frames to
   different compute nodes and having each frame ray-traced.  render.py
   does the actual work.  This job does however use -T.
-05 through 07 above
+3.  05 through 07 above
