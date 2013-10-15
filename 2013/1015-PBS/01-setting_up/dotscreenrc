@@ -1,0 +1,71 @@
+# Set the caption on the bottom line (works on later screens)
+caption always "%{= kw}%-w%{= BW}%n %t%{-}%+w %-= %H %{gk} |%c %{yk}%d.%m.%Y | %72=Load: %l %{wk}"
+
+# Set the hardstatus on later screen versions (this is displayed in the
+# title bar in X for example)
+#hardstatus string "%n %t (screen on %H) %{= Ck}%H:%L>%{= dd} %h"
+hardstatus always "%n %t (screen on %H) %{= Ck}%H:%L>%{= dd} %h"
+
+#hardstatus alwayslastline
+hardstatus lastline
+
+# xterm understands both im/ic and doesn't have a status line.
+  termcap  xterm hs@:cs=\E[%i%d;%dr:im=\E[4h:ei=\E[4l
+  terminfo xterm hs@:cs=\E[%i%p1%d;%p2%dr:im=\E[4h:ei=\E[4l
+
+# 80/132 column switching must be enabled for ^AW to work
+# change init sequence to not switch width
+  termcapinfo  xterm Z0=\E[?3h:Z1=\E[?3l:is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;4;6l
+
+# Make the output buffer large for (fast) xterms.
+# termcapinfo xterm* OL=10000
+  termcapinfo xterm* OL=100
+
+# tell screen that xterm can switch to dark background and has function
+# keys.
+  termcapinfo xterm 'VR=\E[?5h:VN=\E[?5l'
+  termcapinfo xterm 'k1=\E[11~:k2=\E[12~:k3=\E[13~:k4=\E[14~'
+  termcapinfo xterm 'kh=\EOH:kI=\E[2~:kD=\E[3~:kH=\EOF:kP=\E[5~:kN=\E[6~'
+
+# special xterm hardstatus: use the window title.
+  termcapinfo xterm 'hs:ts=\E]2;:fs=\007:ds=\E]2;screen\007'
+
+#terminfo xterm 'vb=\E[?5h$<200/>\E[?5l'
+  termcapinfo xterm 'vi=\E[?25l:ve=\E[34h\E[?25h:vs=\E[34l'
+
+# emulate part of the 'K' charset
+  termcapinfo xterm 'XC=K%,%\E(B,[\304,\\\\\326,]\334,{\344,|\366,}\374,~\337'
+
+# xterm-52 tweaks:
+# - uses background color for delete operations
+  termcapinfo xterm* be
+
+# Do not use xterm's alternative window buffer, it breaks scrollback (see bug #61195)
+  termcapinfo xterm|xterms|xs ti@:te=\E[2J
+
+
+
+startup_message off # Turn off the splash screen
+escape ^pp ## No more ctrl-a  but instead ctrl-p
+defscrollback         3000            # default: 100
+screen -t EDIT		0 emacs -nw
+screen -t EDITibis	1 ssh -t ${USER}@ibis emacs -nw
+screen -t hpgl		2 bash
+screen -t sub00		3 ssh ${USER}@ibissub00.umiacs.umd.edu
+screen -t sub01		4 ssh ${USER}@ibissub01.umiacs.umd.edu
+screen -t sub02		5 ssh ${USER}@ibissub02.umiacs.umd.edu
+screen -t walnut	6 ssh ${USER}@walnut.umiacs.umd.edud
+
+bind V screen -t 'vim' 0 vim
+#bindkey "^[Od" prev  # change window with ctrl-left
+#bindkey "^[Oc" next  # change window with ctrl-right
+bindkey ^[O3D prev
+bindkey ^[O3C next
+bind = resize =
+bind + resize +1
+bind - resize -1
+bind _ resize max
+bind f eval "caption splitonly" "hardstatus ignore"
+bind F eval "caption always"    "hardstatus alwayslastline"
+acladd najib
+acladd abelew

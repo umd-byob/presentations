@@ -1,0 +1,153 @@
+Script started on Mon 14 Oct 2013 08:02:51 PM EDT
+]0;abelew@ibissub00: ~/byob/presentations/2013/1015-PBS/02-first_submissionabelew@ibissub00:~/byob/presentations/2013/1015-PBS/02-first_submission>./first_submission-v3.sh 
+This is essentially the same submission script as last time.
+Except this time I will call qsub from within this script.
+This makes use of a variable I have in my bashrc 'PBS_ARGS'
+Ok, a big caveat:  cat <<EOF means read until 'End Of File' without
+variable interpolation.
+However, cat <<"EOF" means the same _with_ variable interpolation.
+Thus in the latter case, I can include variables from this portion of my script
+And they will be included in the text of the stuff sent to qsub.
+
+My PBS_ARGS are:
+ -V -S /cbcb/lab/nelsayed/local/bin/bash -q throughput -l walltime=12:00:00   -j eo -e ibissub00.umiacs.umd.edu:/cbcbhomes/abelew/outputs/pbs.out -m n
+46376.cbcbtorque.umiacs.umd.edu
+At this time the script has been submitted to pbs.
+I can tell this script to wait until the script is finished executing...
+waiting...
+... still waitingGREP_COLOR=32
+MANPATH=:/usr/share/man:/usr/local/share/man:/cbcb/lab/nelsayed/local/share/man:/usr/share/man:/usr/local/share/man:/cbcb/lab/nelsayed/local/share/man:/usr/share/man:/usr/local/share/man:/cbcb/lab/nelsayed/local/share/man
+HOSTNAME=ibissub00.umiacs.umd.edu
+PBS_VERSION=TORQUE-2.5.12
+SHELL=/cbcb/lab/nelsayed/local/bin/bash
+TERM=xterm
+PERLIO=stdio
+HISTSIZE=10000
+HACKPAGER=more
+SSH_CLIENT=69.143.242.55 54104 22
+KDE_NO_IPV6=1
+PBS_JOBNAME=STDIN
+PERL5LIB=:/cbcb/lab/nelsayed/local/biopieces/code_perl:/cbcb/lab/nelsayed/local/biopieces/code_perl:/cbcb/lab/nelsayed/local/biopieces/code_perl
+LIBRARY_PATH=/cbcb/lab/nelsayed/local/lib:/cbcb/lab/nelsayed/local/lib64:/usr/lib64
+BP_PERL=/cbcb/lab/nelsayed/local/biopieces/code_perl
+BP_PYTHON=/cbcb/lab/nelsayed/local/biopieces/code_python
+PBS_ENVIRONMENT=PBS_BATCH
+OLDPWD=/cbcbhomes/abelew
+BP_BIN=/cbcb/lab/nelsayed/local/biopieces/bp_bin
+QTDIR=/usr/lib64/qt-3.3
+QTINC=/usr/lib64/qt-3.3/include
+PBS_O_WORKDIR=/cbcbhomes/abelew/byob/presentations/2013/1015-PBS/02-first_submission
+SSH_TTY=/dev/pts/13
+PBS_ARGS= -V -S /cbcb/lab/nelsayed/local/bin/bash -q throughput -l walltime=12:00:00   -j eo -e ibissub00.umiacs.umd.edu:/cbcbhomes/abelew/outputs/pbs.out -m n
+LAB_BASHRC=1
+DONE=finished.txt
+HISTFILESIZE=2000000
+LOGS=/cbcb/lab/nelsayed/log
+USER=abelew
+PBS_TASKNUM=1
+BP_WWW=/cbcb/lab/nelsayed/local/biopieces/www
+LD_LIBRARY_PATH=/cbcb/lab/nelsayed/local/lib:/cbcb/lab/nelsayed/local/lib64:/usr/local/stow/gcc-4.7.2/lib:/usr/local/stow/gcc-4.7.2/lib64:/lib64:/lib:/usr/lib64:/usr/lib:/usr/local/lib:/usr/local/lib64:/cbcb/lab/nelsayed/programs/lib:/cbcb/lab/nelsayed/programs/lib:/cbcb/lab/nelsayed/local/qt/lib:/usr/local/stow/xfce-4.4.3/lib
+LS_COLORS=no=00:fi=00:di=00;34:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;32:*.cmd=00;32:*.exe=00;32:*.com=00;32:*.btm=00;32:*.bat=00;32:*.sh=00;32:*.csh=00;32:*.tar=00;31:*.tgz=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.bz=00;31:*.tz=00;31:*.rpm=00;31:*.cpio=00;31:*.jpg=00;35:*.gif=00;35:*.bmp=00;35:*.xbm=00;35:*.xpm=00;35:*.png=00;35:*.tif=00;35:
+PBS_O_HOME=/cbcbhomes/abelew
+SHELL_LEVELS=1
+BP_DATA=/cbcb/lab/nelsayed/local/biopieces/data
+PBS_LARGE= -V -S /cbcb/lab/nelsayed/local/bin/bash -q large -l walltime=72:00:00
+CPATH=/cbcb/lab/nelsayed/local/include:/usr/include:/usr/local/include:/cbcb/lab/nelsayed/local/include:/usr/include:/usr/local/include:/cbcb/lab/nelsayed/local/include:/usr/include:/usr/local/include:.
+PBS_LOG= -j eo -e ibissub00.umiacs.umd.edu:/cbcbhomes/abelew/outputs/pbs.out -m n
+SSH_AUTH_SOCK=/tmp/ssh-VQRLi24440/agent.24440
+KDEDIR=/usr
+PBS_WALLTIME=43200
+CXXFLAGS=-O3 -I/cbcb/lab/nelsayed/local/include -L/cbcb/lab/nelsayed/local/lib
+PROG_LIB=/cbcb/lab/nelsayed/programs/lib
+PBS_MOMPORT=15003
+PBS_GPUFILE=/var/spool/torque/aux//46376.cbcbtorque.umiacs.umd.edugpu
+PAGER=more
+PBS_WORKSTATION= -V -S /cbcb/lab/nelsayed/local/bin/bash -q workstation -l walltime=12:00:00
+PBS_O_QUEUE=throughput
+LSCOLORS=ExDxHxAxCxegedabagacad
+BP_TMP=/cbcb/lab/nelsayed/local/biopieces/tmp
+FTP_PASSIVE=1
+PATH=/cbcb/lab/nelsayed/local/bin:/sbin:/usr/sbin:/usr/local/sbin:/opt/UMmaui/bin:/opt/UMtorque/bin:/usr/local/stow/gcc-4.6.0/bin:/cbcb/lab/nelsayed/local/texlive/2013/bin/x86_64-linux:/cbcb/lab/nelsayed/programs/epd-7.2-2-rh5-x86_64/bin:/usr/local/stow/autoconf-2.65/bin:/cbcb/lab/nelsayed/programs/allpaths/bin:/cbcb/lab/nelsayed/programs/ncbi-blast-2.2.27+/bin:/cbcb/lab/nelsayed/programs/blast-2.2.26/bin:/cbcb/lab/nelsayed/programs/bedtools-2.17.0/bin:/cbcb/lab/nelsayed/programs/bwa-0.6.2:/cbcb/lab/nelsayed/programs/cd-hit-v4.6.1-2012-08-27:/cbcb/lab/nelsayed/programs/cufflinks-2.0.0.Linux_x86_64:/cbcb/lab/nelsayed/programs/FastQC:/cbcb/lab/nelsayed/programs/gmap-2012-04-04/bin:/cbcb/lab/nelsayed/programs/Grinder-0.4.5/script:/cbcb/lab/nelsayed/programs/hmmer-3.0-linux-intel-x86_64/binaries:/cbcb/lab/nelsayed/programs/IGV_EA:/cbcb/lab/nelsayed/programs/mauve_snapshot_2012-06-07:/cbcb/lab/nelsayed/programs/prinseq-lite-0.20.3:/cbcb/lab/nelsayed/programs/rsem-1.1.18-modified:/cbcb/lab/nelsayed/programs/samtools-0.1.18:/cbcb/lab/nelsayed/programs/signalp-4.1:/cbcb/lab/nelsayed/programs/SOAPsplice-v1.9/bin:/cbcb/lab/nelsayed/programs/SOAPdenovo-Trans:/cbcb/lab/nelsayed/programs/subread-1.2.0/bin:/cbcb/lab/nelsayed/programs/tmhmm-2.0c/bin:/cbcb/lab/nelsayed/programs/tophat-2.0.7.Linux_x86_64:/cbcb/lab/nelsayed/programs/tools:/cbcb/lab/nelsayed/programs/trinityrnaseq_r2013-02-25:/cbcb/lab/nelsayed/programs/trinityrnaseq_r2013-02-25/util:/cbcb/lab/nelsayed/programs/trinityrnaseq_r2013-02-25/util/RSEM_util:/cbcb/lab/nelsayed/programs/velvet_1.2.03:/cbcb/lab/nelsayed/programs/bin:/cbcb/lab/nelsayed/local/haskell/bin:/cbcb/lab/nelsayed/scripts:/cbcb/lab/nelsayed/scripts/PBS:/usr/local/stow/xfce-4.4.3/bin:/cbcb/lab/nelsayed/local/bin:/bin:/usr/local/bin:/usr/bin:/cbcb/lab/nelsayed/local/biopieces/bp_bin
+PBS_O_LOGNAME=abelew
+BP_LOG=/cbcb/lab/nelsayed/local/biopieces/log
+MAIL=/var/spool/mail/abelew
+PBS_O_LANG=en_US.UTF-8
+PROG_BIN=/cbcb/lab/nelsayed/programs/bin
+LAB_BASE=/cbcb/lab/nelsayed
+PBS_JOBCOOKIE=10405A08EADA49E2604E3946A1258659
+CONDOR_CONFIG=/etc/condor/condor_config
+R_LIBS=/cbcb/lab/nelsayed/local/R
+PWD=/cbcbhomes/abelew/byob/presentations/2013/1015-PBS/02-first_submission
+INPUTRC=/etc/inputrc
+BP_DIR=/cbcb/lab/nelsayed/local/biopieces
+RAW=/cbcb/lab/nelsayed/raw_data
+EDITOR=vim
+LANG=en_US.UTF-8
+BP_C=/cbcb/lab/nelsayed/local/biopieces/code_c
+CVSIGNORE=*.o *~ #* *.emacs*
+KDE_IS_PRELINKED=1
+PBS_NODENUM=0
+MODULEPATH=/usr/local/toolchain/.modulefiles:/usr/local/stow/.modulefiles:/opt/stow/.modulefiles:/usr/share/Modules/modulefiles:/etc/modulefiles
+LOADEDMODULES=
+PBS_NUM_NODES=1
+PS1=\[\033]0;\u@\h: \w\007\]\u@\h:\w>
+PBS_O_SHELL=/bin/bash
+PBS_SERVER=cbcbtorque
+PBS_JOBID=46376.cbcbtorque.umiacs.umd.edu
+PS2=and>
+SSH_ASKPASS=/usr/libexec/openssh/gnome-ssh-askpass
+ENVIRONMENT=BATCH
+PROG=/cbcb/lab/nelsayed/programs
+BOOST_INCLUDEDIR=/cbcb/lab/nelsayed/local/include/boost/
+HOME=/cbcbhomes/abelew
+SHLVL=6
+TAKE_ME_TO=Funkytown!
+TESTME=hi
+GREP_OPTIONS=--color=auto
+REF=/cbcb/lab/nelsayed/ref_data
+PBS_O_HOST=ibissub00.umiacs.umd.edu
+CFLAGS=-O3 -I/cbcb/lab/nelsayed/local/include -L/cbcb/lab/nelsayed/local/lib
+WD=/cbcbhomes/abelew
+PBS_VNODENUM=0
+LOGNAME=abelew
+CMAKE_INSTALL_PREFIX=/cbcb/lab/nelsayed/local
+BOOST_ROOT=/cbcb/lab/nelsayed/local/include
+PREFIX=/cbcb/lab/nelsayed/local
+CVS_RSH=ssh
+QTLIB=/usr/lib64/qt-3.3/lib
+CLASSPATH=/cbcb/lab/nelsayed/local/jar:/cbcb/lab/nelsayed/local/jar/AddOrReplaceReadGroups.jar:/cbcb/lab/nelsayed/local/jar/apache-ant-1.8.2-bzip2.jar:/cbcb/lab/nelsayed/local/jar/BamIndexStats.jar:/cbcb/lab/nelsayed/local/jar/BamToBfq.jar:/cbcb/lab/nelsayed/local/jar/BuildBamIndex.jar:/cbcb/lab/nelsayed/local/jar/CalculateHsMetrics.jar:/cbcb/lab/nelsayed/local/jar/CheckIlluminaDirectory.jar:/cbcb/lab/nelsayed/local/jar/CleanSam.jar:/cbcb/lab/nelsayed/local/jar/cofoja-1.0-r139.jar:/cbcb/lab/nelsayed/local/jar/CollectAlignmentSummaryMetrics.jar:/cbcb/lab/nelsayed/local/jar/CollectGcBiasMetrics.jar:/cbcb/lab/nelsayed/local/jar/CollectInsertSizeMetrics.jar:/cbcb/lab/nelsayed/local/jar/CollectMultipleMetrics.jar:/cbcb/lab/nelsayed/local/jar/CollectRnaSeqMetrics.jar:/cbcb/lab/nelsayed/local/jar/CollectTargetedPcrMetrics.jar:/cbcb/lab/nelsayed/local/jar/commons-jexl-2.1.1.jar:/cbcb/lab/nelsayed/local/jar/commons-logging-1.1.1.jar:/cbcb/lab/nelsayed/local/jar/CompareSAMs.jar:/cbcb/lab/nelsayed/local/jar/CreateSequenceDictionary.jar:/cbcb/lab/nelsayed/local/jar/DownsampleSam.jar:/cbcb/lab/nelsayed/local/jar/EstimateLibraryComplexity.jar:/cbcb/lab/nelsayed/local/jar/ExtractIlluminaBarcodes.jar:/cbcb/lab/nelsayed/local/jar/ExtractSequences.jar:/cbcb/lab/nelsayed/local/jar/FastqToSam.jar:/cbcb/lab/nelsayed/local/jar/FilterSamReads.jar:/cbcb/lab/nelsayed/local/jar/FixMateInformation.jar:/cbcb/lab/nelsayed/local/jar/igvtools.jar:/cbcb/lab/nelsayed/local/jar/IlluminaBasecallsToSam.jar:/cbcb/lab/nelsayed/local/jar/IntervalListTools.jar:/cbcb/lab/nelsayed/local/jar/MarkDuplicates.jar:/cbcb/lab/nelsayed/local/jar/MeanQualityByCycle.jar:/cbcb/lab/nelsayed/local/jar/MergeBamAlignment.jar:/cbcb/lab/nelsayed/local/jar/MergeSamFiles.jar:/cbcb/lab/nelsayed/local/jar/MergeVcfs.jar:/cbcb/lab/nelsayed/local/jar/NormalizeFasta.jar:/cbcb/lab/nelsayed/local/jar/picard-1.86.jar:/cbcb/lab/nelsayed/local/jar/QualityScoreDistribution.jar:/cbcb/lab/nelsayed/local/jar/ReorderSam.jar:/cbcb/lab/nelsayed/local/jar/ReplaceSamHeader.jar:/cbcb/lab/nelsayed/local/jar/RevertSam.jar:/cbcb/lab/nelsayed/local/jar/sam-1.86.jar:/cbcb/lab/nelsayed/local/jar/SamFormatConverter.jar:/cbcb/lab/nelsayed/local/jar/SamToFastq.jar:/cbcb/lab/nelsayed/local/jar/snappy-java-1.0.3-rc3.jar:/cbcb/lab/nelsayed/local/jar/SortSam.jar:/cbcb/lab/nelsayed/local/jar/SplitVcfs.jar:/cbcb/lab/nelsayed/local/jar/tribble-1.86.jar:/cbcb/lab/nelsayed/local/jar/trimmomatic-0.27.jar:/cbcb/lab/nelsayed/local/jar/trimmomatic.jar:/cbcb/lab/nelsayed/local/jar/ValidateSamFile.jar:/cbcb/lab/nelsayed/local/jar/variant-1.86.jar:/cbcb/lab/nelsayed/local/jar/ViewSam.jar
+SSH_CONNECTION=69.143.242.55 54104 128.8.119.186 22
+PBS_QUEUE=throughput
+MYCFLAGS=-O3 -I/cbcb/lab/nelsayed/local/include -L/cbcb/lab/nelsayed/local/lib
+MODULESHOME=/usr/share/Modules
+PBS_O_MAIL=/var/spool/mail/abelew
+LESSOPEN=|/usr/bin/lesspipe.sh %s
+CVSEDITOR=vi
+TRINITY_HOME=/cbcb/lab/nelsayed/programs/trinityrnaseq_r2013-02-25
+DISPLAY=localhost:12.0
+PBS_NP=1
+PBS_NUM_PPN=1
+RUBYLIB=:/cbcb/lab/nelsayed/local/biopieces/code_ruby/lib:/cbcb/lab/nelsayed/local/biopieces/code_ruby/lib:/cbcb/lab/nelsayed/local/biopieces/code_ruby/lib
+BP_RUBY=/cbcb/lab/nelsayed/local/biopieces/code_ruby
+LAB=/cbcb/lab/nelsayed
+SCRATCH=/cbcb/personal-scratch/abelew
+PBS_THROUGHPUT= -V -S /cbcb/lab/nelsayed/local/bin/bash -q throughput -l walltime=12:00:00
+G_BROKEN_FILENAMES=1
+PBS_NODEFILE=/var/spool/torque/aux//46376.cbcbtorque.umiacs.umd.edu
+PBS_O_PATH=/cbcb/lab/nelsayed/local/bin:/sbin:/usr/sbin:/usr/local/sbin:/opt/UMmaui/bin:/opt/UMtorque/bin:/usr/local/stow/gcc-4.6.0/bin:/cbcb/lab/nelsayed/local/texlive/2013/bin/x86_64-linux:/cbcb/lab/nelsayed/programs/epd-7.2-2-rh5-x86_64/bin:/usr/local/stow/autoconf-2.65/bin:/cbcb/lab/nelsayed/programs/allpaths/bin:/cbcb/lab/nelsayed/programs/ncbi-blast-2.2.27+/bin:/cbcb/lab/nelsayed/programs/blast-2.2.26/bin:/cbcb/lab/nelsayed/programs/bedtools-2.17.0/bin:/cbcb/lab/nelsayed/programs/bwa-0.6.2:/cbcb/lab/nelsayed/programs/cd-hit-v4.6.1-2012-08-27:/cbcb/lab/nelsayed/programs/cufflinks-2.0.0.Linux_x86_64:/cbcb/lab/nelsayed/programs/FastQC:/cbcb/lab/nelsayed/programs/gmap-2012-04-04/bin:/cbcb/lab/nelsayed/programs/Grinder-0.4.5/script:/cbcb/lab/nelsayed/programs/hmmer-3.0-linux-intel-x86_64/binaries:/cbcb/lab/nelsayed/programs/IGV_EA:/cbcb/lab/nelsayed/programs/mauve_snapshot_2012-06-07:/cbcb/lab/nelsayed/programs/prinseq-lite-0.20.3:/cbcb/lab/nelsayed/programs/rsem-1.1.18-modified:/cbcb/lab/nelsayed/programs/samtools-0.1.18:/cbcb/lab/nelsayed/programs/signalp-4.1:/cbcb/lab/nelsayed/programs/SOAPsplice-v1.9/bin:/cbcb/lab/nelsayed/programs/SOAPdenovo-Trans:/cbcb/lab/nelsayed/programs/subread-1.2.0/bin:/cbcb/lab/nelsayed/programs/tmhmm-2.0c/bin:/cbcb/lab/nelsayed/programs/tophat-2.0.7.Linux_x86_64:/cbcb/lab/nelsayed/programs/tools:/cbcb/lab/nelsayed/programs/trinityrnaseq_r2013-02-25:/cbcb/lab/nelsayed/programs/trinityrnaseq_r2013-02-25/util:/cbcb/lab/nelsayed/programs/trinityrnaseq_r2013-02-25/util/RSEM_util:/cbcb/lab/nelsayed/programs/velvet_1.2.03:/cbcb/lab/nelsayed/programs/bin:/cbcb/lab/nelsayed/local/haskell/bin:/cbcb/lab/nelsayed/scripts:/cbcb/lab/nelsayed/scripts/PBS:/usr/local/stow/xfce-4.4.3/bin:/cbcb/lab/nelsayed/local/bin:/bin:/usr/local/bin:/usr/bin:/cbcb/lab/nelsayed/local/biopieces/bp_bin
+JAR_DIR=/cbcb/lab/nelsayed/local/jar
+module=() {  eval `/usr/bin/modulecmd bash $*`
+}
+_=/cbcb/lab/nelsayed/local/bin/env
+The script is finished.
+]0;abelew@ibissub00: ~/byob/presentations/2013/1015-PBS/02-first_submissionabelew@ibissub00:~/byob/presentations/2013/1015-PBS/02-first_submission>waiting...
+bash: waiting...: command not found
+]0;abelew@ibissub00: ~/byob/presentations/2013/1015-PBS/02-first_submissionabelew@ibissub00:~/byob/presentations/2013/1015-PBS/02-first_submission>... still waiting[Kecho "YAY!"
+bash: !": event not found
+]0;abelew@ibissub00: ~/byob/presentations/2013/1015-PBS/02-first_submissionabelew@ibissub00:~/byob/presentations/2013/1015-PBS/02-first_submission>echo "YAY!"[1P"
+YAY
+]0;abelew@ibissub00: ~/byob/presentations/2013/1015-PBS/02-first_submissionabelew@ibissub00:~/byob/presentations/2013/1015-PBS/02-first_submission>echo 'YAY!'
+YAY!
+]0;abelew@ibissub00: ~/byob/presentations/2013/1015-PBS/02-first_submissionabelew@ibissub00:~/byob/presentations/2013/1015-PBS/02-first_submission>exit
+
+Script done on Mon 14 Oct 2013 08:03:52 PM EDT
