@@ -63,6 +63,7 @@ There are two main clusters on campus: (that I am aware of)
 1.  Submitting with parameters in the script
 2.  Parameters on the command line
 3.  Submission embedded in the script
+4.  qsub -I  is useful!
 
 ## First submission version 1:
 ------------------------------
