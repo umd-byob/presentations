@@ -1,0 +1,10 @@
+There are 117 processes running.
+ 19:35pm  up 24 days 23:10,  0 users,  load average: 0.08, 0.02, 0.01
+This is essentially the same submission script as last time.
+Except all those parameters will need to be specified on the command line.
+In addition, this time I will source my bashrc explicitly.
+You appear to have an execute loop.
+This may happen if your .bashrc calls your .bash_profile
+and the .bash_profile calls .bashrc; similarly, having
+newgrp(1) in the .bashrc could cause this.
+exiting now.

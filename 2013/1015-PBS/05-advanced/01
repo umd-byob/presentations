@@ -1,0 +1,6 @@
+#PBS -S /bin/bash -l walltime=48:00:00,nodes=1 -N fold_lin_01
+. ~/.bash_environment
+cd 
+/usr/local/bin/perl -w -I /usr/local/prfdb/prfdb_test/usr/perl.linux/lib /prf_daemon.pl 01 2>>/outputs/linux.err 1>>/outputs/linux.
+out
+

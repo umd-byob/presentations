@@ -1,0 +1,83 @@
+## Any commands which print text to the user can be executed
+## here in a ~/.profile or ~/.bash_profile
+## rsync, sftp, scp, etc should not see this file.
+
+
+## Check to make sure there is no execute loop
+## If SHELL_LEVELS is undefined, set it to 0
+## Otherwise leave it alone.
+export SHELL_LEVELS=${SHELL_LEVELS-0}
+## When doing math tests, [[ ]] is the way to go, otherwise it will attempt to execute
+## a command named (in this case) $SHELL_LEVELS -- which evaluates to something like
+## 0 or 1 or 2...
+if [[ "$SHELL_LEVELS" > 10 ]]; then
+    echo "You appear to have an execute loop."
+    echo "This may happen if your .bashrc calls your .bash_profile"
+    echo "and the .bash_profile calls .bashrc; similarly, having"
+    echo "newgrp(1) in the .bashrc could cause this."
+    echo "exiting now."
+    exit
+else
+    export SHELL_LEVELS=$(( $SHELL_LEVELS + 1 ))
+fi
+
+
+## Print the current number of processes running.
+PROCESSES=$(ps aux | wc -l)
+echo "There are ${PROCESSES} processes running."
+
+## Check for full filesystems
+FULL=$(df | grep 9[0-9]%)
+if [ -n "$FULL" ]; then
+  echo "The following filesystems are >= 90% full."
+  for fs in $(df | grep 9[0-9]% | awk '{print $5}'); do
+    echo $fs
+  done
+fi
+
+## Print the uptime and processor status
+uptime
+
+## Check that we are in the hpgl group.
+CURRENT_GROUP=$(groups | awk '{print $1}')
+if [ "$CURRENT_GROUP" != "hpgl" ]; then
+    ## Only run newgrop if we are on a toplevel shell
+    ## In an attempt to avoid shell loops
+    if [[ "$SHELL_LEVELS" < 2 ]]; then
+	newgrp hpgl
+    fi
+fi
+
+## Add any commands the user wants in his/her home directory
+if [ -e "${HOME}/.profile_local" ]; then
+    . ${HOME}/.profile_local
+fi
+
+if [ -r "/cbcb/lab/nelsayed/scripts/dotbashrc" ]; then
+  . /cbcb/lab/nelsayed/scripts/dotbashrc
+fi
+## Add any environment variables etc he/she wants
+## If s/he accidently calls the .profile, the above
+## test will stop it.
+if [ -e "${HOME}/.bashrc" ]; then
+    . ${HOME}/.bashrc
+fi
+
+
+set -P  ## pwd returns the actual current location without symlinks
+set auto_resume=1
+set bell-style visible
+set history=1000
+set notify
+set savehist=10000
+set show-all-if-ambiguous on
+set visible-stats on
+
+shopt -s huponexit
+shopt -s histappend #makes bash append to history rather than overwrite
+shopt -s cmdhist
+shopt -s histreedit
+shopt -s cdspell
+shopt -s cdable_vars
+# tab-completion of hostnames after @
+shopt -s hostcomplete

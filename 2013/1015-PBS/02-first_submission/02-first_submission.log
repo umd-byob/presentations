@@ -1,0 +1,85 @@
+Script started on Mon 14 Oct 2013 07:36:56 PM EDT
+]0;abelew@ibissub00: ~/byob/presentations/2013/1015-PBS/02-first_submissionabelew@ibissub00:~/byob/presentations/2013/1015-PBS/02-first_submission>qsub -N first_submission_v2 -q high_throughput -mn [K[K n first_suubmission-v2.sh
+46373.cbcbtorque.umiacs.umd.edu
+]0;abelew@ibissub00: ~/byob/presentations/2013/1015-PBS/02-first_submissionabelew@ibissub00:~/byob/presentations/2013/1015-PBS/02-first_submission>echo "I will talk to my self while the job is queued..."
+I will talk to my self while the job is queued...
+]0;abelew@ibissub00: ~/byob/presentations/2013/1015-PBS/02-first_submissionabelew@ibissub00:~/byob/presentations/2013/1015-PBS/02-first_submission>qs
+46373.cbcbtorque           ...submission_v2 [32mabelew[00m[K                 0 R high_throughput
+]0;abelew@ibissub00: ~/byob/presentations/2013/1015-PBS/02-first_submissionabelew@ibissub00:~/byob/presentations/2013/1015-PBS/02-first_submission>echo "Hey it is already running!"
+bash: !": event not found
+]0;abelew@ibissub00: ~/byob/presentations/2013/1015-PBS/02-first_submissionabelew@ibissub00:~/byob/presentations/2013/1015-PBS/02-first_submission>echo "Hey it is already running!"qs[K[K[1P"
+Hey it is already running
+]0;abelew@ibissub00: ~/byob/presentations/2013/1015-PBS/02-first_submissionabelew@ibissub00:~/byob/presentations/2013/1015-PBS/02-first_submission>qs
+]0;abelew@ibissub00: ~/byob/presentations/2013/1015-PBS/02-first_submissionabelew@ibissub00:~/byob/presentations/2013/1015-PBS/02-first_submission>ls -ltr
+total 36
+-rwxr-xr-x 1 abelew hpgl  702 Oct 14 19:02 [0m[00;32mfirst_submission.sh~[0m*
+-rwxr-xr-x 1 abelew hpgl  757 Oct 14 19:05 [00;32mfirst_submission.sh[0m*
+-rw-rw-r-- 1 abelew hpgl 6549 Oct 14 19:14 [00m01-first_submission.log[0m
+-rw-rw-r-- 1 abelew hpgl 1888 Oct 14 19:14 [00m01-first_submission.err[0m
+-rw-rw-r-- 1 abelew hpgl  757 Oct 14 19:21 [00mfirst_submission-v2.sh~[0m
+-rw-rw-r-- 1 abelew hpgl    0 Oct 14 19:35 [00msubmissionv2.e46372[0m
+-rw-rw-r-- 1 abelew hpgl  502 Oct 14 19:35 [00msubmissionv2.o46372[0m
+-rwxr-xr-x 1 abelew hpgl  552 Oct 14 19:36 [00;32mfirst_submission-v2.sh[0m*
+-rw-rw-r-- 1 abelew hpgl    0 Oct 14 19:36 [00m02-first_submission.err[0m
+-rw-rw-r-- 1 abelew hpgl    0 Oct 14 19:36 [00m02-first_submission.log[0m
+-rw-rw-r-- 1 abelew hpgl 3683 Oct 14 19:37 [00mfirst_submission_v2.o46373[0m
+-rw-rw-r-- 1 abelew hpgl    0 Oct 14 19:37 [00mfirst_submission_v2.e46373[0m
+]0;abelew@ibissub00: ~/byob/presentations/2013/1015-PBS/02-first_submissionabelew@ibissub00:~/byob/presentations/2013/1015-PBS/02-first_submission>more first_submission_v2.o46373 
+There are 117 processes running.
+ 19:37:26 up 24 days, 23:11,  0 users,  load average: 0.02, 0.01, 0.00
+This is essentially the same submission script as last time.
+Except all those parameters will need to be specified on the command line.
+In addition, this time I will source my bashrc explicitly.
+Find out the executing host:
+Linux beech.umiacs.umd.edu 2.6.18-348.16.1.el5 #1 SMP Sat Jul 27 01:05:23 EDT 2013 x86_64 GNU/Linux
+Find out the current working directory:
+/cbcbhomes/abelew/byob/presentations/2013/1015-PBS/02-first_submission
+Find out if any PBS specific variables are set:
+PBS_VERSION=TORQUE-2.5.12
+PBS_JOBNAME=first_submission_v2
+PBS_ENVIRONMENT=PBS_BATCH
+PBS_O_WORKDIR=/cbcbhomes/abelew/byob/presentations/2013/1015-PBS/02-first_submission
+PBS_ARGS= -V -S /cbcb/lab/nelsayed/local/bin/bash -q throughput -l walltime=12:00:00   -j eo -e ibissub00.umiacs.umd.edu:/cbcbhomes
+/abelew/outputs/pbs.out -m n
+PBS_TASKNUM=1
+PBS_O_HOME=/cbcbhomes/abelew
+PBS_LARGE= -V -S /cbcb/lab/nelsayed/local/bin/bash -q large -l walltime=72:00:00
+PBS_LOG= -j eo -e ibissub00.umiacs.umd.edu:/cbcbhomes/abelew/outputs/pbs.out -m n
+PBS_WALLTIME=10800
+PBS_GPUFILE=/var/spool/torque/aux//46373.cbcbtorque.umiacs.umd.edugpu
+PBS_MOMPORT=15003
+PBS_WORKSTATION= -V -S /cbcb/lab/nelsayed/local/bin/bash -q workstation -l walltime=12:00:00 
+PBS_O_QUEUE=high_throughput
+PBS_O_LOGNAME=abelew
+PBS_O_LANG=en_US.UTF-8
+PBS_JOBCOOKIE=DDE6F12BB3044ABABDB9AD35F0E0B404
+PBS_NODENUM=0
+PBS_NUM_NODES=1
+PBS_O_SHELL=/bin/bash
+PBS_SERVER=cbcbtorque
+PBS_JOBID=46373.cbcbtorque.umiacs.umd.edu
+[7m--More--(42%)[27mPBS_O_HOST=ibissub00.umiacs.umd.edu
+PBS_VNODENUM=0
+PBS_QUEUE=high_throughput
+PBS_O_MAIL=/var/spool/mail/abelew
+PBS_NP=1
+PBS_NUM_PPN=1
+PBS_THROUGHPUT= -V -S /cbcb/lab/nelsayed/local/bin/bash -q throughput -l walltime=12:00:00 
+PBS_NODEFILE=/var/spool/torque/aux//46373.cbcbtorque.umiacs.umd.edu
+PBS_O_PATH=/cbcb/lab/nelsayed/local/bin:/sbin:/usr/sbin:/usr/local/sbin:/opt/UMmaui/bin:/opt/UMtorque/bin:/usr/local/stow/gcc-4.6.0
+/bin:/cbcb/lab/nelsayed/local/texlive/2013/bin/x86_64-linux:/cbcb/lab/nelsayed/programs/epd-7.2-2-rh5-x86_64/bin:/usr/local/stow/au
+toconf-2.65/bin:/cbcb/lab/nelsayed/programs/allpaths/bin:/cbcb/lab/nelsayed/programs/ncbi-blast-2.2.27+/bin:/cbcb/lab/nelsayed/prog
+rams/blast-2.2.26/bin:/cbcb/lab/nelsayed/programs/bedtools-2.17.0/bin:/cbcb/lab/nelsayed/programs/bwa-0.6.2:/cbcb/lab/nelsayed/prog
+rams/cd-hit-v4.6.1-2012-08-27:/cbcb/lab/nelsayed/programs/cufflinks-2.0.0.Linux_x86_64:/cbcb/lab/nelsayed/programs/FastQC:/cbcb/lab
+/nelsayed/programs/gmap-2012-04-04/bin:/cbcb/lab/nelsayed/programs/Grinder-0.4.5/script:/cbcb/lab/nelsayed/programs/hmmer-3.0-linux
+-intel-x86_64/binaries:/cbcb/lab/nelsayed/programs/IGV_EA:/cbcb/lab/nelsayed/programs/mauve_snapshot_2012-06-07:/cbcb/lab/nelsayed/
+programs/prinseq-lite-0.20.3:/cbcb/lab/nelsayed/programs/rsem-1.1.18-modified:/cbcb/lab/nelsayed/programs/samtools-0.1.18:/cbcb/lab
+/nelsayed/programs/signalp-4.1:/cbcb/lab/nelsayed/programs/SOAPsplice-v1.9/bin:/cbcb/lab/nelsayed/programs/SOAPdenovo-Trans:/cbcb/l
+ab/nelsayed/programs/subread-1.2.0/bin:/cbcb/lab/nelsayed/programs/tmhmm-2.0c/bin:/cbcb/lab/nelsayed/programs/tophat-2.0.7.Linux_x8
+6_64:/cbcb/lab/nelsayed/programs/tools:/cbcb/lab/nelsayed/programs/trinityrnaseq_r2013-02-25:/cbcb/lab/nelsayed/programs/trinityrna
+seq_r2013-02-25/util:/cbcb/lab/nelsayed/programs/trinityrnaseq_r2013-02-25/util/RSEM_util:/cbcb/lab/nelsayed/programs/velvet_1.2.03
+:/cbcb/lab/nelsayed/programs/bin:/cbcb/lab/nelsayed/local/haskell/bin:/cbcb/lab/nelsayed/scripts:/cbcb/lab/nelsayed/scripts/PBS:/us
+r/local/stow/xfce-4.4.3/bin:/cbcb/lab/nelsayed/local/bin:/bin:/usr/local/bin:/usr/bin:/cbcb/lab/nelsayed/local/biopieces/bp_bin
+]0;abelew@ibissub00: ~/byob/presentations/2013/1015-PBS/02-first_submissionabelew@ibissub00:~/byob/presentations/2013/1015-PBS/02-first_submission>exit
+
+Script done on Mon 14 Oct 2013 07:38:03 PM EDT

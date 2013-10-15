@@ -1,0 +1,73 @@
+++ env
++++ which bowtie2
+++ BOWTIE=/cbcb/lab/nelsayed/programs/testbin/bowtie2
+++ echo 'bowtie lies at /cbcb/lab/nelsayed/programs/testbin/bowtie2'
++++ cpus
+++++ /bin/cat /proc/cpuinfo
+++++ /bin/grep '^processor'
+++++ /usr/bin/wc -l
++++ CPUS=24
++++ echo 24
++++ return 24
+++ CPUs=24
+++ export CPUs=23
+++ CPUs=23
+++ TOPHAT=/cbcb/lab/nelsayed/local/bin/tophat
+++ CORES=' -p 23 '
+++ GAP=' -r 170 '
+++ OUT=/cbcb/project-scratch/gingerhl/HPGL0282-C24/tophat_282_hg19
+++ REF=/cbcb/lab/nelsayed/ref_data/hsapiens/genome/hg19/hg19
+++ INPUT1=/cbcb/lab/nelsayed/raw_data/sylvio/HPGL0282/processed/HPGL0282_R1_combined.filtered.fastq
+++ INPUT2=/cbcb/lab/nelsayed/raw_data/sylvio/HPGL0282/processed/HPGL0282_R2_combined.filtered.fastq
+++ for file in '"$OUT $GTF $REF $INPUT1 $INPUT2"'
+++ '[' -r /cbcb/project-scratch/gingerhl/HPGL0282-C24/tophat_282_hg19 ']'
+++ echo '/cbcb/project-scratch/gingerhl/HPGL0282-C24/tophat_282_hg19  /cbcb/lab/nelsayed/ref_data/hsapiens/genome/hg19/hg19 /cbcb/lab/nelsayed/raw_data/sylvio/HPGL0282/processed/HPGL0282_R1_combined.filtered.fastq /cbcb/lab/nelsayed/raw_data/sylvio/HPGL0282/processed/HPGL0282_R2_combined.filtered.fastq is not readable.'
+++ CMD='/cbcb/lab/nelsayed/local/bin/tophat  -p 23   -r 170  -o /cbcb/project-scratch/gingerhl/HPGL0282-C24/tophat_282_hg19 /cbcb/lab/nelsayed/ref_data/hsapiens/genome/hg19/hg19 /cbcb/lab/nelsayed/raw_data/sylvio/HPGL0282/processed/HPGL0282_R1_combined.filtered.fastq /cbcb/lab/nelsayed/raw_data/sylvio/HPGL0282/processed/HPGL0282_R2_combined.filtered.fastq'
+++ date
+++ echo 'Going to run: /cbcb/lab/nelsayed/local/bin/tophat  -p 23   -r 170  -o /cbcb/project-scratch/gingerhl/HPGL0282-C24/tophat_282_hg19 /cbcb/lab/nelsayed/ref_data/hsapiens/genome/hg19/hg19 /cbcb/lab/nelsayed/raw_data/sylvio/HPGL0282/processed/HPGL0282_R1_combined.filtered.fastq /cbcb/lab/nelsayed/raw_data/sylvio/HPGL0282/processed/HPGL0282_R2_combined.filtered.fastq'
+++ eval /cbcb/lab/nelsayed/local/bin/tophat -p 23 -r 170 -o /cbcb/project-scratch/gingerhl/HPGL0282-C24/tophat_282_hg19 /cbcb/lab/nelsayed/ref_data/hsapiens/genome/hg19/hg19 /cbcb/lab/nelsayed/raw_data/sylvio/HPGL0282/processed/HPGL0282_R1_combined.filtered.fastq /cbcb/lab/nelsayed/raw_data/sylvio/HPGL0282/processed/HPGL0282_R2_combined.filtered.fastq
++++ /cbcb/lab/nelsayed/local/bin/tophat -p 23 -r 170 -o /cbcb/project-scratch/gingerhl/HPGL0282-C24/tophat_282_hg19 /cbcb/lab/nelsayed/ref_data/hsapiens/genome/hg19/hg19 /cbcb/lab/nelsayed/raw_data/sylvio/HPGL0282/processed/HPGL0282_R1_combined.filtered.fastq /cbcb/lab/nelsayed/raw_data/sylvio/HPGL0282/processed/HPGL0282_R2_combined.filtered.fastq
+
+[2013-10-14 11:41:38] Beginning TopHat run (v2.0.8)
+-----------------------------------------------
+[2013-10-14 11:41:38] Checking for Bowtie
+		  Bowtie version:	 2.1.0.0
+[2013-10-14 11:41:38] Checking for Samtools
+		Samtools version:	 0.1.19.0
+[2013-10-14 11:41:38] Checking for Bowtie index files
+[2013-10-14 11:41:38] Checking for reference FASTA file
+[2013-10-14 11:41:38] Generating SAM header for /cbcb/lab/nelsayed/ref_data/hsapiens/genome/hg19/hg19
+	format:		 fastq
+	quality scale:	 phred33 (default)
+[2013-10-14 11:42:14] Preparing reads
+	 left reads: min. length=101, max. length=101, 38126777 kept reads (626 discarded)
+	right reads: min. length=101, max. length=101, 38125369 kept reads (2034 discarded)
+[2013-10-14 12:16:28] Mapping left_kept_reads to genome hg19 with Bowtie2 
+[2013-10-14 12:59:52] Mapping left_kept_reads_seg1 to genome hg19 with Bowtie2 (1/4)
+[2013-10-14 13:03:58] Mapping left_kept_reads_seg2 to genome hg19 with Bowtie2 (2/4)
+[2013-10-14 13:08:20] Mapping left_kept_reads_seg3 to genome hg19 with Bowtie2 (3/4)
+[2013-10-14 13:12:52] Mapping left_kept_reads_seg4 to genome hg19 with Bowtie2 (4/4)
+[2013-10-14 13:19:04] Mapping right_kept_reads to genome hg19 with Bowtie2 
+[2013-10-14 14:02:44] Mapping right_kept_reads_seg1 to genome hg19 with Bowtie2 (1/4)
+[2013-10-14 14:06:55] Mapping right_kept_reads_seg2 to genome hg19 with Bowtie2 (2/4)
+[2013-10-14 14:11:54] Mapping right_kept_reads_seg3 to genome hg19 with Bowtie2 (3/4)
+[2013-10-14 14:17:08] Mapping right_kept_reads_seg4 to genome hg19 with Bowtie2 (4/4)
+[2013-10-14 14:23:10] Searching for junctions via segment mapping
+[2013-10-14 14:35:35] Retrieving sequences for splices
+[2013-10-14 14:38:53] Indexing splices
+[2013-10-14 14:40:31] Mapping left_kept_reads_seg1 to genome segment_juncs with Bowtie2 (1/4)
+[2013-10-14 14:43:01] Mapping left_kept_reads_seg2 to genome segment_juncs with Bowtie2 (2/4)
+[2013-10-14 14:45:54] Mapping left_kept_reads_seg3 to genome segment_juncs with Bowtie2 (3/4)
+[2013-10-14 14:48:40] Mapping left_kept_reads_seg4 to genome segment_juncs with Bowtie2 (4/4)
+[2013-10-14 14:51:36] Joining segment hits
+[2013-10-14 15:04:06] Mapping right_kept_reads_seg1 to genome segment_juncs with Bowtie2 (1/4)
+[2013-10-14 15:06:33] Mapping right_kept_reads_seg2 to genome segment_juncs with Bowtie2 (2/4)
+[2013-10-14 15:09:23] Mapping right_kept_reads_seg3 to genome segment_juncs with Bowtie2 (3/4)
+[2013-10-14 15:12:08] Mapping right_kept_reads_seg4 to genome segment_juncs with Bowtie2 (4/4)
+[2013-10-14 15:15:08] Joining segment hits
+[2013-10-14 15:28:05] Reporting output tracks
+-----------------------------------------------
+[2013-10-14 16:18:14] Run complete: 04:36:35 elapsed
+++ echo 'Completed at:'
+++ date
+++ echo 'with return: 0'
