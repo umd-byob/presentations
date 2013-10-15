@@ -1,0 +1,362 @@
+# -*- mode: sh -*- vim:ft=sh
+## First handle all the machine aliases
+PBS_LOGFILE="/cbcb/lab/nelsayed/logs/pbs.log"
+
+alias e="$EDITOR"
+alias elsayed='cd /cbcb/lab/nelsayed/'
+alias ftp='ftp -i'
+alias gb="git branch"
+alias gba="git branch -a"
+alias gc="git commit -v"
+alias gd="git diff | mate"
+alias gl="git pull"
+alias gp="git push"
+alias gst="git status"
+alias ga="git add"
+alias grpe='grep'
+alias i="hostname ; id"
+alias j='jobs'
+alias k='kill'
+alias l='ls -F -al | more'
+alias ls='ls -F'
+alias mroe='more'
+alias pm='perl Makefile.PL ; make ; make test'
+alias rescreen='screen -R'
+alias scratch="cd /cbcb/personal-scratch/$USER"
+alias sl='ls'
+alias ssh="ssh -C -c blowfish -X"
+alias talk='ytalk'
+alias $USER="cd /cbcb/personal-scratch/$USER"
+alias which='type'
+if [ -e "/usr/bin/htop" ]
+  then
+  alias top=htop
+fi
+
+
+alias deepthought="ssh ${USER}@login.deepthought.umd.edu"
+alias umiacs="ssh ${USER}@openlab.umiacs.umd.edu"
+alias hpgl="ssh ${USER}@hpgl.umd.edu"
+alias illumina="ssh elsayed@illumina-data.ibbr.umd.edu"
+alias ibis="ssh ${USER}@ibissub00.umiacs.umd.edu"
+alias ibis1="ssh ${USER}@ibissub01.umiacs.umd.edu"
+alias ibis2="ssh ${USER}@ibissub02.umiacs.umd.edu"
+alias walnut="ssh ${USER}@walnut.umiacs.umd.edu"
+
+
+function dis() {
+ if [ $1 ]; then
+   $@ &
+   disown 
+ else
+   for j in `jobs | awk '{print $1}' | sed 's/\+\|\]\|\[//g'`
+     do
+## Every time you disown %1, then the old %2 becomes %1
+#     CMD="disown %""${j}"
+     CMD="disown -h %1"
+     $CMD
+   done
+ fi
+}
+
+RSYNC="rsync -P -avz --progress --stats"
+function there() {
+  if [ $1 ]; then
+    if [ $2 ]; then
+      $RSYNC ./ $2@$1:"`pwd`/ "
+    else
+      $RSYNC ./ ${USER}@$1:"`pwd`/ "
+   fi
+   else
+     echo "Please provide a hostname."
+  fi
+}
+
+function here() {
+  if [ $1 ]; then
+    if [ $2 ]; then
+      $RSYNC $2@$1:"`pwd`/ " .
+    else
+      $RSYNC ${USER}@$1:"`pwd`/ " .
+    fi
+  else
+    echo "Please provide a hostname."
+  fi
+}
+
+function mykill() {
+  if [ $2 ]
+    then
+    process=${2}
+    for i in `ps -ef | grep ${process} | grep -v grep | awk '{print $2}'`
+      do
+      echo "Now killing ${i} with kill -${1} ${i}"
+      kill -${1} ${i}
+    done
+  else
+    process=${1}
+    for i in `ps -ef | grep ${process} | grep -v grep | awk '{print $2}'`
+      do
+        echo "Now killing ${i} with kill ${i}"
+        kill ${i}
+    done
+  fi
+}
+
+function mypause() {
+  for i in `ps -ef | grep ${1} | grep -v grep | awk '{print $2}'`
+    do
+    echo "Now killing $i with kill -STOP $i"
+    kill -STOP $i
+  done
+}
+
+function mycont() {
+  for i in `ps -ef | grep ${1} | grep -v grep | awk '{print $2}'`
+      do
+      echo "Now killing $i with kill -CONT $i"
+      kill -CONT $i
+  done
+}
+
+function sc() {
+ if [ $TERM = "screen" ]; then
+   echo "Currently running in a screen session."
+    /usr/bin/screen -c $HOME/.screenrc.nested $@
+ else
+   echo "Starting a screen with the default screenrc."
+   /usr/bin/screen $@
+ fi
+}
+
+function trimmomatic {
+    nohup java -classpath $JAR_DIR/trimmomatic.jar org.usadellab.trimmomatic.TrimmomaticPE -trimlog trimlog $@
+}
+
+## qp() allows me to queue perl scripts with little or no modification
+function qp() {
+  export WD=${PWD}
+  if [ $3 ]; then
+    export WD=$3
+  fi
+  if [ $2 ]; then
+    export IN=$2
+  fi
+  echo "The working directory is: ${WD}"
+  echo "The input file is: ${IN}, correct?"
+  sleep 3
+
+  JOB=$(basename $1)
+  CMD="qsub ${PBS_ARGS} -N atb_${JOB} $1"
+  echo "Running $CMD"
+  eval $CMD
+}
+
+function count {
+    RET=0
+    if $(test -z "$1"); then
+	echo $RET
+	return $RET
+    fi
+    if [ "$1" = "inc" ]; then
+	RET=-1
+	for stuff in $@; do
+	    RET="$(( $RET + 1 ))"
+	done
+    else
+	for stuff in $@; do
+	    RET="$(( $RET + $stuff ))"
+	done
+    fi
+    echo $RET
+    return $RET
+}
+
+function cpus {
+    CPUS=$(/bin/cat /proc/cpuinfo | /bin/grep "^processor" | /usr/bin/wc -l)
+    echo $CPUS
+    return $CPUS
+}
+
+function end_log() {
+    if [ $1 ]; then
+	PBS_LOGFILE=$1
+    else
+	PBS_LOGFILE="/dev/stdout"
+    fi
+    MYRET=$?
+    echo ""
+    DATE=$(date)
+    HOST=$(hostname)
+    echo "Finishing ${PBS_JOBNAME} at ${DATE} on ${HOST}." >> $PBS_LOGFILE
+    echo "This job took ${SECONDS} and returned ${MYRET}." >> $PBS_LOGFILE
+    echo "" >> $PBS_LOGFILE   
+}
+
+function fastq_count() {    
+    if [ $1 ]; then
+	RESULT=$1
+    else
+	RESULT=`dialog --stdout --title "Please choose a file" "$@" --fselect $(pwd)/ 20 40`
+	retval=$?
+    fi
+    COUNT=$(zcat -f $RESULT | wc -l)
+    ENTRIES=$(( $COUNT / 4 ))
+    echo "$RESULT $ENTRIES"
+    return $ENTRIES
+}
+
+function fastq_filter() {
+    if [ $1 ]; then
+	RESULT=$1
+    else
+	RESULT=`dialog --stdout --title "Please choose a file" "$@" --fselect $(pwd)/ 20 40`
+    fi
+    BASENAME=$(basename ${RESULT} .gz)
+    BASENAME=$(basename ${BASENAME} .fastq)
+    CMD="zcat -f $RESULT | grep -A 3 '^@.* [^:]*:N:[^:]*:' | grep -v \"^--\"$ > ${BASENAME}_filtered.fastq"
+    echo "Running $CMD"
+    eval $CMD
+}
+
+function fastq_count_pigz() {
+    for file in $@; do
+	PIGZ_COUNT=$(unpigz -p `cpus` -c $file | wc -l)
+	ENTRIES=$(( $PIGZ_COUNT / 4 ))
+	echo "$file $ENTRIES"
+    done
+}
+
+function freemem {
+    MEM=$(/usr/bin/vmstat | /usr/bin/tail -n 1 | /bin/awk '{print $4}')
+    echo $MEM
+    return $MEM
+}
+
+function nodes {
+    NUM_NODES=$(pbsnodes -a | grep "^[a-z]" | wc -l)
+    FREE_NODES=$(pbsnodes -a | grep "state \= free" | wc -l)
+    FREE_CPUS=$(pbsnodes -a | grep -C 1 "state \= free" | grep "np \=" | awk '{print $3}')
+    JOBS=$(pbsnodes -a | grep "jobs =" | awk -F "=" '{print $2}')
+    AVAILMEM=$(pbsnodes -a | grep availmem | awk -F "availmem" '{print $2}' | sed 's/kb.*$//g' | sed 's/\=//g')
+    TOTALMEM=$(pbsnodes -a | grep availmem | awk -F "totmem" '{print $2}' | sed 's/kb.*$//g' | sed 's/\=//g')
+    PHYSMEM=$(pbsnodes -a | grep availmem | awk -F "physmem" '{print $2}' | sed 's/kb.*$//g' | sed 's/\=//g')
+    
+    FREE_CPUS=$(count $FREE_CPUS)
+    JOBS=$(count inc $JOBS)
+    AVAILMEM=$(count $AVAILMEM)
+    TOTALMEM=$(count $TOTALMEM)
+    PHYSMEM=$(count $PHYSMEM)
+    PCTMEM=$(( $AVAILMEM * 100 / $TOTALMEM  ))
+    
+    TOTALMEM=$(( $TOTALMEM / 1000000 ))
+    AVAILMEM=$(( $AVAILMEM / 1000000 ))
+    PHYSMEM=$((  $PHYSMEM  / 1000000 ))
+    
+    echo "There are $NUM_NODES total nodes, $FREE_NODES are unused, comprising $FREE_CPUS idle processors."
+    echo "There are $JOBS running jobs."
+    echo "Of $TOTALMEM Gb memory, $PHYSMEM is physical, and $AVAILMEM is available. ${PCTMEM}% free."
+}
+
+function qr {
+    export WD=${PWD}
+    export PBS_ARGS=" -V -S /cbcb/lab/nelsayed/local/bin/Rscript -k eo -j eo -e ${HOME}/outputs/ -m n"
+    export INPUTS=$@
+    CMD="qsub $PBS_ARGS $1"
+    eval $CMD
+}
+
+function q {
+    export WD=${PWD}
+    if [ $3 ]; then
+	export WD=$3
+    fi
+    if [ $2 ]; then
+	export IN=$2
+    fi
+    
+    export PBS_ARGS=${PBS_ARGS-" -V -S /bin/bash -q workstation -l walltime=12:00:00 -k eo -j eo -e ${HOME}/outputs/ -m n "}
+    echo "The working directory is: ${WD}"
+    echo "The input file is: ${IN}, correct?"
+    sleep 3
+    if [ -e $1 ]; then
+	CMD="qsub $PBS_ARGS $1"
+    else
+	CMD="qsub $PBS_ARGS ${HOME}/bin/$1"
+    fi
+    echo "Running: $CMD"
+    eval $CMD
+}
+
+function qattribs {
+    QUEUES="long large workstation throughput xlarge"
+    for q in $QUEUES; do
+	echo "The attributes of the $q queue are:"
+	CMD="qmgr -c \"print queue $q\" | grep -v "^#" | grep -v "^create" | sed 's/^set queue//g'"
+	eval $CMD
+	echo ""
+    done
+}
+
+function qdelall {
+    JOBS=$(qstat | grep ${USER} | awk '{print $1}' )
+    for JB in $JOBS; do
+	qdel $JB
+    done
+}
+
+function qs {
+    CMD="qstat | grep ${USER} "
+    if [ $@ ]; then
+	CMD="${CMD} $@"
+    fi
+    eval $CMD
+}
+
+function qwho {
+    QUSERS=$(qstat -a | grep "^[0-9]" | awk '{print $2}' | sort | uniq)
+    for acuser in $QUSERS; do
+	USER_JOBS=$(qstat -a -u $acuser | grep "^[0-9]" | wc -l)
+	RUNNING_JOBS=$(qstat -u $acuser -r | grep "^[0-9]" | wc -l)
+	RMEM=$(qstat -u $acuser | grep "^[0-9]" | awk '{print $8}' | sed 's/[a-z]//g')
+	UMEM=$(qstat -u $acuser -r | grep "^[0-9]" | awk '{print $8}' | sed 's/[a-z]//g')
+	RCORES=$(qstat -u $acuser | grep "^[0-9]" | awk '{print $7}' | sed 's/[a-z]//g' | grep -v "\-\-")
+	UCORES=$(qstat -u $acuser -r | grep "^[0-9]" | awk '{print $7}' | sed 's/[a-z]//g' | grep -v "\-\-")
+	REQ_MEM=$(count $RMEM)
+	USED_MEM=$(count $UMEM)
+	REQ_CORES=$(count $RCORES)
+	USED_CORES=$(count $UCORES)
+	QUEUED_JOBS=$(( $USER_JOBS - $RUNNING_JOBS ))
+	QUEUED_MEM=$(( $REQ_MEM - $USED_MEM ))
+	QUEUED_CORES=$(( $REQ_CORES - $USED_CORES ))
+	echo "$acuser requested $USER_JOBS jobs, $RUNNING_JOBS are running, $QUEUED_JOBS are waiting."
+	echo "$acuser requested $REQ_MEM gb memory, $USED_MEM gb is being used, $QUEUED_MEM is waiting."
+	echo "$acuser requested $REQ_CORES cores, $USED_CORES are being used, $QUEUED_CORES are waiting."
+	echo ""
+    done
+}
+
+function start_log() {
+#    if [ $1 ]; then
+#	PBS_LOGFILE=$1
+#    else
+    MYWD=${PBS_O_WORKDIR-"$LAB/scripts"}
+    STARTLOGFILE="${MYWD}/startlog.out"
+#    fi
+    DATE=$(date)
+    HOST=$(hostname)
+    CPUS=$(cpus)
+    MEM=$(freemem)
+    OUTDIR=$PBS_O_WORKDIR
+    OUTDIR=${OUTDIR-"."}
+    JOBNAME=$PBS_JOBNAME
+    JOBNAME=${JOBNAME-"STDIN"}
+    echo "Starting ${PBS_JOBNAME} in queue: ${PBS_QUEUE} at ${DATE} on ${HOST}, which has ${CPUS} cpus and ${MEM} free memory." >> $STARTLOGFILE
+    echo "This system is currently being used by:" >> $STARTLOGFILE
+    w >> $STARTLOGFILE
+    echo "This job is running from ${PBS_O_WORKDIR}." >> $STARTLOGFILE
+    echo "" >> $STARTLOGFILE
+    DSTAT_CMD="dstat -t -c -d -n -g -m -y -p -r --fs --tcp --vm --proc --output=${PBS_O_WORKDIR}/${PBS_JOBNAME}.csv 2>/dev/null 1>&2 &"
+    echo "Running dstat with: $DSTAT_CMD"
+    eval $DSTAT_CMD
+}

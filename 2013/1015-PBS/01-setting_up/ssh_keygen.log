@@ -1,0 +1,90 @@
+Script started on Tue 15 Oct 2013 10:24:03 AM EDT
+]0;trey@chirp: ~trey@chirp:~>hostname
+chirp
+]0;trey@chirp: ~trey@chirp:~>ssh abelew@ibissub00[K1.umiacs.umd.edu
+Enter passphrase for key '/home/trey/.ssh/id_dsa': 
+abelew@ibissub01.umiacs.umd.edu's password: 
+Last login: Wed Oct  2 11:11:06 2013 from hpgl.umd.edu
+There are 340 processes running.
+The following filesystems are >= 90% full.
+/szfs/szattic-spare1
+/szfs/szattic-genefind1
+/szfs/szattic-asmg4
+/szfs/szattic-data1
+/szfs/szattic-asmg1
+/szfs/szattic-root
+/szfs/szattic-misc1
+/szfs/szsubmit
+/szfs/szdevel
+/szfs/szattic-asmg2
+/fs/szdevel
+ 10:24:17 up 17 days, 17:49, 16 users,  load average: 0.97, 0.83, 0.56
+]0;abelew@ibissub01: ~abelew@ibissub01:~>hostname
+ibissub01.umiacs.umd.edu
+]0;abelew@ibissub01: ~abelew@ibissub01:~>ssh-ke[Kls -ld .ssh
+ls: cannot access .ssh: No such file or directory
+]0;abelew@ibissub01: ~abelew@ibissub01:~>ssh-g[Kkeygen
+Generating public/private rsa key pair.
+Enter file in which to save the key (/cbcbhomes/abelew/.ssh/id_rsa): 
+Created directory '/cbcbhomes/abelew/.ssh'.
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /cbcbhomes/abelew/.ssh/id_rsa.
+Your public key has been saved in /cbcbhomes/abelew/.ssh/id_rsa.pub.
+The key fingerprint is:
+96:9a:9c:ee:5d:9b:89:0c:d0:e1:d8:ae:c5:9c:bf:72 abelew@ibissub01.umiacs.umd.edu
+]0;abelew@ibissub01: ~abelew@ibissub01:~>cd .ssh
+]0;abelew@ibissub01: ~/.sshabelew@ibissub01:~/.ssh>ls -al
+total 20
+drwx--S--- 1 abelew hpgl  108 Oct 15 10:24 [0m[00;34m.[0m/
+drwxr-sr-x 1 abelew hpgl 8192 Oct 15 10:24 [00;34m..[0m/
+-rw------- 1 abelew hpgl 1675 Oct 15 10:24 [00mid_rsa[0m
+-rw-r--r-- 1 abelew hpgl  413 Oct 15 10:24 [00mid_rsa.pub[0m
+]0;abelew@ibissub01: ~/.sshabelew@ibissub01:~/.ssh>cat id_rsa.pub > authorized_keys
+]0;abelew@ibissub01: ~/.sshabelew@ibissub01:~/.ssh>ssh abelew@ibissub02.umiacs.umd.edu
+abelew@ibissub02.umiacs.umd.edu's password: 
+
+]0;abelew@ibissub01: ~/.sshabelew@ibissub01:~/.ssh>ls -al
+total 24
+drwx--S--- 1 abelew hpgl  140 Oct 15 10:24 [0m[00;34m.[0m/
+drwxr-sr-x 1 abelew hpgl 8192 Oct 15 10:24 [00;34m..[0m/
+-rw-rw-r-- 1 abelew hpgl  413 Oct 15 10:24 [00mauthorized_keys[0m
+-rw------- 1 abelew hpgl 1675 Oct 15 10:24 [00mid_rsa[0m
+-rw-r--r-- 1 abelew hpgl  413 Oct 15 10:24 [00mid_rsa.pub[0m
+]0;abelew@ibissub01: ~/.sshabelew@ibissub01:~/.ssh>chmod 600 authorized_keys 
+]0;abelew@ibissub01: ~/.sshabelew@ibissub01:~/.ssh>!ss
+ssh abelew@ibissub02.umiacs.umd.edu
+Last login: Thu Sep 26 13:34:33 2013 from hpgl.umd.edu
+There are 154 processes running.
+The following filesystems are >= 90% full.
+/szfs/szattic-genefind1
+/szfs/szdevel
+/szfs/szattic-asmg1
+/szfs/szattic-data1
+/szfs/szattic-asmg2
+/szfs/szsubmit
+/szfs/szattic-misc1
+/szfs/szattic-asmg4
+/szfs/szattic-spare1
+/szfs/szattic-root
+ 10:25:03 up 25 days, 13:59,  4 users,  load average: 0.00, 0.00, 0.00
+]0;abelew@ibissub02: ~abelew@ibissub02:~>ssh abelew@walnut
+Last login: Tue Oct 15 10:23:52 2013 from 129-2-129-19.wireless.umd.edu
+There are 422 processes running.
+The following filesystems are >= 90% full.
+/fs/szattic-asmg6
+/fs/szdevel
+/fs/www-users
+ 10:25:07 up 3 days, 18:29, 14 users,  load average: 0.08, 0.09, 0.03
+]0;abelew@walnut: ~abelew@walnut:~>exit
+]0;abelew@walnut: ~abelew@walnut:~>logout
+Connection to walnut closed.
+]0;abelew@ibissub02: ~abelew@ibissub02:~>exit
+]0;abelew@ibissub02: ~abelew@ibissub02:~>logout
+Connection to ibissub02.umiacs.umd.edu closed.
+]0;abelew@ibissub01: ~/.sshabelew@ibissub01:~/.ssh>exit
+]0;abelew@ibissub01: ~abelew@ibissub01:~>logout
+Connection to ibissub01.umiacs.umd.edu closed.
+]0;trey@chirp: ~trey@chirp:~>exit
+
+Script done on Tue 15 Oct 2013 10:25:19 AM EDT

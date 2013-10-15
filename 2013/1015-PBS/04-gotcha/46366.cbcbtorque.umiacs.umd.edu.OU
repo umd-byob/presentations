@@ -1,0 +1,121 @@
+There are 490 processes running.
+ 11:41:35 up 24 days, 15:16,  0 users,  load average: 0.08, 0.05, 0.01
+GREP_COLOR=32
+MANPATH=:/usr/share/man:/usr/local/share/man:/cbcb/lab/nelsayed/local/share/man
+HOSTNAME=mulberry.umiacs.umd.edu
+PBS_VERSION=TORQUE-2.5.12
+SHELL=/bin/bash
+PERLIO=stdio
+HISTSIZE=10000
+HACKPAGER=more
+KDE_NO_IPV6=1
+PBS_JOBNAME=ginger_hpgl0282-C24_hg19_tophat.qsub_submit
+PERL5LIB=:/cbcb/lab/nelsayed/local/biopieces/code_perl
+LIBRARY_PATH=/cbcb/lab/nelsayed/local/lib:/cbcb/lab/nelsayed/local/lib64:/usr/lib64
+BP_PERL=/cbcb/lab/nelsayed/local/biopieces/code_perl
+BP_PYTHON=/cbcb/lab/nelsayed/local/biopieces/code_python
+PBS_ENVIRONMENT=PBS_BATCH
+BP_BIN=/cbcb/lab/nelsayed/local/biopieces/bp_bin
+QTDIR=/usr/lib64/qt-3.3
+QTINC=/usr/lib64/qt-3.3/include
+PBS_O_WORKDIR=/cbcb/project-scratch/gingerhl/HPGL0282-C24
+PBS_ARGS= -V -S /cbcb/lab/nelsayed/local/bin/bash -q throughput -l walltime=12:00:00   -j eo -e ibissub00.umiacs.umd.edu:/cbcbhomes/gingerhl/outputs/pbs.out -m n
+LAB_BASHRC=1
+HISTFILESIZE=2000000
+LOGS=/cbcb/lab/nelsayed/log
+PBS_TASKNUM=1
+USER=gingerhl
+BP_WWW=/cbcb/lab/nelsayed/local/biopieces/www
+LD_LIBRARY_PATH=/cbcb/lab/nelsayed/local/lib:/cbcb/lab/nelsayed/local/lib64:/usr/local/stow/gcc-4.7.2/lib:/usr/local/stow/gcc-4.7.2/lib64:/lib64:/lib:/usr/lib64:/usr/lib:/usr/local/lib:/usr/local/lib64:/cbcb/lab/nelsayed/programs/lib:/cbcb/lab/nelsayed/programs/lib:/cbcb/lab/nelsayed/local/qt/lib
+LS_COLORS=
+PBS_O_HOME=/cbcbhomes/gingerhl
+SHELL_LEVELS=1
+BP_DATA=/cbcb/lab/nelsayed/local/biopieces/data
+PBS_LARGE= -V -S /cbcb/lab/nelsayed/local/bin/bash -q large -l walltime=72:00:00
+CPATH=/cbcb/lab/nelsayed/local/include:/usr/include:/usr/local/include:.
+PBS_LOG= -j eo -e ibissub00.umiacs.umd.edu:/cbcbhomes/gingerhl/outputs/pbs.out -m n
+KDEDIR=/usr
+PBS_WALLTIME=259200
+PROG_LIB=/cbcb/lab/nelsayed/programs/lib
+PBS_GPUFILE=/var/spool/torque/aux//46366.cbcbtorque.umiacs.umd.edugpu
+PBS_MOMPORT=15003
+PAGER=more
+PBS_WORKSTATION= -V -S /cbcb/lab/nelsayed/local/bin/bash -q workstation -l walltime=12:00:00 
+LSCOLORS=ExDxHxAxCxegedabagacad
+PBS_O_QUEUE=large
+BP_TMP=/cbcb/lab/nelsayed/local/biopieces/tmp
+FTP_PASSIVE=1
+BP_LOG=/cbcb/lab/nelsayed/local/biopieces/log
+MAIL=/var/spool/mail/gingerhl
+PBS_O_LOGNAME=gingerhl
+PATH=/cbcb/lab/nelsayed/programs/testbin:/cbcb/lab/nelsayed/local/bin:/sbin:/usr/sbin:/usr/local/sbin:/opt/UMmaui/bin:/opt/UMtorque/bin:/usr/local/stow/gcc-4.6.0/bin:/cbcb/lab/nelsayed/local/texlive/2013/bin/x86_64-linux:/cbcb/lab/nelsayed/programs/epd-7.2-2-rh5-x86_64/bin:/usr/local/stow/autoconf-2.65/bin:/cbcb/lab/nelsayed/programs/allpaths/bin:/cbcb/lab/nelsayed/programs/ncbi-blast-2.2.27+/bin:/cbcb/lab/nelsayed/programs/blast-2.2.26/bin:/cbcb/lab/nelsayed/programs/bedtools-2.17.0/bin:/cbcb/lab/nelsayed/programs/bwa-0.6.2:/cbcb/lab/nelsayed/programs/cd-hit-v4.6.1-2012-08-27:/cbcb/lab/nelsayed/programs/cufflinks-2.0.0.Linux_x86_64:/cbcb/lab/nelsayed/programs/FastQC:/cbcb/lab/nelsayed/programs/gmap-2012-04-04/bin:/cbcb/lab/nelsayed/programs/Grinder-0.4.5/script:/cbcb/lab/nelsayed/programs/hmmer-3.0-linux-intel-x86_64/binaries:/cbcb/lab/nelsayed/programs/IGV_EA:/cbcb/lab/nelsayed/programs/mauve_snapshot_2012-06-07:/cbcb/lab/nelsayed/programs/prinseq-lite-0.20.3:/cbcb/lab/nelsayed/programs/rsem-1.1.18-modified:/cbcb/lab/nelsayed/programs/samtools-0.1.18:/cbcb/lab/nelsayed/programs/signalp-4.1:/cbcb/lab/nelsayed/programs/SOAPsplice-v1.9/bin:/cbcb/lab/nelsayed/programs/SOAPdenovo-Trans:/cbcb/lab/nelsayed/programs/subread-1.2.0/bin:/cbcb/lab/nelsayed/programs/tmhmm-2.0c/bin:/cbcb/lab/nelsayed/programs/tophat-2.0.7.Linux_x86_64:/cbcb/lab/nelsayed/programs/tools:/cbcb/lab/nelsayed/programs/trinityrnaseq_r2013-02-25:/cbcb/lab/nelsayed/programs/trinityrnaseq_r2013-02-25/util:/cbcb/lab/nelsayed/programs/trinityrnaseq_r2013-02-25/util/RSEM_util:/cbcb/lab/nelsayed/programs/velvet_1.2.03:/cbcb/lab/nelsayed/programs/bin:/cbcb/lab/nelsayed/local/haskell/bin:/cbcb/lab/nelsayed/scripts:/cbcb/lab/nelsayed/scripts/PBS:/usr/local/stow/xfce-4.4.3/bin:/cbcb/lab/nelsayed/local/bin:/bin:/usr/local/bin:/usr/bin:/cbcb/lab/nelsayed/local/biopieces/bp_bin
+PROG_BIN=/cbcb/lab/nelsayed/programs/bin
+PBS_O_LANG=en_US.UTF-8
+LAB_BASE=/cbcb/lab/nelsayed
+PBS_JOBCOOKIE=D1A2A5209B565BB48FA4E8F6C6AF45AB
+CONDOR_CONFIG=/etc/condor/condor_config
+R_LIBS=/cbcb/lab/nelsayed/local/R
+INPUTRC=/etc/inputrc
+PWD=/cbcbhomes/gingerhl
+BP_DIR=/cbcb/lab/nelsayed/local/biopieces
+RAW=/cbcb/lab/nelsayed/raw_data
+EDITOR=vim
+BP_C=/cbcb/lab/nelsayed/local/biopieces/code_c
+CVSIGNORE=*.o *~ #* *.emacs*
+KDE_IS_PRELINKED=1
+PBS_NODENUM=0
+LANG=C
+MODULEPATH=/usr/local/toolchain/.modulefiles:/usr/local/stow/.modulefiles:/opt/stow/.modulefiles:/usr/share/Modules/modulefiles:/etc/modulefiles
+LOADEDMODULES=
+PBS_NUM_NODES=1
+PS1=<\t>\u@\h:> 
+PBS_O_SHELL=/bin/bash
+PBS_SERVER=cbcbtorque
+PBS_JOBID=46366.cbcbtorque.umiacs.umd.edu
+PS2=and>
+SSH_ASKPASS=/usr/libexec/openssh/gnome-ssh-askpass
+ENVIRONMENT=BATCH
+PROG=/cbcb/lab/nelsayed/programs
+BOOST_INCLUDEDIR=/cbcb/lab/nelsayed/local/include/boost/
+SHLVL=3
+HOME=/cbcbhomes/gingerhl
+GREP_OPTIONS=--color=auto
+REF=/cbcb/lab/nelsayed/ref_data
+PBS_O_HOST=ibissub00.umiacs.umd.edu
+WD=/cbcbhomes/gingerhl
+PBS_VNODENUM=0
+LOGNAME=gingerhl
+CMAKE_INSTALL_PREFIX=/cbcb/lab/nelsayed/local
+BOOST_ROOT=/cbcb/lab/nelsayed/local/include
+PREFIX=/cbcb/lab/nelsayed/local
+QTLIB=/usr/lib64/qt-3.3/lib
+CVS_RSH=ssh
+CLASSPATH=/cbcb/lab/nelsayed/local/jar:/cbcb/lab/nelsayed/local/jar/AddOrReplaceReadGroups.jar:/cbcb/lab/nelsayed/local/jar/BamIndexStats.jar:/cbcb/lab/nelsayed/local/jar/BamToBfq.jar:/cbcb/lab/nelsayed/local/jar/BuildBamIndex.jar:/cbcb/lab/nelsayed/local/jar/CalculateHsMetrics.jar:/cbcb/lab/nelsayed/local/jar/CheckIlluminaDirectory.jar:/cbcb/lab/nelsayed/local/jar/CleanSam.jar:/cbcb/lab/nelsayed/local/jar/CollectAlignmentSummaryMetrics.jar:/cbcb/lab/nelsayed/local/jar/CollectGcBiasMetrics.jar:/cbcb/lab/nelsayed/local/jar/CollectInsertSizeMetrics.jar:/cbcb/lab/nelsayed/local/jar/CollectMultipleMetrics.jar:/cbcb/lab/nelsayed/local/jar/CollectRnaSeqMetrics.jar:/cbcb/lab/nelsayed/local/jar/CollectTargetedPcrMetrics.jar:/cbcb/lab/nelsayed/local/jar/CompareSAMs.jar:/cbcb/lab/nelsayed/local/jar/CreateSequenceDictionary.jar:/cbcb/lab/nelsayed/local/jar/DownsampleSam.jar:/cbcb/lab/nelsayed/local/jar/EstimateLibraryComplexity.jar:/cbcb/lab/nelsayed/local/jar/ExtractIlluminaBarcodes.jar:/cbcb/lab/nelsayed/local/jar/ExtractSequences.jar:/cbcb/lab/nelsayed/local/jar/FastqToSam.jar:/cbcb/lab/nelsayed/local/jar/FilterSamReads.jar:/cbcb/lab/nelsayed/local/jar/FixMateInformation.jar:/cbcb/lab/nelsayed/local/jar/IlluminaBasecallsToSam.jar:/cbcb/lab/nelsayed/local/jar/IntervalListTools.jar:/cbcb/lab/nelsayed/local/jar/MarkDuplicates.jar:/cbcb/lab/nelsayed/local/jar/MeanQualityByCycle.jar:/cbcb/lab/nelsayed/local/jar/MergeBamAlignment.jar:/cbcb/lab/nelsayed/local/jar/MergeSamFiles.jar:/cbcb/lab/nelsayed/local/jar/MergeVcfs.jar:/cbcb/lab/nelsayed/local/jar/NormalizeFasta.jar:/cbcb/lab/nelsayed/local/jar/QualityScoreDistribution.jar:/cbcb/lab/nelsayed/local/jar/ReorderSam.jar:/cbcb/lab/nelsayed/local/jar/ReplaceSamHeader.jar:/cbcb/lab/nelsayed/local/jar/RevertSam.jar:/cbcb/lab/nelsayed/local/jar/SamFormatConverter.jar:/cbcb/lab/nelsayed/local/jar/SamToFastq.jar:/cbcb/lab/nelsayed/local/jar/SortSam.jar:/cbcb/lab/nelsayed/local/jar/SplitVcfs.jar:/cbcb/lab/nelsayed/local/jar/ValidateSamFile.jar:/cbcb/lab/nelsayed/local/jar/ViewSam.jar:/cbcb/lab/nelsayed/local/jar/apache-ant-1.8.2-bzip2.jar:/cbcb/lab/nelsayed/local/jar/cofoja-1.0-r139.jar:/cbcb/lab/nelsayed/local/jar/commons-jexl-2.1.1.jar:/cbcb/lab/nelsayed/local/jar/commons-logging-1.1.1.jar:/cbcb/lab/nelsayed/local/jar/igvtools.jar:/cbcb/lab/nelsayed/local/jar/picard-1.86.jar:/cbcb/lab/nelsayed/local/jar/sam-1.86.jar:/cbcb/lab/nelsayed/local/jar/snappy-java-1.0.3-rc3.jar:/cbcb/lab/nelsayed/local/jar/tribble-1.86.jar:/cbcb/lab/nelsayed/local/jar/trimmomatic-0.27.jar:/cbcb/lab/nelsayed/local/jar/trimmomatic.jar:/cbcb/lab/nelsayed/local/jar/variant-1.86.jar
+PBS_QUEUE=large
+MYCFLAGS=-O3 -I/cbcb/lab/nelsayed/local/include -L/cbcb/lab/nelsayed/local/lib
+MODULESHOME=/usr/share/Modules
+LESSOPEN=|/usr/bin/lesspipe.sh %s
+PBS_O_MAIL=/var/spool/mail/gingerhl
+CVSEDITOR=vi
+TRINITY_HOME=/cbcb/lab/nelsayed/programs/trinityrnaseq_r2013-02-25
+PBS_NP=1
+PBS_NUM_PPN=1
+RUBYLIB=:/cbcb/lab/nelsayed/local/biopieces/code_ruby/lib
+BP_RUBY=/cbcb/lab/nelsayed/local/biopieces/code_ruby
+LAB=/cbcb/lab/nelsayed
+SCRATCH=/cbcb/personal-scratch/gingerhl
+PBS_THROUGHPUT= -V -S /cbcb/lab/nelsayed/local/bin/bash -q throughput -l walltime=12:00:00 
+G_BROKEN_FILENAMES=1
+PBS_NODEFILE=/var/spool/torque/aux//46366.cbcbtorque.umiacs.umd.edu
+JAR_DIR=/cbcb/lab/nelsayed/local/jar
+PBS_O_PATH=/cbcb/lab/nelsayed/local/bin:/sbin:/usr/sbin:/usr/local/sbin:/opt/UMmaui/bin:/opt/UMtorque/bin:/usr/local/stow/gcc-4.6.0/bin:/cbcb/lab/nelsayed/local/texlive/2013/bin/x86_64-linux:/cbcb/lab/nelsayed/programs/epd-7.2-2-rh5-x86_64/bin:/usr/local/stow/autoconf-2.65/bin:/cbcb/lab/nelsayed/programs/allpaths/bin:/cbcb/lab/nelsayed/programs/ncbi-blast-2.2.27+/bin:/cbcb/lab/nelsayed/programs/blast-2.2.26/bin:/cbcb/lab/nelsayed/programs/bedtools-2.17.0/bin:/cbcb/lab/nelsayed/programs/bwa-0.6.2:/cbcb/lab/nelsayed/programs/cd-hit-v4.6.1-2012-08-27:/cbcb/lab/nelsayed/programs/cufflinks-2.0.0.Linux_x86_64:/cbcb/lab/nelsayed/programs/FastQC:/cbcb/lab/nelsayed/programs/gmap-2012-04-04/bin:/cbcb/lab/nelsayed/programs/Grinder-0.4.5/script:/cbcb/lab/nelsayed/programs/hmmer-3.0-linux-intel-x86_64/binaries:/cbcb/lab/nelsayed/programs/IGV_EA:/cbcb/lab/nelsayed/programs/mauve_snapshot_2012-06-07:/cbcb/lab/nelsayed/programs/prinseq-lite-0.20.3:/cbcb/lab/nelsayed/programs/rsem-1.1.18-modified:/cbcb/lab/nelsayed/programs/samtools-0.1.18:/cbcb/lab/nelsayed/programs/signalp-4.1:/cbcb/lab/nelsayed/programs/SOAPsplice-v1.9/bin:/cbcb/lab/nelsayed/programs/SOAPdenovo-Trans:/cbcb/lab/nelsayed/programs/subread-1.2.0/bin:/cbcb/lab/nelsayed/programs/tmhmm-2.0c/bin:/cbcb/lab/nelsayed/programs/tophat-2.0.7.Linux_x86_64:/cbcb/lab/nelsayed/programs/tools:/cbcb/lab/nelsayed/programs/trinityrnaseq_r2013-02-25:/cbcb/lab/nelsayed/programs/trinityrnaseq_r2013-02-25/util:/cbcb/lab/nelsayed/programs/trinityrnaseq_r2013-02-25/util/RSEM_util:/cbcb/lab/nelsayed/programs/velvet_1.2.03:/cbcb/lab/nelsayed/programs/bin:/cbcb/lab/nelsayed/local/haskell/bin:/cbcb/lab/nelsayed/scripts:/cbcb/lab/nelsayed/scripts/PBS:/usr/local/stow/xfce-4.4.3/bin:/cbcb/lab/nelsayed/local/bin:/bin:/usr/local/bin:/usr/bin:/cbcb/lab/nelsayed/local/biopieces/bp_bin
+module=() {  eval `/usr/bin/modulecmd bash $*`
+}
+_=/cbcb/lab/nelsayed/local/bin/env
+bowtie lies at /cbcb/lab/nelsayed/programs/testbin/bowtie2
+/cbcb/project-scratch/gingerhl/HPGL0282-C24/tophat_282_hg19  /cbcb/lab/nelsayed/ref_data/hsapiens/genome/hg19/hg19 /cbcb/lab/nelsayed/raw_data/sylvio/HPGL0282/processed/HPGL0282_R1_combined.filtered.fastq /cbcb/lab/nelsayed/raw_data/sylvio/HPGL0282/processed/HPGL0282_R2_combined.filtered.fastq is not readable.
+Mon Oct 14 11:41:36 EDT 2013
+Going to run: /cbcb/lab/nelsayed/local/bin/tophat  -p 23   -r 170  -o /cbcb/project-scratch/gingerhl/HPGL0282-C24/tophat_282_hg19 /cbcb/lab/nelsayed/ref_data/hsapiens/genome/hg19/hg19 /cbcb/lab/nelsayed/raw_data/sylvio/HPGL0282/processed/HPGL0282_R1_combined.filtered.fastq /cbcb/lab/nelsayed/raw_data/sylvio/HPGL0282/processed/HPGL0282_R2_combined.filtered.fastq
+Completed at:
+Mon Oct 14 16:18:14 EDT 2013
+with return: 0

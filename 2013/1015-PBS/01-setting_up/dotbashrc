@@ -1,0 +1,139 @@
+## Keep in mind that this file should never print anything to the terminal.
+## It is executed on every new shell, including those started by things like
+## rsync, scp, sftp etc.  As a result, any additional shells it starts or
+## statements it prints could prove drastically bad.
+## Some lab specific paths and variables that may prove useful
+export LAB="/cbcb/lab/nelsayed"
+export LAB_BASE="/cbcb/lab/nelsayed"
+export LAB_BASHRC=1
+export LOGS="${LAB}/log"
+export PBS_WORKSTATION=${PBS_WORKSTATION-" -V -S /cbcb/lab/nelsayed/local/bin/bash -q workstation -l walltime=12:00:00 "}
+export PBS_THROUGHPUT=${PBS_THROUGHPUT-" -V -S /cbcb/lab/nelsayed/local/bin/bash -q throughput -l walltime=12:00:00 "}
+export PBS_LARGE=${PBS_LARGS-" -V -S /cbcb/lab/nelsayed/local/bin/bash -q large -l walltime=72:00:00"}
+export PBS_LOG=${PBS_LOG-" -j eo -e ibissub00.umiacs.umd.edu:${HOME}/outputs/pbs.out -m n"}
+export PBS_ARGS=${PBS_ARGS-"$PBS_THROUGHPUT $PBS_LOG"}
+export PREFIX="${LAB}/local"
+export PROG="${LAB}/programs"
+export PROG_BIN="${PROG}/bin"
+export PROG_LIB="${PROG}/lib"
+export RAW="${LAB}/raw_data"
+export REF="${LAB}/ref_data"
+export SCRATCH=${SCRATCH-"/cbcb/personal-scratch/${USER}"}
+export WD=${PWD}
+export TRINITY_HOME="${PROG}/trinityrnaseq_r2013-02-25"
+
+umask 0002
+
+case $TERM in
+  gnome|screen|rxvt|xterm*)
+    if (($UID == 0))
+      then
+      PS1="\[\033]0;SUPER USER@\h: \w\007\]<\t>SUPER USER@\h:\W# "
+#      PS1="\[\033]0;SUPER USER@\h:\w\007\]\[\033[36;40m<\t>\[\033[32;40mSUPER USER@\h:#\[\033[m "
+    else
+#      PS1="\[\033]0;\u@\h: \w\007\]<\t>\u@\h:\W>"
+      PS1="\[\033]0;\u@\h: \w\007\]\u@\h:\w>"
+#      PS1="\[\033]0;\u@\h:\w\007\]\[\033[36;40m<\t>\[\033[32;40m\u@\h:>\[\033[m "
+    fi
+  ;;
+  *)
+    if (($UID == 0))
+      then
+      PS1="<\t>SUPER USER@\h:# "
+    else
+      PS1="<\t>\u@\h:> "
+    fi 
+  ;;
+esac
+export PS1
+export PS2='and>'
+
+export BOOST_INCLUDEDIR=$PREFIX/include/boost/
+export BOOST_ROOT=$PREFIX/include
+#export BROWSER="firefox %s"
+export CMAKE_INSTALL_PREFIX=$PREFIX
+export CVSEDITOR="vi"
+export CVSIGNORE="*.o *~ #* *.emacs*"
+export CVS_RSH="ssh"
+export EDITOR=vim
+export FTP_PASSIVE=1
+export GREP_COLOR=32
+export GREP_OPTIONS=--color=auto
+export HACKPAGER=more
+#export HISTCONTROL=ignoreboth
+export HISTSIZE=10000
+export HISTFILESIZE=2000000
+export LSCOLORS=ExDxHxAxCxegedabagacad
+export MANPATH=${MANPATH}:/usr/share/man:/usr/local/share/man:${PREFIX}/share/man
+export MYCFLAGS="-O3 -I$PREFIX/include -L$PREFIX/lib"
+export PAGER=more
+export PERLIO=stdio
+#export PERL_LOCAL_LIB_ROOT="/cbcb/lab/nelsayed/programs/perl_lib/perl5";
+#export PERL_MB_OPT="--install_base=/cbcb/lab/nelsayed/programs/perl_lib/perl5";
+#export PERL_MM_OPT="INSTALL_BASE=/cbcb/lab/nelsayed/programs/perl_lib/perl5";
+#export PERL5LIB="/cbcb/lab/nelsayed/programs/perl_lib/perl5/x86_64-linux-thread-multi:/cbcb/lab/nelsayed/programs/perl_lib/perl5/lib/perl5";
+#export PROMPT_COMMAND="history -a; history -n; $PROMPT_COMMAND"
+export R_LIBS=$PREFIX/R
+
+## Potentially long statements below
+# LIBRARY_PATH is for the compiler -- a list of directories to search for needed libraries at compile time
+# Setting this makes the required list of -L directories shorter
+export LIBRARY_PATH="$PREFIX/lib:$PREFIX/lib64:/usr/lib64"
+# LD_LIBRARY_PATH is for the dynamic linker -- a list of directories for programs to search at runtime
+export LD_LIBRARY_PATH="$PREFIX/lib:$PREFIX/lib64:/usr/local/stow/gcc-4.7.2/lib:/usr/local/stow/gcc-4.7.2/lib64:/lib64:/lib:/usr/lib64:/usr/lib:/usr/local/lib:/usr/local/lib64:/cbcb/lab/nelsayed/programs/lib:/cbcb/lab/nelsayed/programs/lib:$PREFIX/qt/lib"
+## CPATH is a list of directories which will be added as per -I for the C compiler.
+export CPATH=${CPATH-"."}
+export CPATH="$PREFIX/include:/usr/include:/usr/local/include:$CPATH"
+## C_INCLUDE is as above but C specific
+#C_INCLUDE_PATH
+## CPLUS_INCLUDE is as above but C++ specific
+#CPLUS_INCLUDE_PATH
+## Generate a path statement using the many entries in $LAB/scripts/dotbash_paths
+## Order of usage is first to last in that file.
+PATH_STMT="export PATH=$PREFIX/bin"
+for mypath in $(/bin/cat $LAB/scripts/dotbash_paths); do
+	PATH_STMT="$PATH_STMT:$mypath"
+done
+eval $(echo "$PATH_STMT")
+
+export JAR_DIR="$PREFIX/jar"
+CLASSPATH_STMT="export CLASSPATH=$JAR_DIR"
+for jarfile in $(/bin/ls $JAR_DIR/*.jar); do
+    CLASSPATH_STMT="$CLASSPATH_STMT:$jarfile"
+    ALIAS_STMT="alias $(basename $jarfile .jar)=\"java -jar $jarfile\""
+    eval $(echo $ALIAS_STMT)
+done
+eval $(echo $CLASSPATH_STMT)
+
+## The following wraps the shopt calls in case zsh is used
+if [ $(basename $SHELL) == "bash" ]; then
+    shopt -s dotglob
+    shopt -s extglob
+    shopt -s histappend
+    shopt -s histreedit
+    shopt -s hostcomplete
+    shopt -s lithist
+    shopt -s cdable_vars
+    shopt -s cdspell
+fi
+## Stop the xbell
+#if [ -n "${DISPLAY}" ]; then
+#  xset b off 2>/dev/null 1>&2
+#fi
+
+if [ -e "${LAB_BASE}/scripts/dotbash_aliases" ]; then
+    source ${LAB_BASE}/scripts/dotbash_aliases
+fi
+
+# >>>>>>>>>>>>>>>>>>>>>>> Enabling Biopieces <<<<<<<<<<<<<<<<<<<<<<<
+
+export BP_DIR="/cbcb/lab/nelsayed/local/biopieces"
+export BP_DATA="/cbcb/lab/nelsayed/local/biopieces/data"
+export BP_TMP="/cbcb/lab/nelsayed/local/biopieces/tmp"
+export BP_LOG="/cbcb/lab/nelsayed/local/biopieces/log"
+
+source "$BP_DIR/bp_conf/bashrc"
+
+# >>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<
+
+
