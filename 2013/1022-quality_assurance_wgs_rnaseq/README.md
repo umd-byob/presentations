@@ -22,8 +22,6 @@
   -min_qual_mean 20 \
   -ns_max_n 1 \
   -derep 235 \
-  -lc_method dust \
-  -lc_threshold 70 \
   -trim_tail_left 5 \
   -trim_tail_right 5 \
   -out_format 3 \
