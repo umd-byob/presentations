@@ -41,3 +41,5 @@
   -out_good SRR069556_try2_good.fastq \
   -out_bad SRR069556_try2_bad.fastq
 ```
+
+### Web demo
