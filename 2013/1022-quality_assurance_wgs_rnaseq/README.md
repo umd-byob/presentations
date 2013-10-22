@@ -13,7 +13,7 @@
 
 
 * Download the example RNA-seq data.
-* Run PRINSEQ with b
+* Run PRINSEQ with few parameters.
 
 ```
   perl $PRINSEQ_DIR/prinseq-lite.pl -fastq SRR069556.fastq \
@@ -34,8 +34,8 @@
 ```
   perl $PRINSEQ_DIR/prinseq-lite.pl -fastq SRR069556.fastq \
   -min_len 20 \
-  -trim_qual_right 11 \
-  -min_qual_mean 20 \
+  -trim_qual_right 10 \
+  -min_qual_mean 15 \
   -ns_max_n 1 \
   -derep 235 \
   -lc_method dust \ 
