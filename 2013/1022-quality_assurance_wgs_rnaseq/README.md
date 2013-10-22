@@ -17,20 +17,13 @@
 
 ```
   perl $PRINSEQ_DIR/prinseq-lite.pl -fastq SRR069556.fastq \
-  -min_len 20 \
-  -trim_qual_right 11 \
-  -min_qual_mean 20 \
-  -ns_max_n 1 \
-  -out_format 3 \
   -graph_data SRR069556_graph.gd \
-  -log log.txt \
-  -out_good SRR069556_good.fastq \
-  -out_bad SRR069556_bad.fastq
+  -log log.txt 
 ```
 * Upload **SRR069556_graph.gd** to [PRINSEQ webserver](http://edwards.sdsu.edu/cgi-bin/prinseq/prinseq.cgi?report=1).
 * Look at [figures](http://edwards.sdsu.edu/cgi-bin/prinseq/tmp/1382390222/SRR069556.fastq_graph.gd.html) to determine reasonable parameter cutoffs.
-* Rerun PRINSEQ.
- 
+* Rerun PRINSEQ with filtering options.
+
 ```
   perl $PRINSEQ_DIR/prinseq-lite.pl -fastq SRR069556.fastq \
   -min_len 20 \
