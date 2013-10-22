@@ -21,9 +21,6 @@
   -trim_qual_right 11 \
   -min_qual_mean 20 \
   -ns_max_n 1 \
-  -derep 235 \
-  -trim_tail_left 5 \
-  -trim_tail_right 5 \
   -out_format 3 \
   -graph_data SRR069556_graph.gd \
   -log log.txt \
