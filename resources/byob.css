@@ -87,7 +87,7 @@ a.link:hover {
     list-style-type: none;
 }
 
-#schedule .date {
+#schedule time {
     display: inline-block;
     width: 50px;
     font-weight: bold;
