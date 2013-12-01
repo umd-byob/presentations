@@ -101,7 +101,7 @@ a.link:hover {
     font-weight: bold;
 }
 
-#current .date {
+#current time {
     color: #CF4F88;
 }
 
