@@ -1,0 +1,11 @@
+.bold {
+    font-weight: bold;
+}
+.bgblue {
+    background-color: blue;
+}
+
+body {
+    font-family:"Verdana", Sans-serif;
+    font-size: 22px;
+}
