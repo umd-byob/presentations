@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pipelining with Python</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style type="text/css">
+      /* Slideshow styles */
+    </style>
+    <link rel="stylesheet" href="styles.css"> 
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle
+
+# Pipelining with Python
+
+Bring Your Own Bioinformatics
+
+12/3/2013
+
+<div style="height: 2in;"></div>
+
+<div style="text-align: left;">
+Lee Mendelowitz<br>
+AMSC, CBCB
+</div>
+
+
+---
+
+# Outline
+
+1. Python for Shell Scripting
+2. Ruffus
+
+---
+
+# Why Python?
+
+- Portable (Linux, Mac OS X, Windows)
+- General purpose
+- Objected oriented
+- Lots of useful built-in modules
+
+---
+
+# Python for Shell Scripting
+
+Python has built-in modules which are useful for writing Python scripts to replace
+bash scripts:
+
+-  `sys`
+-  `os`
+-  `glob`
+-  `shutil`
+-  `subprocess`
+
+In addition:
+  
+-  `signal`
+-  `time`
+-  `multiprocessing`
+-  `argparse`
+-  `logging`
+
+---
+
+# sys module
+- File handles to:
+    - standard input (`sys.stdin`)
+    - standard output (`sys.stdout`)
+    - standard error (`sys.stderr`)
+- `argv`: list of command line arguments
+
+
+```python
+import sys
+sys.stdout.write("What's your name?\n")
+input = sys.stdin.readline()
+```
+
+---
+# glob module
+- `glob.glob( pathname ) `: Return a list of path names matching pathname, with support for Unix expansions.
+
+```python
+from glob import glob
+fastqs = glob(".fastq")
+```
+
+---
+# os module
+"This module provides a portable way of using operating system dependent functionality"
+
+- `os.environ`: Dictionary with environmental variables and their values
+- `os.chdir( path )`: Change current working directory
+- `os.getcwd()`: Get current working directory
+- `os.symlink( source, link_name )`: Create a symbolic link.
+- `os.unlink( path )` or `os.remove( path )`: Remove a file
+- `os.walk( path )`: Walk the directory tree rooted at path
+
+```python
+import os
+job_num = int(os.environ['PBS_ARRAYID'])
+```
+```python
+for dirpath, subdirs, files in os.walk('.'):
+    print '%s has %i subdirs and %i files'\
+            % (dirpath, len(subdirs), len(files))
+```
+
+---
+# os.path module
+"This module implements some useful functions on pathnames"
+
+- `os.path.abspath( path )`: Return the absolute path
+- `os.path.split( path )`: Split a path into (root, filename)
+- `os.path.splitext( path )`: Split a path into (root, extension)
+- `os.path.join( path1, path2, ... )`: Join path components intelligently
+
+---
+# os.path module
+
+```python
+BASE_DIR = '/cbcb/project-scratch/lmendelo/experiments'
+dir1 = os.path.join(BASE_DIR, 'experiment1')
+
+def getFileName(path):
+    path = os.path.abspath(path)
+    root, filename = os.path.split(path)
+    return filename
+
+def getBaseName(path):
+    filename = getFileName(path)
+    base, ext = os.path.splitext(filename)
+    return base
+```
+
+---
+#shutil module
+
+"The shutil module offers a number of high-level operations on files and collections of files. In particular, functions are provided which support file copying and removal."
+
+- `shutil.copy( src, dest )`:
+- `shutil.copytree( src, dest )`:
+- `shutil.rmtree( path )`:
+- `shutil.move( src, dest )`:
+
+---
+# subprocess module
+
+"The subprocess module allows you to spawn new processes, connect to their input/output/error pipes, and obtain their return codes."  
+
+- `subprocess.call( arglist )`
+- `p = subprocess.Popen( arglist )`
+
+#### Popen object attributes:
+- ` p.wait() `
+- ` p.kill() ` or ` p.terminate() `
+- ` p.send_signal( signal ) `
+- ` p.pid `
+- ` p.returncode `
+
+```python
+import subprocess
+cmd = ['ls', '-l']
+subprocess.call(cmd)
+subprocess.call('ls -l *.fastq', shell=True)
+```
+
+---
+#subprocess module
+
+```python
+from subprocess import Popen, PIPE
+
+lyrics = \
+"""
+Ooh I need your love babe,
+Guess you know it's true.
+"""
+
+cmd = ['grep', 'love']
+
+p = Popen(cmd, stdout=PIPE, stdin=PIPE)
+p.stdin.write(lyrics)
+p.stdin.close()
+p.wait()
+print 'Grep output:\n', p.stdout.read()
+print 'Return code: ', p.returncode
+```
+
+---
+
+# Pipelining
+
+<div style="text-align: center;">
+![pipeline](pipeline.png)
+</div>
+
+---
+
+# Ruffus
+
+ - Ruffus is a lightweight python module to run computational pipelines.
+
+
+ - **Website**: [http://www.ruffus.org.uk/](http://www.ruffus.org.uk/)
+
+
+ - **Paper**:
+Leo Goodstadt
+[Ruffus: a lightweight Python library for computational pipelines](http://bioinformatics.oxfordjournals.org/content/26/21/2778.full)<br>
+Bioinformatics (2010) 26 (21): 2778-2779 first published online September 16, 2010 doi:10.1093/bioinformatics/btq524
+
+---
+# Ruffus Recipe
+
+- Write functions to perform tasks
+- Chain tasks together using ruffus decorators
+
+---
+# Ruffus Basics Example 1
+
+```python
+from ruffus import *
+from ruffus_example_utils import *
+
+input_file = 'example1.input'
+if not exists(input_file):
+    touch(input_file)
+
+@files(input_file, 'output1.task1')
+def task1(inputs, outputs):
+    printInfo('task1', inputs, outputs)
+    createFiles(outputs)
+
+@follows(task1)
+@files('output1.task1', 'output1.task2')
+def task2(inputs, outputs):
+    printInfo('task2', inputs, outputs)
+    createFiles(outputs)
+
+pipeline_printout(sys.stdout, [task2])
+pipeline_run([task2])
+```
+
+---
+# Ruffus Basics Example 2
+
+ - See ruffus_example2.py
+
+---
+# Ruffus Documentation
+
+- [An introduction to Ruffus pipelines](http://www.ruffus.org.uk/tutorials/simple_tutorial/step1_follows.html)
+- [Ruffus Cheat sheet](http://www.ruffus.org.uk/cheatsheet.html)
+- [Ruffus Decorators](http://www.ruffus.org.uk/decorators/decorators.html#decorators)
+- [Blast Example](http://www.ruffus.org.uk/examples/bioinformatics/index.html) ([code](http://www.ruffus.org.uk/examples/bioinformatics/part1_code.html#examples-bioinformatics-part1-code))
+
+
+
+    </textarea>
+
+
+    <script src="http://gnab.github.io/remark/downloads/remark-0.5.9.min.js" type="text/javascript">
+    </script>
+    <script type="text/javascript">
+      var slideshow = remark.create();
+    </script>
+
+  </body>
+</html>
