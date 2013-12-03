@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="University of Maryland - Bring Your Own Bioinformatics" />
+    <meta name="keywords" content="UMD, BYOB, bioinformatics, computational biology, research, genomics, transcriptomics, python, R" />
+    <title>UMD Bring Your Own Bioinformatics</title>
+    <link rel='stylesheet' href='resources/byob.css' />
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+</head>
+<body>
+    <!-- title -->
+    <div id='title-container'>
+        <span id='title-left'>UMD</span>
+        <span id='title-right'>BYOB</span>
+        <div id='meeting-info'>Meetings: Tuesday @ 4pm (BRB 3101)</div>
+    </div>
+
+    <!-- schedule -->
+    <div id='schedule'>
+        <div id='schedule-header'>Schedule (Fall 2013)</div>
+        <ul>
+            <li>
+                <time>9/03</time>
+                <a href='http://khughitt.github.io/slidify-byob-intro/#1'>Intro Meeting</a>: 
+                <a href='http://prezi.com/mtiw5z9i0gfu/copy-of-analysis-of-bacterial-transcriptome-data/'>Bacterial Transcriptome Analysis</a> /
+                <a href='https://github.com/umd-byob/presentations/tree/master/2013/0903-knitr_reproducible_research'>Reproducible Research with Knitr & R</a>
+            </li>
+            <li>
+                <time>9/10</time>
+                <a href='https://github.com/umd-byob/presentations/tree/master/2013/0910-de_novo_transcriptome_assembly'>De Novo Transcriptome Assembly</a>
+            </li>
+            <li>
+                <time>9/17</time>
+                <a href='https://github.com/umd-byob/presentations/tree/master/2013/0917-genome_browsers'>A (not so) Complete Guide to Genome Browsers</a>
+            </li>
+            <li>
+                <time>9/24</time>
+                <a href='https://github.com/umd-byob/presentations/tree/master/2013/0924-RNAseq-SNPs'>SNP Calling with RNA-Seq data</a>
+            </li>
+            <li>
+                <time>10/01</time>
+                <a href='https://github.com/umd-byob/presentations/tree/master/2013/1001-molecular_evolution_using_PAML'>Molecular Evolution Analyses using PAML</a>
+            </li>
+            <li>
+                <time>10/08</time>
+                <a href='https://github.com/umd-byob/presentations/tree/master/2013/1008-lincRNA_ID_from_RNA-Seq'>Unannotated RNA-Seq transcripts and long noncoding RNA detection: RNAcode and CPAT</a>
+            </li>
+            <li>
+                <time>10/15</time>
+                <a href='https://github.com/umd-byob/presentations/tree/master/2013/1015-PBS'>PBS: Please Be Sane</a>
+            </li>
+            <li>
+                <time>10/22</time>
+                <span>Quality Assurance for WGS and RNA-Seq data</span>
+            </li>
+            <li>
+                <time>10/29</time>
+                <span>The assumptions behind RNA-Seq normalization methods</span>
+            </li>
+            <li>
+                <time>11/05</time>
+                <a href='https://github.com/umd-byob/presentations/tree/master/2013/1105-batch_effects_in_RNA-Seq'>RNA-Seq: Evaluating and Correcting for Batch Effects in RNA-Seq Data</a>
+            </li>
+            <li><time>11/12</time> <span>No meeting today</span></li>
+            <li><time>11/19</time> No meeting today: <a href='http://www.bioscienceday.umd.edu/schedule-events/keynote-address'>Bioscience Day Keynote Address @ 5pm</a></li>
+            <li><time>11/26</time> <span>No meeting today</span></li>
+            <li id='current'>
+                <time>12/03</time>
+                <span>Pipelining in Python (Lee Mendelowitz)</span>
+            </li>
+        </ul>
+    </div>
+
+    <!-- @TODO: Resources Section -->
+    <!--
+    Talks/Seminars:
+    https://talks.cs.umd.edu/
+
+    etc.
+    -->
+
+    <!-- contact -->
+    <div id='contact-info'>
+        <a class='link' href='mailto:khughitt@umd.edu'>Contact</a> |
+        <a class='link' href='https://groups.google.com/forum/#!forum/umd-byob'>Mailing List</a> |
+        <a class='link' href='https://github.com/umd-byob/presentations'>Github</a>
+    </div>
+
+    <!-- js -->
+    <script type='text/javascript'>
+    $(function () {
+        var scheduleWidth = $("#schedule ul").width();
+
+        $(window).resize(function() {
+            var width = scheduleWidth / $("body").width() * 100;
+            $('#schedule').width(width + '%');
+        }).trigger('resize');
+    })
+    </script>
+</body>
+</html>
