@@ -12,7 +12,7 @@
 [PRINSEQ](http://prinseq.sourceforge.net/manual.html) is available as a [standalone version](http://sourceforge.net/projects/prinseq/files/) (perl script) or as a web service.
 
 
-* Download the example RNA-seq data.
+* Download the [example](http://trace.ddbj.nig.ac.jp/DRASearch/run?acc=SRR069556) RNA-seq data.
 * Run PRINSEQ with few parameters.
 
 ```
@@ -41,5 +41,8 @@
   -out_good SRR069556_try2_good.fastq \
   -out_bad SRR069556_try2_bad.fastq
 ```
+
+### Tips
+I strongly recommend you first upload a very small sample (10k sequences) to the web server and then look at the distribution of your data.  Afterwards, you can look at the plots to get a good idea of what filtering parameters you should use.
 
 ### Web demo
