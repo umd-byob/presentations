@@ -9,3 +9,4 @@ Contents
 * **10/01** Molecular Evolution Analyses using PAML ([Kawther Abdilleh](https://github.com/kabdilleh))
 * **10/08** Unannotated RNA-Seq transcripts and long noncoding RNA detection: RNAcode and CPAT ([Kevin Nyberg](https://github.com/kevingnyberg))
 * **10/15** PBS: Please Be Sane ([Ashton Trey Belew](https://github.com/abelew))
+* **10/22** Quality assurance for WGS and RNA-seq data ([Chris Hill](https://github.com/cmhill))
