@@ -10,5 +10,6 @@ Contents
 * **10/08** Unannotated RNA-Seq transcripts and long noncoding RNA detection: RNAcode and CPAT ([Kevin Nyberg](https://github.com/kevingnyberg))
 * **10/15** PBS: Please Be Sane ([Ashton Trey Belew](https://github.com/abelew))
 * **10/22** Quality assurance for WGS and RNA-seq data ([Chris Hill](https://github.com/cmhill))
+* **10/29** The assumptions behind RNA-Seq normalization methods ([Kwame Okrah](https://github.com/kokrah))
 * **11/05** RNA-Seq: Evaluating and Correcting for Batch Effects in RNA-Seq Data (Laura Dillon)
 * **12/03** Pipelining with Python ([Lee Mendelowitz](https://github.com/LeeMendelowitz))
