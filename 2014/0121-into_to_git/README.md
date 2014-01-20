@@ -34,17 +34,57 @@ The goal of this tutorial is to familiarize the user with the basics of [Git](ht
 and [Github](https://github.com/).
 
 Of course, there are already numerous tutorials which do this and do a much
-better job than I could ever do, e.g.:
+better job than I could hope to do, e.g.:
 
-- http://git-scm.com/docs/gittutorial
-- http://try.github.io/levels/1/challenges/1
-- https://help.github.com/articles/set-up-git
-- http://readwrite.com/2013/09/30/understanding-github-a-journey-for-beginners-part-1
+- [Git - gittutorial Documentation](http://git-scm.com/docs/gittutorial)
+- [Try Git: Code School](http://try.github.io/levels/1/challenges/1)
+- [Set Up Git · GitHub Help](https://help.github.com/articles/set-up-git)
+- [GitHub For Beginners: Don't Get Scared, Get Started](http://readwrite.com/2013/09/30/understanding-github-a-journey-for-beginners-part-1)
 
 I would encourage people to check these out as well.
 
 Here I am just going to try and cover enough to get people started and 
 hopefully interested enough to try it out and learn more.
+
+## Intro to version control systems (VCS)
+
+Version control systems (VCS) are software tools used to track changes to a
+collection of files and directories and to aide in collaborative development.
+VCS is most widely used in the context of software development for tracking
+changes to code, but it can also be used to track changes to other types of
+work such as manuscripts, data, etc.
+
+Some popular examples include:
+
+- Concurrent Versions System (CSV)
+- Subversion (SVN)
+- Git
+- Bazaar
+- Mercurial
+
+Although the big picture is generally the same for each of these, and using
+any of them is going to be better than using none, there are some differences
+in the philosophy and function of each.
+
+CSV and SVN were developed first, and are *centralized* version control
+systems. This means that there is a master codebase, and client hosts which
+"checkout" pieces of this code to make changes.
+
+Newer VCS, including the later three listed above, follow a different approach
+called *distributed* VCS (dVCS). In this model there is no central repository
+-- all clients have an entire copy of the repository.
+
+Both approaches have their advantages and disadvantages. The focus in this
+tutorial, however, is on one of the dVCS: git.
+
+## Why is VCS useful?
+
+Some of the main uses for VCS include:
+
+- Tracking changes (imagine not having an undo button in Word...)
+- Backing up code (Mirroring on Github, etc.)
+- Experimentation (branches)
+- Collaboration
 
 Git Basics
 ----------
@@ -139,7 +179,7 @@ $
 Note that for this to work, you must first create a remote repo and add a
 reference to it. We will come back to this part later...
 
-## Pull changes made to a remote repo
+## 5. Pulling changes made to a remote repo
 
 Once you start to collaborate with other people, you will need a way to sync
 your repo when other people have made changes to the shared repo.
