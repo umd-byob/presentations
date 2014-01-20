@@ -37,7 +37,7 @@ Git Basics
 
 ## Five most useful git commands to know
 
-This is 99% of what you need to know to use Git.
+This is 99% of what you need to know to use Git:
 
 1. git init
 2. git status
@@ -45,14 +45,51 @@ This is 99% of what you need to know to use Git.
 4. git push
 5. git pull
 
-## 1. Creating a new repo
+## 1. Creating a new repo (git init)
 
-To create a new git repository, simply enter the directory you want to be the
-root of the repo and type:
+To create a new git repository, simply enter the root directory which you want
+to make a repo and run `git init`:
 
 ```bash
-git init
+$ mkdir test
+$ cd test 
+$ git init
+Initialized empty Git repository in /home/username/test/.git/
 ```
+
+## 2. Checking a repo's status (git status)
+
+It's always a good idea before making a commit to check the status of a repo
+before making any changes:
+
+```bash
+$ touch newfile
+$ echo 'Hello World' > newfile 
+$ git status
+On branch master
+
+Initial commit
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+    newfile
+
+nothing added to commit but untracked files present (use "git add" to track)
+$ git add .
+$ git status
+On branch master
+
+Initial commit
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+
+    new file:   newfile
+```
+
+
+
 
 Single-user Workflow
 --------------------
