@@ -1,4 +1,4 @@
-Introduction to Git and Github
+Introduction to Git and GitHub
 ==============================
 [Keith Hughitt](khughitt@umd.edu)
 2014/01/19
@@ -7,7 +7,7 @@ Overview
 --------
 
 The goal of this tutorial is to familiarize the user with the basics of [Git](http://git-scm.com/)
-and [Github](https://github.com/).
+and [GitHub](https://github.com/).
 
 Of course, there are already numerous tutorials which do this and do a much
 better job than I could hope to do, e.g.:
@@ -58,7 +58,7 @@ tutorial, however, is on one of the dVCS: git.
 Some of the main uses for VCS include:
 
 - Tracking changes (imagine not having an undo button in Word...)
-- Backing up code (Mirroring on Github, etc.)
+- Backing up code (Mirroring on GitHub, etc.)
 - Experimentation (branches)
 - Collaboration
 
@@ -143,8 +143,8 @@ the commit. To include all changes made to files in the repo, you can use
 
 ## 4. Pushing your changes to a remote repo (git push)
 
-Once you have commited some changes, you may want to sync them with a remo
-repo such as Github. This is done using the `git push` command.
+Once you have committed some changes, you may want to sync them with a remote
+repository such as GitHub. This is done using the `git push` command.
 
 ```bash
 $ git push -u origin master
@@ -184,16 +184,16 @@ $
 
 ```
 
-Github Basics
+GitHub Basics
 -------------
 
 ## Overview
 
-[Github](https://github.com) is a free online mirroring service for git 
+[GitHub](https://github.com) is a free online mirroring service for git 
 repositories. It hosts mostly open source code, although you can also pay to 
 have "private" repositories.
 
-## Why use Github?
+## Why use GitHub?
 
 - Backup your code
 - Share your code
@@ -212,9 +212,9 @@ Single-user Workflow
 --------------------
 
 For small projects or scripts that you would like to track and/or share on
-Github, the process is very simple:
+GitHub, the process is very simple:
 
-1. [Create a repo](https://github.com/new) on Github
+1. [Create a repo](https://github.com/new) on GitHub
 2. Follow steps to clone repo and [add repo as an upstream
    remote](http://gitready.com/intermediate/2009/02/12/easily-fetching-upstream-changes.html)
 3. Hackity-hack (keep it [atomic](http://www.freshconsulting.com/atomic-commits/))
@@ -230,12 +230,12 @@ Multi-user Workflow
 -------------------
 
 The process for collaborating with other users on a project using Git and
-Github is similar to the single-user workflow described above, with a couple
+GitHub is similar to the single-user workflow described above, with a couple
 additional steps along the way.
 
 ## Setting up the master and forked repos
 
-1. [Create a repo](https://github.com/new) on Github (do this once)
+1. [Create a repo](https://github.com/new) on GitHub (do this once)
 2. [Fork](https://help.github.com/articles/fork-a-repo) the master
    repo (each user does this)
 3. Follow steps to clone the forked repo and [add repo as an upstream
@@ -257,7 +257,7 @@ repo, the process each user follows to make changes is the same:
 
 Once a pull request (PR) has been submitted, it will [appear on the master
 repo](https://github.com/pydata/pandas/pulls). The PR will list all of the
-commits made, files changes, and any information the user submnitting the PR
+commits made, files changes, and any information the user submitting the PR
 provided about the PR.
 
 If this all looks good, then any user who has privileges to the master repo can
@@ -268,17 +268,17 @@ automatically merged into the master repo.
 ## Other multi-user workflows
 
 There are [other workflows](https://www.atlassian.com/git/workflows) that can
-be used for collaboration on Github -- the above just illustrates one of these
+be used for collaboration on GitHub -- the above just illustrates one of these
 which I am partial to.
 
 For larger efforts, you can also [create teams on
-Github](https://help.github.com/articles/how-do-i-set-up-a-team) so that an
+GitHub](https://help.github.com/articles/how-do-i-set-up-a-team) so that an
 entire team owns or manages a repo instead of a single user.
 
-Beyond code
------------
+Beyond just code...
+-------------------
 
-One of the nice things about Git and Github is that you are not limited to
+One of the nice things about Git and GitHub is that you are not limited to
 using it for just code. Some other useful things it can be used for include:
 
 - Markdown
@@ -288,6 +288,24 @@ using it for just code. Some other useful things it can be used for include:
     - [BYOB](umd-byob.github.io)
     - [Slidify](umd-byob.github.io)
 - [Science manuscripts](https://github.com/sunpy/sunpy-0.4-paper)
+
+Continuing the journey
+----------------------
+
+In case you are still not convinced about this whole Git/GitHub thing, it turns
+out that there are other people discussing the same and related ideas, many of
+whom are much more knowledgeable than myself.
+
+Here are a few interesting articles and tutorials I picked out that from around
+the web:
+
+- [Git for Scientists: A Tutorial](http://nyuccl.org/pages/GitTutorial/)
+- [GitHub and Git in the Life Sciences](GitHub and Git in the Life Sciences)
+- [Making Reproducible Research Enjoyable](http://yihui.name/en/2012/06/enjoyable-reproducible-research/)
+- [Electronic lab notebook - The stupidest thing...](http://kbroman.wordpress.com/2013/08/20/electronic-lab-notebook/)
+- [Git can facilitate greater reproducibility and increased transparency in science](http://www.scfbm.org/content/8/1/7)
+- [GitHub for Academics: the open-source way to host, create and curate knowledge](http://blogs.lse.ac.uk/impactofsocialsciences/2013/06/04/github-for-academics/)
+- [Version control for scientific research](http://blogs.biomedcentral.com/bmcblog/2013/02/28/version-control-for-scientific-research/)
 
 References
 ----------
