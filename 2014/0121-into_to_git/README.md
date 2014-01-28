@@ -3,30 +3,6 @@ Introduction to Git and Github
 [Keith Hughitt](khughitt@umd.edu)
 2014/01/19
 
-Outline (TODO)
---------------
-
-- What is VCS?
-- Why is VCS useful?
-    - Tracking changes (imagine not having an undo button in Word...)
-    - Backing up code (Mirroring on Github, etc.)
-    - Experimentation (branches)
-    - Collaboration
-- What is Git?
-    - Brief history of VCS
-    - Distributed vs. centralized
-    - Why git? Free, simple to get started with, widely used (huge community),
-      very powerful platform for working with Git repos (Github!)
-- Intro to Github
-    - features
-        - backing up code
-        - commit history
-        - view code and diffs
-        - makes it easy to share code!
-        - Markdown support! :)
-        - Free for OSS; private repos available as well.
-- Single user workflow with Git and Github
-
 Overview
 --------
 
@@ -227,18 +203,77 @@ have "private" repositories.
 - Integrates with [other services](http://developer.github.com/v3/repos/hooks/)
 - Renders [Markdown](http://daringfireball.net/projects/markdown/)
 - Host websites (e.g. [umd-byob.github.io](umd-byob.github.io))
+- Host [HTML5 presentations](http://khughitt.github.io/slidify-byob-intro/#1)
 - Host R packages ([install_github](http://www.inside-r.org/packages/cran/devtools/docs/install_github))
 - Host Python packages ([pip](http://www.pip-installer.org/en/latest/logic.html#vcs-support))
 - Repo [statistics](https://github.com/pydata/pandas/graphs/contributors)
 
-
 Single-user Workflow
 --------------------
 
+For small projects or scripts that you would like to track and/or share on
+Github, the process is very simple:
+
+1. [Create a repo](https://github.com/new) on Github
+2. Follow steps to clone repo and [add repo as an upstream
+   remote](http://gitready.com/intermediate/2009/02/12/easily-fetching-upstream-changes.html)
+3. Hackity-hack (keep it [atomic](http://www.freshconsulting.com/atomic-commits/))
+4. `git commit`
+5. `git push`
+6. Repeat steps 3-5.
+
+It is also not a bad idea to add a
+[README.md](https://github.com/umd-byob/presentations/blob/master/README.md) to
+the repo with some notes to yourself or others (same as README.txt.)
 
 Multi-user Workflow
 -------------------
 
+The process for collaborating with other users on a project using Git and
+Github is similar to the single-user workflow described above, with a couple
+additional steps along the way.
+
+## Setting up the master and forked repos
+
+1. [Create a repo](https://github.com/new) on Github (do this once)
+2. [Fork](https://help.github.com/articles/fork-a-repo) the master
+   repo (each user does this)
+3. Follow steps to clone the forked repo and [add repo as an upstream
+   remote](http://gitready.com/intermediate/2009/02/12/easily-fetching-upstream-changes.html)
+   (each user does this)
+
+## Making changes
+
+Next, once a repo has been created and each user has their own fork of that
+repo, the process each user follows to make changes is the same:
+
+1. If master repo has changed, used `git pull` to merge changes into fork.
+2. Make changes
+3. `git commit`
+4. `git push`
+5. Submit a [pull request](https://help.github.com/articles/using-pull-requests)
+
+## Accepting changes
+
+Once a pull request (PR) has been submitted, it will [appear on the master
+repo](https://github.com/pydata/pandas/pulls). The PR will list all of the
+commits made, files changes, and any information the user submnitting the PR
+provided about the PR.
+
+If this all looks good, then any user who has privileges to the master repo can
+"accept" the PR, and the changes will
+([usually](https://help.github.com/articles/merging-a-pull-request)) be 
+automatically merged into the master repo.
+
+## Other multi-user workflows
+
+There are [other workflows](https://www.atlassian.com/git/workflows) that can
+be used for collaboration on Github -- the above just illustrates one of these
+which I am partial to.
+
+For larger efforts, you can also [create teams on
+Github](https://help.github.com/articles/how-do-i-set-up-a-team) so that an
+entire team owns or manages a repo instead of a single user.
 
 Beyond code
 -----------
