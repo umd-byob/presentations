@@ -32,7 +32,7 @@ work such as manuscripts, data, etc.
 
 Some popular examples include:
 
-- Concurrent Versions System (CSV)
+- Concurrent Versions System (CVS)
 - Subversion (SVN)
 - Git
 - Bazaar
