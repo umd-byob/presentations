@@ -89,6 +89,11 @@ Some of the main uses for VCS include:
 Git Basics
 ----------
 
+## Installation
+
+Download and install Git from
+[git-scm.com](http://git-scm.com/book/en/Getting-Started-Installing-Git).
+
 ## Five most useful git commands to know
 
 This is 99% of what you need to know to use Git:
@@ -202,6 +207,30 @@ Fast-forward
 $ 
 
 ```
+
+Github Basics
+-------------
+
+## Overview
+
+[Github](https://github.com) is a free online mirroring service for git 
+repositories. It hosts mostly open source code, although you can also pay to 
+have "private" repositories.
+
+## Why use Github?
+
+- Backup your code
+- Share your code
+- Collaboration
+- Online code viewing/editing
+- Browsable [commit history](https://github.com/pydata/pandas/commits/master)
+- Integrates with [other services](http://developer.github.com/v3/repos/hooks/)
+- Renders [Markdown](http://daringfireball.net/projects/markdown/)
+- Host websites (e.g. [umd-byob.github.io](umd-byob.github.io))
+- Host R packages ([install_github](http://www.inside-r.org/packages/cran/devtools/docs/install_github))
+- Host Python packages ([pip](http://www.pip-installer.org/en/latest/logic.html#vcs-support))
+- Repo [statistics](https://github.com/pydata/pandas/graphs/contributors)
+
 
 Single-user Workflow
 --------------------
