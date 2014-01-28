@@ -278,14 +278,16 @@ entire team owns or manages a repo instead of a single user.
 Beyond code
 -----------
 
+One of the nice things about Git and Github is that you are not limited to
+using it for just code. Some other useful things it can be used for include:
+
 - Markdown
-    - notes
-    - knitr output
+    - [Notes](https://github.com/khughitt/notes/blob/master/courses/Coursera-Network_Analysis_in_Systems_Biology/03-Topological_Models_and_Network_Evolution.md)
+    - [Knitr output](https://github.com/khughitt/network-layouts)
 - Websites
-    - BYOB
-    - Slidify
-- LaTeX
-    - Maybe...
+    - [BYOB](umd-byob.github.io)
+    - [Slidify](umd-byob.github.io)
+- [Science manuscripts](https://github.com/sunpy/sunpy-0.4-paper)
 
 References
 ----------
