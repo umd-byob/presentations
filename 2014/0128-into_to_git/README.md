@@ -32,7 +32,7 @@ work such as manuscripts, data, etc.
 
 Some popular examples include:
 
-- Concurrent Versions System (CSV)
+- Concurrent Versions System (CVS)
 - Subversion (SVN)
 - Git
 - Bazaar
@@ -281,13 +281,13 @@ Beyond just code...
 One of the nice things about Git and GitHub is that you are not limited to
 using it for just code. Some other useful things it can be used for include:
 
-- Markdown
+- Documents
     - [Notes](https://github.com/khughitt/notes/blob/master/courses/Coursera-Network_Analysis_in_Systems_Biology/03-Topological_Models_and_Network_Evolution.md)
     - [Knitr output](https://github.com/khughitt/network-layouts)
+    - [Science manuscripts](https://github.com/sunpy/sunpy-0.4-paper)
 - Websites
     - [BYOB](umd-byob.github.io)
-    - [Slidify](umd-byob.github.io)
-- [Science manuscripts](https://github.com/sunpy/sunpy-0.4-paper)
+    - [Slidify](http://khughitt.github.io/slidify-byob-intro/)
 
 Continuing the journey
 ----------------------
