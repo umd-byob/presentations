@@ -1,0 +1,283 @@
+\documentclass{beamer}
+\setbeamertemplate{navigation symbols}{}
+\usepackage{graphicx}
+
+\begin{document}
+
+<<setup, include=FALSE>>=
+opts_chunk$set(fig.align="center",
+               fig.show="hold", 
+               size="footnotesize")
+options(width=60)
+@
+
+\title[Short R Graphics]{The Traditional R Graphical System}
+\subtitle{Main source: \emph{R Graphics} by Paul Murrell}
+\author[K. Okrah]{Kwame Okrah}
+\institute[CBCB UMD]{University of Maryland,\\
+                     Center for Bioinformatics and Computational Biology,\\
+                     Corrada-Bravo Lab \& El-Sayed Lab,\\
+                     College Park, 20742, MD.\\
+                     \medskip
+                     \textit{kwame.okrah@gmail.com}}
+\date{05/06/2014} 
+\maketitle
+
+%--- Source ---%
+\begin{frame}{Main source: Paul Murell's R Graphics}
+This book probably contains all the information you will need.
+\includegraphics[height=2in]{Graphics.png}
+\centering
+\end{frame}
+
+%--- Other useful sources ---%
+\begin{frame}{Other useful sources}
+\begin{enumerate}
+\item \url{https://www.stat.auckland.ac.nz/~paul/RGraphics/rgraphics.html}
+      \\ (Source code for all plots in \emph{R Graphics}.)
+\item \url{https://www.harding.edu/fmccown/r/}
+      \\ (Useful for learning high-level plots.)
+\item \url{http://www.statmethods.net/graphs/}
+      \\ (Useful for learning basic plotting parameters.)
+\item \url{http://research.stowers-institute.org/mcm/efg/R/Graphics/Basics/mar-oma/index.htm}
+      \\ (Useful for learning margin details.)
+\end{enumerate}
+\end{frame}
+
+%--- Introduction ---%
+\section{Introduction}
+
+\begin{frame}{Introduction}
+Why use R for graphics ?
+\begin{enumerate}
+\item R is open source.
+\item De facto programming language for statisticians.
+\item Publication quality graphs: with fine control.
+\item Easy to implement and maintain your own graphical ideas from scratch.
+\item Huge support community (Books, Stack Overflow, etc).
+\end{enumerate}
+\vspace{5mm}
+Goal for today:
+\begin{itemize}
+\item Describe the \textbf{traditional R graphics system}.
+\end{itemize}
+\end{frame}
+
+%--- Outline ---%
+\section{Outline}
+
+\begin{frame}{Outline}
+\begin{enumerate}
+\item Examples: high-level and low-level plotting functions.
+\item Graphical Regions:\\ 1.Plot region,\\ 2.Figure region, 
+      and\\ 3.Outer margins.
+\item Detailed example: MA-plot and volcano plot.
+\end{enumerate}
+\end{frame}
+
+%--- 
+\begin{frame}{Example: Network (Gene Clusters)}
+\includegraphics[height=3in]{hiveF1.jpg}
+\footnote{http://www.vesnam.com/Rblog/viznets3/}
+\end{frame}
+
+\begin{frame}{Example - Multiple Plots (From Scratch)}
+\includegraphics[height=3in]{tsi_fig.pdf}
+\footnote{My own work}
+\end{frame}
+
+\begin{frame}{Just cool}
+\includegraphics[height=3in]{cool.jpg}
+\footnote{http://cran.r-project.org/web/packages/cycloids/}
+\end{frame}
+
+%--- Examples: High-level and low-level fucntions ---%
+\section{Examples: High-level and low-level fucntions}
+
+\begin{frame}[fragile]
+\frametitle{High-level plotting functions}
+High-level functions are used to produce ``complete" plots.\\
+There are tons of high-level plots in R. Below we show 2 examples
+\textbf{plot()} and \textbf{boxplot()}. 
+<<boring1-plots, fig.width=4.5, fig.height=4.5, out.width='.45\\linewidth'>>=
+x = rnorm(n=50, mean=10, sd=2)
+y = rnorm(n=50, mean=9, sd=1)
+boxplot(cbind(x, y))
+plot(x, y)
+@
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Low-level plotting functions}
+Low-level functions are used to modify high-level plots or 
+make new plots from scratch.\\
+Below we show 2 examples
+\textbf{points()} and \textbf{text()}. 
+<<boring2-plots, fig.width=5, fig.height=5, out.width='.45\\linewidth'>>=
+plot(x, y) # high-level plot
+# low-level plot: add red circles
+points(x[x>mean(x)], y[x>mean(x)], col="red", cex=1.5)
+text(10, 9, labels="Hello Center", col="blue")
+@
+\end{frame}
+
+%--- Graphical Regions ---%
+\section{Graphical Regions}
+
+\begin{frame}
+\frametitle{Graphical Regions}
+There are 3 main regions:
+\begin{enumerate}
+\item Plot region/area.
+\item Figure region (contains plot area).
+\item Outer margins (by deafult $oma=c(0, 0, 0, 0)$).
+\end{enumerate}
+<<boring3-plots, fig.width=5, fig.height=5, echo=FALSE, out.width='.45\\linewidth'>>==
+
+par(oma=rep(3, 4), bg="grey80")
+plot(c(0, 1), c(0, 1), type="n", ann=FALSE, axes=FALSE)
+box("outer", col="grey")
+# set clipping to figure region
+par(xpd=TRUE)
+# deliberately draw a stupidly large rectangle
+rect(-1, -1, 2, 2, col="grey90")
+box("figure")
+# set clipping back to plot region
+par(xpd=FALSE)
+# deliberately draw a stupidly large rectangle
+rect(-1, -1, 2, 2, col="grey80")
+box("plot", lty="dashed")
+text(.5, .5, "Plot Region")
+mtext("Figure Region", side=3, line=2)
+for (i in 1:4) mtext(paste("Outer margin", i), side=i, line=1, outer=TRUE)
+@
+\footnote{https://www.stat.auckland.ac.nz/~paul/RGraphics}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Graphical Regions: Multiple Plots}
+<<boring4-plots, fig.width=7, fig.height=7, echo=FALSE, out.width='.45\\linewidth'>>==
+par(oma=rep(3, 4), mfrow=c(3,2), bg="grey80")
+for (i in 1:6) {
+    if (i == 3) {
+      omar <- par(mar=c(2, 2, 2, 1))  
+      plot(c(0, 1), c(0, 1), type="n", ann=FALSE, axes=FALSE)
+      par(xpd=TRUE)
+      rect(-1, -1, 2, 2, col="grey90")
+      box("figure")
+      par(xpd=FALSE)
+      rect(-1, -1, 2, 2, col="grey80")
+      box("plot", lty="dashed")
+      text(.5, .5, "Current Plot Region", cex=1.5)
+      mtext("Current Figure Region", side=3)
+      par(omar)
+    } else {
+      omar <- par(mar=rep(0, 4))  
+      plot(c(0, 1), c(0, 1), type="n", ann=FALSE, axes=FALSE)
+      par(xpd=TRUE)
+      rect(-1, -1, 2, 2, col="grey90")
+      box("figure")
+      text(.5, .5, paste("Figure", i), cex=1.5)
+      par(omar)
+    }
+}
+box("outer", col="grey")
+for (i in 1:4)
+    mtext(paste("Outer margin", i), side=i, line=1, outer=TRUE)
+@
+\footnote{https://www.stat.auckland.ac.nz/~paul/RGraphics}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Plotting Region: Coordinate System}
+<<boring5-plots, fig.width=7, fig.height=7, echo=FALSE, out.width='.45\\linewidth'>>==
+par(xaxs="i", yaxs="i", xpd=FALSE)
+    plot(c(0, 1), c(0, 1), type="n", ann=FALSE, axes=FALSE)
+    box("figure")
+    rect(0, 0, 1, 1, col="light grey", border="grey")
+    axis(1, at=c(0, 1), c("", ""))
+    mtext("Min x value", side=1, adj=0, line=1)
+    mtext("Max x value", side=1, adj=1, line=1)
+    axis(2, at=c(0, 1), c("", ""))
+    mtext("Min y value", side=2, adj=0, line=1)
+    mtext("Max y value", side=2, adj=1, line=1)
+    lines(c(.6, .6, 0), c(0, .6, .6), lty="dashed")
+    text(.6, .6, expression(paste("The location ", 
+            group("(",list(x[i], y[i]),")"))), pos=3)
+    points(.6, .6, pch=16)
+    axis(1, at=.6, "")
+    mtext(expression(x[i]), side=1, at=.6, line=.7)
+    axis(2, at=.6, "")
+    mtext(expression(y[i]), side=2, at=.6, line=.7)  
+@
+\footnote{https://www.stat.auckland.ac.nz/~paul/RGraphics}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{$par()$: modifies graph and graphical regions}
+<<>>=
+names(par())
+@
+\end{frame}
+
+
+\begin{frame}{Graphical parameters}
+You do not need to know all the graphical parameters.\\
+You will learn them on a need to know (or frequency) of use basis.\\
+\begin{itemize}
+\item Global settings (Affects all plots in R session):\\
+      $par(<param>=)$
+\item Local settings (Affects current plot only):\\
+      $<plot.function>(\dots, <param>=)$      
+\end{itemize}
+
+\begin{table}
+\begin{tabular}{l | c}
+parameter & description \\
+\hline \hline
+col & Drawing \textbf{COL}or \\ 
+cex & \textbf{C}haracter \textbf{EX}pansion factor (text size multiplier) \\ 
+pch & \textbf{P}lotting \textbf{CH}aracter (symbol) \\
+las & Axis \textbf{LA}bel \textbf{S}tyle\\
+mar & Figure \textbf{MAR}gins in lines of text \\
+srt & \textbf{S}tring (text) \textbf{R}o\textbf{T}ation angle.
+\end{tabular}
+\caption{Some useful basic parameters}
+\end{table}
+\footnote{\url{https://www.stat.auckland.ac.nz/~paul/R/parMemnonics.html}}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{$par()$: Some defaults}
+<<>>=
+par()[c("col", "cex", "pch", "las", "mar", "srt")]
+@
+\end{frame}
+
+\begin{frame}{Where low-level functions operate}
+\begin{table}
+\begin{tabular}{c | c | c}
+Plot Area & Figure Margins & Outer Margins\\
+\hline \hline
+text() &  mtext() & mtext() \\
+points() & axis() & \\
+lines() &  & \\
+arrows() &  & \\
+rect() &  & \\
+abline() &  & \\
+polygon() &  & \\
+symbols() &  & \\
+\end{tabular}
+\caption{Most work within the plotting region}
+\end{table}
+\footnote{For more see RGraphics}
+\end{frame}
+\end{frame}
+
+\begin{frame}
+Switch to R-studio for demo.
+\end{frame}
+
+\end{document}
