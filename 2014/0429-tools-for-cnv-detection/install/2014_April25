@@ -1,0 +1,118 @@
+Continuing to try to run the CNV tools.
+
+##### CNVNATOR ###### 
+
+The hist runs I did yetserday failed - the program (stupidly) requries you to split your reference 
+into a single fasta file per chromosome.
+
+I ran a perlscript I have (genesplit.pl) to create a directory of fastas.  Then rerun adding that dir:
+
+cnvnator -root /N/dc2/scratch/joserein/CNVdata/Td_Nondrive1.root -his 100 -d /N/dc2/scratch/joserein/genome_20k/
+
+Then rerun the other PBS scripts ("stat", then "part" then "call")
+
+
+
+##### Hydra ###### 
+
+Instructions can be found: https://code.google.com/p/hydra-sv/wiki/TypicalWorkflow
+
+I could not compile successfully on mavericks.  Installation was trivial on mason.  
+
+Hydra only uses discordant readpairs but apparently is fairly sophisticated in how it uses them
+
+Hydra requries a few steps of preprocessing to run.  First, do a regular alignment with bwa (or bowtie2 etc), 
+
+Then pull out only discordant reads using samtools.
+
+Then, use these reads as a dataset for a second alignment with a slower, more sensitive aligner.
+They recommend novoalign which IS available as a module on mason (so include module add novoalign on PBS).
+
+You can choose to do a third super sensitive alignment at this stage, or not.  
+
+In order to figure out what values to use for the min and max insert size, as well as the deviation, 
+(these are needed for two of hydra's scripts) I ran a picard program called CollectInsertSizeMetrics:
+
+java -Xmx2g -jar ~/programs/picard/CollectInsertSizeMetrics.jar INPUT=/N/dc2/scratch/joserein/CNVdata/TD_Gom12_Drive.a600.sort.RG.bam OUTPUT=/N/dc2/scratch/joserein/CNVdata/TD_Gom12_Drive.picardstats.txt VALIDATION_STRINGENCY=LENIENT HISTOGRAM_FILE=/N/dc2/scratch/joserein/CNVdata/TD_Gom12_Drive.picardstats.hist
+
+results:
+						drive	nondrive
+MEDIAN_INSERT_SIZE	        452	460
+MEDIAN_ABSOLUTE_DEVIATION   27	24
+MIN_INSERT_SIZE	  	        1	1
+MAX_INSERT_SIZE	 	        759622	1588806
+MEAN_INSERT_SIZE	        435	429
+STANDARD_DEVIATION	        76.1	87.5
+
+Hydra's first script is pairDiscordants.py.  The -n option says how often a read should be allowed 
+to hit.  It also requires a -z option for the  max concordant insert and -y for minimum.  
+From the manual: "pairDiscordants.py allows you to set the upper (-z) and lower 
+(-y) bound for concordants (this should be derived by plotting the alignment distance of your pairs 
+and computing median and m.a.d. values)."
+
+So... for my pairs, since there's little other guidance, I will take a shot in the dark and do
++/- 10*MAD for -y and -z
+
+Hence:
+for drive:
+-i stdin -m hydra -z 722 -y 182 -n 1000
+for nondrive:
+-i stdin -m hydra -z 700 -y 220 -n 1000
+
+The second script is dedupDiscordants.py and it seems to be just another filter, they only mention one
+option -s nd not hwat it does.
+
+Then, running hydra, 
+e.g.: hydra -in sample.disc.deduped.bedpe -out sample.breaks -mld 500 -mno 1500
+
+They say The -mld and -mno values are based on the statistics computed in tier 2. Use the Hydra help
+(-h) to find suggested approaches for computing the values for these parameters.
+
+-h says:
+
+  -mld	Maximum allowable length difference b/w mappings.
+  	Typically set to 10 * m.a.d. of the DNA fragment libraries.
+  	see: http://en.wikipedia.org/wiki/Median_absolute_deviation
+
+  -mno	Maximum allowable non-overlap b/w mappings.
+  	Typically set to median + (20 * m.a.d.) of the DNA fragment libraries.
+
+OK for my data that would be:
+drive: -mld 240 -mno 480
+nondrive: -mld 240 -mno 480
+
+I made a single script for each that would run these steps (everything after the first samtools filter)
+
+~/scripts/PBSscripts/140425_Hydra_novoalign1/2.sh
+
+OK hydra failed because (I realized) I need to first have my original bamfiles sorted byseq name rather 
+than by position...
+
+So I am going to "unsort" them as part of the samtools step
+
+Then, I will run the multi step script again.
+
+#######  SV_DETECT  #######
+
+SV detect uses sam (not bam) files as input.  HOWEVER it requires for the SV mode to only have anomalously mapped
+pairs, and for the CNV mode (depth) to only have correctly mapped pairs. 
+
+I could try using the hydra input (since basicallyt he same thing is done), but why not try to script that comes with SVDETECT? 
+
+BAM_preprocessingPairs.pl
+
+Usage:   BAM_preprocessing_pairs.pl [options] <all_mate_file.sorted.bam/sam>
+
+Options: -t BOOLEAN   read type: =1 (Illumina), =0 (SOLiD) [1]
+         -p BOOLEAN   pair type: =1 (paired-end), =0 (mate-pair)  [1]
+         -n INTEGER   number of pairs for calculating mu and sigma lengths [1000000]
+	 	 -s INTEGER   minimum value of ISIZE for calculating mu and sigma lengths [0]
+	 	 -S INTEGER   maximum value of ISIZE for calculating mu and sigma lengths [10000]
+         -f REAL      minimal number of sigma fold for filtering pairs [3]
+         -d           dump normal pairs into a file [<prefix.norm.bam/sam>] (optional)
+	 	 -o STRING    output directory [working directory]
+
+perl ~/programs/SVDetect_r0.8b/scripts/BAM_preprocessingPairs.pl -n 10000000 -d -o /N/dc2/scratch/joserein/CNVdata/svdetect/ /N/dc2/scratch/joserein/CNVdata/TD_Gom12_Drive.a600.sort.RG.bam
+perl ~/programs/SVDetect_r0.8b/scripts/BAM_preprocessingPairs.pl -n 10000000 -d -o /N/dc2/scratch/joserein/CNVdata/svdetect/ /N/dc2/scratch/joserein/CNVdata/TD_Gom12_ND1.RG.bam
+
+SV_detect uses configuration files to run anything.  Example are included with the software.

@@ -1,0 +1,647 @@
+###############################################################################
+
+SVDetect - Program designed to the detection of structural variations
+from mate-paired/paired-end short read data
+
+v1.3
+
+Bruno Zeitouni
+Institut Curie, INSERM U900, Mines ParisTech
+Paris, France
+
+svdetect@curie.fr
+
+###############################################################################
+
+
+
+******************************************************************************
+INTRODUCTION
+******************************************************************************
+
+
+Description
+===========
+
+SVDetect is a perl application for the isolation and the type prediction of intra- 
+and inter-chromosomal rearrangements from paired-end/mate-pair sequencing data.
+
+SVDetect aims to identifying structural variations with both clustering and 
+sliding-window strategies, and helping in their visualization at the genome scale.
+
+SVDetect is compatible with SOLiD and Illumina (>=1.3) paired-end/mate-pair reads.
+
+
+Requirements
+============
+
+Perl 5.8.x, or newer, is recommended. 
+
+In addition of the core modules that come with your Perl distribution, 
+running SVDetect need to install additional modules:
+
+Config::General
+Tie::IxHash
+Parallel::ForkManager
+
+You can find the required perl modules "Tie::IxHash" and "Parallel::ForkManager" in the lib/
+directory or from CPAN (www.cpan.org).
+
+To install the Config::General module, you can use CPAN (if CPAN module is installed)
+> perl -MCPAN -e shell
+% install Config::General
+or use the search.cpan.org website to find directly the module.
+
+
+Optional components
+===================
+
+Circos software installation for graphical visualisation,
+available at the following address: http://mkweb.bcgsc.ca/circos
+
+SAMtools for working on compressed bam files, available at
+http://samtools.sourceforge.net/
+
+BEDTools is required to compare SVs from multiple datasets, available at
+http://code.google.com/p/bedtools/
+
+UCSC Genome Browser: http://genome.ucsc.edu/
+
+
+******************************************************************************
+FUNCTIONALITY
+******************************************************************************
+
+
+Program descriptions
+====================
+
+>> SVDetect <command(s)> -conf <configuration_file> [-help] [-man]
+
+Command:
+
+* linking
+Main program for mapping all anomalous mapped paired-end reads onto a fragmented reference
+genome. First, the reference genome is partitioned into small genomic overlapped regions
+(typically twice the maximum distance insert size between ends). Each paired-end is then
+assigned to at least one possible pair of two chromosomal regions. Two genomic regions
+connected by the mapped ends of pairs is considered as a link. 
+Redundant links are filtered out and the precise coordinates of the remaining unique links
+are determined. After a appropriate sorting procedure, the program proceeds to the union of
+close overlapped links.
+
+* filtering
+Removes out links on different threshold values of filtering parameters. Filtered links are
+considered as significant paired-end mapping clusters and used to call structural variants (SVs).
+Filters are mainly based on the number of pairs in each link, the consistency of the strand orientation
+between pairs, the order of reads and the distance insert size between intra-chromosomal ends.
+Outputs results with all the paired-end features and SV annotations.
+
+* links2circos
+Outputs paired-end clusters to the circos link format.
+
+* links2bed
+Outputs paired-end clusters to the bed format adapted to intra- and inter chromosomal
+paired ends view.
+
+* links2SV
+Outputs paired-end clusters to an end-user tabulated-text format with SV features.
+
+* links2compare
+Compares filtered links between two or more paired-end datasets and returns common
+or dataset-specific links. Optional integrated format conversion.
+
+---
+
+* cnv
+Program for copy-number-variants analysis. Calculates average depth-of-coverage along a
+window-sized genome from paired-end data and compare differences between two datasets
+(i.e sample vs reference) by generating ratio values.
+
+* ratio2circos	
+ratio conversion to the circos density format.
+
+* ratio2bedgraph
+ratio conversion to the bedGraph density format.
+
+
+
+******************************************************************************
+INPUTS
+******************************************************************************
+
+
+Data files
+==========
+
+SVDetect requires two input data files: the mapped paired-end reads -mate_file- and the
+chromosomes size data of the reference genome used for the alignment.
+
+SVDetect expects anomalously paired-end reads for paired-end mapping clusters analysis or
+normal paired-ends for depth-of-coverage analysis.
+Paired-end reads submitted to SVDetect should be either in the ELAND format for Illumina reads
+or in the output format of the ABI Corona's pairing pipeline/Bioscope for SOLiD reads 
+(F3_R3.mates.unique, see ABI documentation).
+The Sequence Alignment/Map (SAM) is accepted as input format of mapped paired-ends.
+Compressed SAM files, i.e BAM files, are also accepted as input files (SAMtools required).
+
+Important: for clustering analysis, the mate_file must contain anomalously mapped paired-ends only.
+Correct mapped pairs (same chromosome, correct strand orientation and good range of insert size, etc.)
+have to be filtered out with a preprocessing step, either through a program provided by the aligner or 
+by using an alignment file analysis software (SAMtools for example, for SAM files).
+For SOLiD pairs, correct mapped pairs can easily be filtered out by using the category code ("AAA"= good pairs)
+Otherwise, a perl script for preprocessing pairs is also provided in the SVDetect package "BAM_preprocessingPairs.pl"
+(SAM/BAM file format only).
+
+The chromosome length file -cmap_file- is a single tab-delimited text file where each line represents a single
+chromosome entry. The columns are: chromosome ID (sequential integer starting from 1), chromosome
+name (the same as indicated in the mate_file), and the chromosome length in bases.
+
+
+Configuration file
+==================
+
+SVDetect execution process is driven by a central configuration file. It allows the user to define
+the different mandatory or optional input/algorithm/output parameters required for each selected command.
+
+The configuration file is organized in blocks where settings are defined as "variable=value".
+ex:
+<general>
+input_format=solid
+</general>
+
+Description of the configuration parameters is showed in the following section.
+
+
+
+******************************************************************************
+USAGE PARAMETERS AND OUTPUTS
+******************************************************************************
+
+(m=mandatory, o=optional)
+
+
+0- General parameter settings
+=============================
+
+Before using any program in SVDetect, you need to set up the general parameters related to your input
+data in the corresponding <general> block of your configuration file:
+
+-- input_format(m):		input mate file format
+				-text, value= eland, solid or sam
+
+-- sv_type(o):			type of the structural variations to detect. This parameter is used to analyse and generate distinct
+				file for intra-/inter-chromosomals SVs
+				-text, value= intra (for intra-chromosomal SVs only)
+				       	      inter (for inter-chromosomal SVs only)
+				              all (no distinction, = default)
+
+-- mate_orientation(m):		expected normal strand orientation of the paired-end/mate-paired reads
+				(left letter=first read, right letter=second read, F=forward strand, R=reverse strand)
+				"RF" for Illumina mate-pairs
+				"RR" for SOLiD mate-pairs (F3: first read, R3: second read)
+				"FR" for Illumina/SOLiD paired-ends
+
+-- read1_length(m)		length of the first read in a pair, in base pairs (bp)
+				-integer, ex: 50
+
+-- read2_length(m)		length of the second read in a pair, in base pairs (bp)
+				-integer, ex: 50
+
+-- mate_file(m)			full path to the abnormal paired-end input data file
+				-text, ex: /align/bowtie/sample_ab_mates.sam
+
+-- cmap_file(m)			full path to the chromosome length file
+				-text, ex: /align/bowtie/hs18.len
+
+-- output_dir(o)		output directory location
+				-text, ex: ./results (current directory by default)
+
+-- tmp_dir(o)			output temporary location
+				-text, ex: ./tmp (current directory by default)
+
+-- num_threads(o)		number of threads for parallel computing
+				-integer, ex: 8 (1 thread only by default)
+
+============================================================
+A] PAIRED-END MAPPING CLUSTERS ANALYSIS
+============================================================
+		
+	
+1- Generation of chromosomal links
+==================================
+
+>> SVDetect linking -conf <configuration_file>
+
+
+a- Usage parameters in the <detection> block:
+
+-- split_mate_file (m)		Flag to split the original mate file per chromosome for parallel computing.
+				-boolean, value= 1 (run), 0 (skip - already done)
+
+
+-- window_size(m)		Size of the sliding-window used for partioning the genome in bp. 
+				This parameter determines the range size of the predicted clusters.
+				To identify balanced translocations, a window size equal to at least
+				“2µ+2√2σ” should be set (for a interval confidence of 95%)
+				-integer, ex: 4000
+
+-- step_length(m)		length of the sliding-window step in bp. Set this parameter to get
+				overlapped windows. Generally equal to 1/2 or 1/4 of the window size
+				-integer, ex: 1000
+
+b- Output:
+
+The linking procedure creates a tabulated-text file listing all chromosomal links. The
+output file name has the following syntax : "<mate_file>.all.links".
+If the general parameter sv_type is set to inter or intra, then the output file only list intra-
+or inter chromosomal links and has the following syntax "<mate_file>.intra.links" or
+"<mate_file>.inter.links", respectively.
+
+Each line corresponds to one chromosomal link and the format is as follows: 
+
+1. Chromosome name of the first group of paired-end reads (=chromosome1)
+2. Chromosome1 start coordinate of the link
+3. Chromosome1 end coordinate of the link
+4. Chromosome name of the second group of paired-end reads (=chromosome2)
+5. Chromosome2 start coordinate of the link
+6. Chromosome2 end coordinate of the link
+7. Number of paired-ends in the chromosome link
+8. Name list of the paired-ends
+9. Strand orientation list of the first group of paired-end reads
+10. Strand orientation list of the second group of paired-end reads
+11. Rank position of the read compared to its mate in the first group of paired-ends (1 or 2, correspond to F3 or R3 for SOLiD data)
+12. Rank position of the read compared to its mate in the second group of paired-ends
+13. Read order of the first group of paired-ends
+14. Read order of the second group of paired-ends according to the first group order
+15. Sequencing start coordinates of the first group of paired-end reads
+16. Sequencing start coordinates of the second group of paired-end reads
+
+Note1: the ID of the chromosome1 is always inferior to the ID of the chromosome2 as it
+is provided in the chromosome length file. For intra-chromosomal links, start coordinates
+define the order of chromosome1 and chromosome2.
+
+Note2: All positions are 1-based coordinates
+
+Note3: Starts coordinates (15. and 16. columns) correspond to the first base of sequencing.
+If the strand orientation of the read is forward, the start coordinate corresponds to the leftmost position.
+If the strand orientation of the read is reverse, the start coordinate corresponds to the rightmost position.
+
+
+2- Filtering of chromosomal links and SV calling
+=================================================
+
+
+>> SVDetect filtering -conf <configuration_file>		
+
+a- Usage parameters in the <filtering> block:
+
+-- split_link_file (m)			Flag to split the original link file per chromosome for parallel computing.
+					-boolean, value= 1 (run), 0 (skip - already done)
+
+-- nb_pairs_threshold(m)		minimum number of pairs in a cluster
+					-integer, ex: 3
+
+-- strand_filtering(m)			Flag to run the strand orientation filtering. 
+					Only pairs sharing the same mate orientation in the link are kept for further analysis. 
+					If no main group of pairs can be found (ex: 50% of ”FF”, 50% of ”RF”), the link is splitted in two new links.
+					A ratio of 0.6 (60%/40%) as a fixed threshold is used to see a link splitted. Otherwise, pairs not belonging
+					to the main group are discarded.
+					-boolean, value= 1 (run), 0 (skip)
+
+-- chromosomes(o)			list of chromosome names to keep or exclude
+					-text, ex: -chr1
+
+Note: the chromosomes filtering parameter uses a special syntax to filter links according
+the concerned chromosomes. Some examples are listed here to illustrate the different chromosome
+filtering configurations
+  ex1: chromosomes=-chr1,-chr2,-chrX
+       -> all links whose paired-end reads are mapped to the chromosome 1, 2, or X are filtered out
+  ex2: chromosomes=chr10, chr13
+       -> all links whose paired-end reads are not mapped to the chromosome 10 or 13 are filtered out
+  ex3: chromosomes= chr3_1, chr13_2
+       -> only links whose the first group of paired-end reads are mapped to the chromosome 3 and the
+	second group of paired-end reads are mapped to the chromosome 13, are not filtered out
+
+-- order_filtering(o)			flag to run the order filtering
+					-boolean, value= 1 (run), 0 (skip)
+
+-- nb_pairs_order_threshold(o)		minimal number of pairs in a subgroup of paired-end reads
+					for balanced events (order_filtering only). 
+					Used to detect balanced rearrangements
+					-integer, ex: 2 (default=1)
+
+-- insert_size_filtering(o)		flag to run the filtering on the separation distance between
+					paired-end reads for intra-chromosomal links only
+					-boolean, value= 1 (run), 0 (skip)
+
+-- indel_sigma_threshold(o)		minimal number of sigma fold for the insert size filtering and
+					to call insertions and deletions
+					A deletion will be found if the mean insert size of the cluster > µ+threshold*σ.
+					An insertion will be found if the mean insert size of the cluster < µ-threshold*σ.
+					-real, ex: 3 (default=2)
+
+-- dup_sigma_threshold(o)		Minimal number of sigma fold for the insert size filtering
+					and to call tandem duplications. 
+					A large duplication will be found if at least the mean insert size
+					of the cluster > µ+threshold*σ. A small/inverted duplication will be
+					found if at least the mean insert size of the cluster < µ-threshold*σ.
+					-real, ex: 3 (default=2)
+
+-- singleton_sigma_threshold(o)		Minimal number of sigma fold for the insert size filtering
+					and to call singleton. 
+					A singleton will be found if at least the mean insert size
+					of the cluster < µ-threshold*σ.
+					For Illumina mate-pairs only.
+					-real, ex: 3 (default=4)
+
+-- final_score_threshold(o)		Minimal final filtering score for calling SVs
+					A value of 1 means all the pairs in a cluster were consistent after applying filters
+					-real, ex: 1 (default=0.8)
+
+-- mu_length(o)				mean insert size value (µ) of normally mapped paired-ends, in bp
+					This parameter becomes mandatory for order or insert size
+					filterings
+					-real, ex: 3040
+
+-- sigma_length(o)			calculated sd value (σ) from the distributation of normally mapped
+					paired-ends, in bp.
+					This parameter becomes mandatory for order or insert size
+					filterings
+					-real, ex: 233
+
+Note: the mu_length and sigma_length parameters can be determined by running the script ""BAM_preprocessingPairs.pl"
+for SAM/BAM files, or with the cnv program (if the corresponding values are unknown).
+
+b- Output
+
+The filtering procedure generates one file: the chromosomal link file after filtering processing
+named "<mates_file>.<sv_type>.links.filtered".
+
+Each line of the filtered link file corresponds to one chromosomal link and the format is as follows: 
+
+1-16. Fields with the same format of the linking procedure output
+If order_filtering=1, the fields 8-14 are surrounded by "()" to highlight potential subgroups of
+reads. Pairs with features followed by:
+"$" indicates pairs in a read (sub)group involved in an inconsistent orientation
+"*" indicates pairs in a read (sub)group with an inconsistent order 
+"@" indicates pairs in a read (sub)group with an inconsistent insert size
+
+17. Strand orientation feature of pairs after strand filtering running. If order_size_filtering=1 and/or insert_size_filtering=1,
+this field is replaced by the predicted type of intra-/intra-chromosomal SV
+
+value:	NORMAL_SENSE		correct ends orientation using <mate_orientation> as reference
+	REVERSE_SENSE		one of the ends has an incorrect orientation
+	DELETION		Deletion (NORMAL_SENSE & mean insert size > µ+threshold*σ)
+	INSERTION		Insertion (NORMAL_SENSE & mean insert size < µ-threshold*σ)
+	INVERSION		Inversion (REVERSE_SENSE)
+	INV_FRAGMT		Invertion of a genomic fragment, defined by balanced signatures
+	INS_FRAGMT		Insertion of a genomic fragment, defined by balanced signatures
+	INV_INS_FRAGMT		Inverted INS_FRAGMT (BAL)
+	LARGE_DUPLI		Large duplication (<mate_orientation>=FR/RF & reversed mate orientation & mean insert size > µ+threshold*σ & UNBAL)
+				or (<mate_orientation>=FF/RR & ends order=normal/inverted & mean insert size > µ+threshold*σ & UNBAL) 
+	DUPLICATION		Duplication, medium size (<mate_orientation>=FR/RF & reversed mate orientation & $meanDistance<$mu-$dup_sigma_threshold*$sigma)
+	SMALL_DUPLI		Small duplication (mean insert size < µ-threshold*σ & overlap between subgroups)
+	INV_DUPLI		Inverted duplication (REVERSE_SENSE & mean insert size < µ-threshold*σ & UNBAL)
+	TRANSLOC		Translocation
+	INV_TRANSLOC		Inverted translocation
+	COAMPLICON		co-amplicons, two different fragments repeated in the same strand sense (BAL) 
+				ex: A>B>, A>B>A>B>
+	INV_COAMPLICON		inverted co-amplicons, two different fragments repeated in the opposite strand sense (BAL)
+				ex: A>B<, A>B<A>B<
+	SINGLETON		Singleton (mean insert size < µ-threshold*σ), for Illumina mate-pairs only
+	UNDEFINED		Undefined inter/intra-chromosomal SV type
+
+18. Mean separation distance if insert_size_filtering=1. 
+19. Number of pairs after strand filtering / previous number of pairs
+20. Balanced or unbalanced feature for order filtering
+
+values: BAL		predicted balanced rearrangement
+	UNBAL		predicted unbalanced rearrangement
+
+21. Number of pairs after order filtering / previous number of pairs
+22. Number of pairs after insert size filtering / previous number of pairs
+23. Subgroup coordinates of chromosome 1 if order_filtering=1
+    if UNBAL: predicted start and end coordinates of the concerned region for chromosome1
+    if BAL: start and end breakpoint coordinates for chromosome1
+    The field is surrounded by "()" to highlight potential subgroups of reads
+24. As 23. but for chromosome2
+25. Score based on ratios from 18., 21. and 22. (best score=1)
+26. Initial number of pairs (before applying filters)
+
+Note: the distance calculation is based on the sequencing start coordinates of ends in pair.
+
+
+3- Output format conversion
+===========================
+
+
+>> SVDetect links2circos -conf <configuration_file>
+
+This program converts the link list of the "<mates_file>.links.filtered" to the circos link format in order
+to graphically visualize SVs with this drawing software. 
+The output file name is "<mates_file>.links.filtered.segdup.txt"
+
+Usage parameters must be set in the <circos> block:
+
+-- organism_id(m)			symbol name of the organism (see the name in the karyotype file used
+					for circos)
+					-text, ex: hs (for Homo-sapiens)
+
+-- colorcode(m)				A color-code has to be associated to the number of pairs involved in links,
+					parameters need to be set in the <colorcode> subblock and the format is as
+					follows: color=minimum number,maximum number of pairs
+					-text, ex: green= 5,10
+
+In the circos output file, each pair of two successive lines corresponds to one chromosomal link and
+the format is as follows: link id, organism id followed by the chromosome name, chromosome start, chromosome end,
+color associated to the number of pairs involved in the link.
+
+
+
+>> SVDetect links2bed -conf <configuration_file>
+
+This program converts the link list of the "<mates_file>.links.filtered" to the UCSC bed link format in order
+to graphically visualize the annotated genomic location of paired-ends reads involved in predicted SVs. 
+The output file name is "<mates_file>.links.filtered.bed.txt"
+
+Usage parameters must be set in the <bed> block:
+				
+-- colorcode(m)				A color-code has to be associated to the number of pairs involved in links,
+					parameters need to be set in the <colorcode> subblock and the format is as
+					follows: R,G,B=minimum number,maximum number of pairs
+					-text, ex: 0,255,0= 5,10
+
+In the bed output file, each line corresponds to one paired-end for intra-chromosomal links or one paire-end read for
+inter-chromosomal links. The bed format is as follows:
+1. Chromosome Name pre-fixed with "chr"
+2. Chromosome start coordinate (0-based)
+3. Chromosome end coordinate
+4. Pair/read name (for reads /1 or /2 is added to distinguish the two ends)
+5. Score field set to 0
+6. Strand orientation (+ or -)
+7. as 2.
+8. as 3.
+9. Color associated to the number of pairs involved in the link. If the pair/read is involved in more than one link,
+the associated color is set to the link having the highest number of pairs
+10. =1 for pairs, = 2 for reads
+11. Read length(s)
+12. Relative start coordinates of reads (=0 for pairs)
+
+
+
+>> SVDetect links2SV -conf <configuration_file>
+
+This program converts the link list of the "<mates_file>.links.filtered" to show significant SVs through a
+tabulated-text format. The output file name is "<mates_file>.links.filtered.sv.txt"
+
+Each line corresponds to one chromosomal SV and the format is as follows: 
+
+1. Type of chromosomal rearrangement
+values: INTRA		intra-chromosomal SV
+	INTER		inter-chromosomal SV
+
+2. Predicted type of SV. See description in 2.b
+3. Coordinates of chromosome1, format: chromosome:start-end
+4. The mean separation distance is provided here if links have been filtered according to the insert size
+5. Balanced or unbalanced feature. See description in 2.b
+6. Coordinates of chromosome2, format: chromosome:start-end
+7. Number of pairs after filtering
+8. % of the remaining pairs after strand filtering
+9. % of the remaining pairs after order filtering
+10. % of the remaining pairs after insert size filtering
+11. Final score based on 8., 9. and 10. (best score=1)
+12. Coordinates of the estimated breakpoint region in chromosome1
+13. Coordinates of the estimated breakpoint region in chromosome2
+
+
+4- Link comparison between sample datasets
+==========================================
+
+>> SVDetect links2compare -conf <configuration_file>
+
+This program is designed to compare filtered links between two or more anomalously mapped paired-end datasets
+and to identify common and sample-specific chromosomal links (like the usual sample/reference design).
+Overlaps between link coordinates are used to filter the set of potential SVs.
+
+Usage parameters must be set in the <compare> block:
+
+-- list_samples(m)			name list of samples to compare (= list of file name prefixes)
+					-text, ex: sample, reference
+
+-- list_read_lengths(m)			list of read lengths of samples (in the same order of list_samples)
+					-text, ex: 50-50, 35-35
+
+-- file_suffix(m)			link file name suffixes, need to be the same for all samples
+					-text, ex: _mates.links.filtered
+
+-- min_overlap(o)			Minimum overlap of links required as a fractionDefault is 1E-9 (i.e. 1bp)
+					-real, ex: 0.05 (default=1E-9 i.e. 1bp)
+
+-- same_sv_type(o)			Only links sharing the same SV type are compared
+					-boolean, value= 1 (run), 0 (skip)
+
+-- circos_output(o)			creation of the circos converted link file after comparing links
+					-boolean, value= 1 (run), 0 (skip)
+					
+-- bed_output(o)			creation of the bed converted link file after comparing links
+					-boolean, value= 1 (run), 0 (skip)
+
+-- sv_output(o)				creation of the SV converted file after comparing links
+					-boolean, value= 1 (run), 0 (skip)
+
+
+links2compare creates the needed output files related to the link comparisons results. Sample-specific links
+are reported into the "<sample1><file_suffix>.compared" file whereas the common links into the 
+"<sample1>.<sample2><file_suffix>.compared" for the concerned links. If the conversion options are selected,
+the respective converted link files are generated with the same file name syntax shown in 3-
+In the common link files, the name of the sample is added as last column to distinguish the original belonging of links.
+
+
+============================================================
+B] DEPTH-OF-COVERAGE ANALYSIS
+============================================================
+
+
+1- Calculation of depth-of-coverage log-ratios
+==============================================
+
+>> SVDetect cnv -conf <configuration_file>
+
+a- Usage parameters in the <detection> block:
+
+
+-- split_mate_file (m)		Flag to split the original mate file per chromosome for parallel computing.
+				-boolean, value= 1 (run), 0 (skip - already done)
+
+-- window_size(m)		size of the sliding-window used for partioning the genome in bp
+				-integer, ex: 30000
+
+-- step_length(m)		length of the sliding-window step in bp, set this parameter to
+				get overlapped windows
+				-integer, ex: 10000
+
+-- mate_file_ref(m)		full path to the normal paired-end input data file of the reference
+				-text, ex: /align/bowtie/reference_norm_mates.sam
+
+b- Output:
+
+The cnv procedure creates a tabulated-text file listing coverage data of regions sized by the <window_size>
+parameter. The output file name has the following syntax : "<mate_file>.density"
+
+Each line corresponds to one chromosomal region and the format is as follows:
+
+1. Chromosome Name
+2. Chromosome start coordinate
+3. Chromosome end coordinate
+4. Average depth-of-coverage from the sample paired-end data
+5. Average depth-of-coverage from the reference paired-end data
+6. Log-ratio of 4. and 5. values
+
+Note: During the cnv processing, calculated mu and sigma values are displayed to the standard output and
+can be used as parameter values for the filtering procedure.
+
+
+2. Output format conversion
+===========================
+
+>> SVDetect ratio2circos -conf <configuration_file>
+
+This program converts the "<mates_file>.density" data to the circos density format in order
+to graphically visualize copy-number profiles with this drawing software. 
+The output file name is "<mates_file>.density.segdup.txt"
+
+Usage parameters must be set in the <circos> block:
+
+-- organism_id(m)			symbol name of the organism (see the name in the karyotype file used
+					for circos)
+					-text, ex: hs (for Homo-sapiens)
+
+The circos output format is as follows: organism id followed by the chromosome name, chromosome start, chromosome end,
+log-ratio of depth-of-coverage data.
+
+
+>> SVDetect links2bed -conf <configuration_file>
+
+This program converts the "<mates_file>.density" to the UCSC bedgraph format in order to graphically visualize
+the copy-number profiles.
+The output file name is "<mates_file>.density.bedgraph.txt
+
+The bedgraph output format is as follows: chromosome Name pre-fixed with "chr", chromosome start (0-based),
+chromosome end, log-ratio of depth-of-coverage data.
+
+
+
+******************************************************************************
+OTHER
+******************************************************************************
+
+Development language: PERL
+
+Compiled for: LINUX 64 bit OS
+This package has only been tested on this platform
+
+Comments.
+
+Date: December 6, 2011
+

@@ -1,0 +1,79 @@
+Notebook for today
+
+I am working on trying out some fo the CNV tools availalbe to prepare for my talk on Tuesday.  
+
+I am trying to install stuff on mason AND my computer because some tools dont' really work on OSX 
+(this can be part of the talk).
+
+
+#####  MY DATA ######
+
+My test data (which is really experimental data) consists of two bam files, which are 1 of the nondrive
+pools and the drive pool.  Some of the programs allow doing this sort of case/control analysis.  
+
+There will be some variants from this data, as some of the tools require some prefiltering (Such as 
+removing the concordant reads, for Hydra)
+
+breakdancer and maybe some of the other programs require "read group data" if you want to compare
+multiple samples.  I used a tool to ADD readgroup data because bwa does not include it by default (whoops).  
+
+AddOrReplaceReadGroups.jar is a picard java application (/Localapps/picard-tools-1.108/picard-tools-1.108/)
+
+$ java -Xmx2g -jar AddOrReplaceReadGroups.jar INPUT=TD_Gom12_Drive.a600.sort.bam OUTPUT=TD_Gom12_Drive.a600.sort.RG.bam RGID=1 RGLB=drive RGPL=ILLUMINA RGPU=1 RGSM=TdGD VALIDATION_STRINGENCY=LENIENT
+$ java -Xmx2g -jar AddOrReplaceReadGroups.jar INPUT=TD_Gom12_ND1.a600.sort.bam OUTPUT=TD_Gom12_ND1.RG.bam RGLB=nondrive1 RGID=2 RGPL=ILLUMINA RGPU=2 RGSM=TdGND1 VALIDATION_STRINGENCY=LENIENT
+
+##### CNVNATOR ###### 
+
+I eventually got this to install apparently successfully on OSX BUT when I try to run it 
+it will fail.  I will see if I have better luck on mason!
+
+To install CNVnator you first have to install a program called root.  If you want to install this 
+from source it's a pain.  There is a precompiled version for macosX but to get root to "work" on Mavericks 
+you need to do some weird stuff because Mavericks doesn't have gcc anymore.  Then, you need to install 
+CNVnator, and set environment variables before running it.  
+
+Each time I want to run CNVnator on mason I need to set these variables as part of the PBS script:
+
+export ROOTSYS=~/bin/root/
+export PATH=$PATH:~/bin/root/bin/
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${ROOTSYS}/lib
+
+Test data for CNVnator:
+You need to include read group data for anaysis towork for CNVnator.  I used a tool to ADD readgroup 
+data because bwa does not include it by default (whoops).  
+
+Adding readgroup data:
+
+
+Runnign CNVnator
+This program is multi step.  This is kind of a pain since I need to write scripts to do it though I 
+probably could do it all in 1 script I didn't.  I'll try that out sometime.  
+
+
+#####  breakdancer  #####
+
+http://breakdancer.sourceforge.net/
+
+Breakdancer using Paired End information only in order to detect various types of CNVs.  It includes
+options for comparing multiple libraries/samples, so it seems like it could be quite useful.
+
+Installing and running on OSX
+
+Overview: I had difficulty getting the C version fo breakdancer to install but ultimately I got an 
+early perl version to work.  
+
+(I downloaded BreakDancer_1.0 from the website becuase it includes the full perl version).
+
+$ perl bam2cfg.pl ~/Desktop/GenomePaper/CNV_detection/TD_Gom12_ND1.RG.bam ~/Desktop/GenomePaper/CNV_detection/TD_Gom12_Drive.a600.sort.RG.bam > ~/Desktop/GenomePaper/CNV_detection/TdGom_DvsND_CNV.cfg 
+$ perl BreakDancerMax.pl -g ~/Desktop/GenomePaper/CNV_detection/TdGom_DvsND_CNV.bed -d ~/Desktop/GenomePaper/CNV_detection/TdGom_DvsND_CNV.bed -r 5 ~/Desktop/GenomePaper/CNV_detection/TdGom_DvsND_CNV.cfg > ~/Desktop/GenomePaper/CNV_detection/TdGom_DvsND_CNV.breakdancer.out.txt 
+
+Installing and running on mason:
+
+I just downloaded a precompiled binary and it seems to run.  I uploaded the files that came out of 
+bam2cvg.pl above, TdGom_DvsND_CNV.bed and TdGom_DvsND_CNV.cfg, however I changed the .cfg file to have the
+proper paths:
+
+/N/dc2/scratch/joserein/CNVdata/
+
+running breakdancer
+breakdancer /N/dc2/scratch/joserein/CNVdata/breakdancer/
