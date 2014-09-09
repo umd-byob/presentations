@@ -115,7 +115,7 @@ Print only unique lines.
 * -d = only print duplicate lines
 
 ### grep
-Searches the input files for lines containing the given pattern.  When it finds a match it outputs the line/
+Searches the input files for lines containing the given pattern.  When it finds a match it outputs the line.
 * -v = inverse match (print only lines *NOT* containing the pattern).
 * -f [**FILE**] = use a list of patterns from [**FILE**]
 
@@ -154,7 +154,7 @@ Compare two sorted files line by line
 * -2 suppress lines unique to FILE2
 * -3 suppress lines that appear in both files
 
-Examples
+Example: processing read alignments
 -------
 Alignment results are often stored in the Sequence Alignment/Map Format (SAM) specification. 
 
