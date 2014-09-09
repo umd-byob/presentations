@@ -1,4 +1,4 @@
-Unix command line tools: tips and tricks
+Unix command line tools: survival guide
 =======
 
 Getting started
@@ -42,11 +42,38 @@ kill session:
 
 Search back through your BASH history for previous commands (instead of pressing the up and down arrows).
 
+### tab - autocomplete
+
+Start typing a command or path and then press **TAB** to autocomplete.
+
+
+### How to extract .tar/.tar.gz/.gz?
+Use the **man** tool:
+
+    $ man tar
+
+    EXAMPLES
+       tar -xvf foo.tar
+              verbosely extract foo.tar
+
+       tar -xzf foo.tar.gz
+              extract gzipped foo.tar.gz
+
+       tar -cjf foo.tar.bz2 bar/
+              create bzipped tar archive of the directory bar called foo.tar.bz2
+
+       tar -xjf foo.tar.bz2 -C bar/
+              extract bzipped foo.tar.bz2 after changing directory to bar
+
+       tar -xzf foo.tar.gz blah.txt
+              extract the file blah.txt from foo.tar.gz
+
 ### Editing remote files... locally
 
 A remote directory can be mounted locally using tools like [sshfs](http://fuse.sourceforge.net/sshfs.html) or [cyberduck](https://cyberduck.io/?l=en).
 
     sshfs cmhill@ibissub00.umiacs.umd.edu:/cbcb/path/to/dir/ ~/cbcb
+
 
 Common unix tools
 -------
@@ -68,6 +95,11 @@ Output the file to standard out (or redirect via pipe "|" character)
 Print only unique lines.
 * -c = prefix lines by the number of occurrences
 * -d = only print duplicate lines
+
+### grep
+Searches the input files for lines containing the given pattern.  When it finds a match it outputs the line/
+* -v = inverse match (print only lines *NOT* containing the pattern).
+* -f [**FILE**] = use a list of patterns from [**FILE**]
 
 ### awk
 A program language that you can use to select particular records in a file and perform operations upon them.  
@@ -116,14 +148,17 @@ Alignment results are often stored in the Sequence Alignment/Map Format (SAM) sp
     ERR260157.4.1   0       3544273 374     6       101M    *       0       0       CACAATATATATCTGCTTTACTGATGATCGGCCCCATCCTGAAAAACGGATTGAGGTTGAATCTTACAGGAGAAATCATTTCCCGCCCTTACATTAATCTA   @@@DADDDBA:A?EHADB@HHG<HGHHIII6GD?D89?DDFHIGI9:DF;@AA3=;CD@37==77?EHHBDB9?AC:>>;B3>C8>=@6
     ...
 
-Print only valid alignments (where the second field FLAG is *not* set to 0x4):
+#### Print only valid alignments (where the second field FLAG is *not* set to 0x4):
 
     $ awk '{if (and($2,0x4) == 0) {print $0}}' test.sam | less
 
-Count the reference (third field) hits.
+#### Count the reference (third field) hits.
     
-    $ awk '{if (and($2,0x4) == 0) {print $3}}' test.sam | sort | uniq -c | sort -nr less
+    $ awk '{if (and($2,0x4) == 0) {print $3}}' test.sam | sort | uniq -c | sort -nr | less
 
+
+#### Make a histogram of reported insert sizes.
+    $ grep -v "^@" test_insert.sam |  awk '{if ($9 > 0) print $9}' | sort -n | uniq -c | less
 
 
 xargs - build and execute command lines from standard input
