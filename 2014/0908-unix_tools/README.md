@@ -158,7 +158,7 @@ Example: processing read alignments
 -------
 Alignment results are often stored in the Sequence Alignment/Map Format (SAM) specification. 
 
-    $ cat test.sam
+    $ cat test_insert.sam
 
 
     @HD     VN:1.0  SO:unsorted
@@ -175,7 +175,7 @@ Alignment results are often stored in the Sequence Alignment/Map Format (SAM) sp
 
 #### Print only valid alignments (where the second field FLAG is *not* set to 0x4):
 
-    $ awk '{if (and($2,0x4) == 0) {print $0}}' test.sam | less
+    $ grep -v "^@" test_insert.sam | awk '{if (and($2,0x4) == 0) {print $0}}' | less
 
 #### Count the reference (third field) hits.
     
@@ -202,4 +202,6 @@ Find out who is using up all the project-scratch disk space:
 
 Additional links
 -------
+
+[fasd](https://github.com/clvv/fasd)
 [1] http://www.ibm.com/developerworks/aix/tutorials/au-unixtips1/
