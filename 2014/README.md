@@ -7,4 +7,4 @@ Contents
 * **04/22** Prediction of functional variants using SnpEff/SnpSift (Will Gammerdinger)
 * **04/29** Tools for detecting insertions, deletions, and other CNVs using Illumina data ([Josie Reinhardt])
 * **05/06** The Traditional R Graphical System ([Kwame Okrah](https://github.com/kokrah))
-
+* **09/08** Unix command line tools: tips and tricks ([Chris Hill](https://github.com/cmhill))
