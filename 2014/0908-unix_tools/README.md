@@ -47,8 +47,8 @@ Search back through your BASH history for previous commands (instead of pressing
 Start typing a command or path and then press **TAB** to autocomplete.
 
 
-### How to extract .tar/.tar.gz/.gz?
-Use the **man** tool:
+### How to extract *.tar/*.tar.gz/*.gz?
+Use the **man** tool (or Google):
 
     $ man tar
 
@@ -68,6 +68,17 @@ Use the **man** tool:
        tar -xzf foo.tar.gz blah.txt
               extract the file blah.txt from foo.tar.gz
 
+
+### Jump to previous directory
+
+    $ cd -
+
+### How much space is my directory taking up?
+
+    $ du -sh /cbcb/project-scratch/cmhill/metalap/
+    
+    318G    /cbcb/project-scratch/cmhill/metalap/
+
 ### Editing remote files... locally
 
 A remote directory can be mounted locally using tools like [sshfs](http://fuse.sourceforge.net/sshfs.html) or [cyberduck](https://cyberduck.io/?l=en).
@@ -75,12 +86,19 @@ A remote directory can be mounted locally using tools like [sshfs](http://fuse.s
     sshfs cmhill@ibissub00.umiacs.umd.edu:/cbcb/path/to/dir/ ~/cbcb
 
 
+### When recursively removing files, **NEVER** use ```rm -rf *```.
+
 Common unix tools
 -------
 
 ### less
 Console text reader.
 * -N = print line numbers 
+
+### pipe
+To skip the file-creation step, you can use the pipe character (|) to use the output of one command as the input for another command. It is incredibly powerful for linking long lists of commands to efficiently manage input and output[1].
+
+    $ ls /etc/ | grep host
 
 ### sort
 Sort the text input.
@@ -107,6 +125,8 @@ A program language that you can use to select particular records in a file and p
 Print out the first field of a tab delimited file
 
     $ awk '{print $1}' file
+
+Change field separator ```-F ","```. 
 
 [Common examples](http://www.catonmat.net/blog/ten-awk-tips-tricks-and-pitfalls/):
 ```
@@ -140,6 +160,11 @@ Alignment results are often stored in the Sequence Alignment/Map Format (SAM) sp
 
     $ cat test.sam
 
+
+    @HD     VN:1.0  SO:unsorted
+    @SQ     SN:NODE_2824_length_585_cov_1.69815_ID_5647     LN:585
+    @SQ     SN:NODE_2806_length_588_cov_1.82689_ID_5611     LN:588
+    @SQ     SN:NODE_500_length_2036_cov_3.02411_ID_999      LN:2036
     ...
     ERR260157.1.1   16      2910961 411     6       101M    *       0       0       ACATTCCGCTTCTGCGGTATCGGAATATGATTGCGTGATNNANGATTTTCTCACTCTTCCTGAAGGCACGGATACCAACGTTCCGTTTGTTGGCGAATCTT   4@8<@<BCA?@@9@>A5BDB?EEEECCCC?BDDDCA?,,##-#HJIIIJJIGHHCIHDJJJGGGGGGCIHDIGDIGIGJJIGIIIIJJHFHHDFFFDDC@C   AS:i:-3 XS:i:-7 XN:i:0  XM:i:3  XO:i:0  XG:i:0  NM:i:3  MD:Z:39G0G1A58  YT:Z:UU
     ERR260157.1.1   272     3081990 411     6       101M    *       0       0       *       *       AS:i:-7 XS:i:-7 XN:i:0  XM:i:4  XO:i:0  XG:i:0  NM:i:4  MD:Z:5T33G0G1A58        YT:Z:UU
@@ -154,7 +179,7 @@ Alignment results are often stored in the Sequence Alignment/Map Format (SAM) sp
 
 #### Count the reference (third field) hits.
     
-    $ awk '{if (and($2,0x4) == 0) {print $3}}' test.sam | sort | uniq -c | sort -nr | less
+    $ grep -v "^@" test.sam | awk '{if (and($2,0x4) == 0) {print $3}}'  | sort | uniq -c | sort -nr | less
 
 
 #### Make a histogram of reported insert sizes.
@@ -167,9 +192,14 @@ xargs - build and execute command lines from standard input
 Find out who is using up all the project-scratch disk space:
 
     $ cd /cbcb/project-scratch
-    $ ls  --color=never | xargs -I {} du -sh {} | less
+    $ ls | xargs -I {} du -sh {} | less
 
     2.0M    assembly-eval-code
     5.6G    Atacama_Pop
     1.8T    chsiao
     ...
+
+
+Additional links
+-------
+[1] http://www.ibm.com/developerworks/aix/tutorials/au-unixtips1/
