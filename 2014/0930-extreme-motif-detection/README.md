@@ -75,7 +75,15 @@ their expression profiles, and then scan the UTRs of each cluster for common
 
 ### EXTREME
 
-...
+- Recent tool for motif detection by Quang and Xie (2014)
+- Based on [MEME](http://meme.nbcr.net/meme/) (Bailey & Elkan, 1994), but uses
+    an *online* [Expectation Maximization (EM)](http://en.wikipedia.org/wiki/Expectation%E2%80%93maximization_algorithm)
+  algorithm instead of vanilla EM.
+- Intended for us with ChIP-Seq and DNase-Seq data.
+- Enables the detection of motifs from much larger datasets than previously
+possible with approaches like MEME.
+- Written in Python, but uses some Java and Perl programs as well. Available at:
+  https://github.com/uci-cbcl/EXTREME
 
 ### Example data
 
@@ -115,41 +123,204 @@ clusters = kmeans(mat, 2)
 long_dat = melt(mat)
 colnames(long_dat) = c('id', 'time', 'expr')
 long_dat$cluster = clusters$cluster 
-ggplot(long_dat, aes(time, expr, group=id, color=cluster)) + geom_line()
+ggplot(long_dat, aes(time, expr, group=id, color=cluster)) + geom_line() +
+ggtitle("A simplistic example of clustering expression profiles")
 ```
 
-### Extracting UTR sequences
+![clustering expression profiles](images/clustering_example.png)
 
-(Will come back to this if time permits)
+### Extracting UTR sequences in Bioconductor
+
+If you have exact UTR sequences, you should probably use them. Bioconductor
+should provide an easy way to retrieve these sequences for more common
+organisms.
+
+If you don't know the exact UTR boundaries, here is a quick way to get
+sequences that are $n$ bases long on either side of a set of known CDSs:
+
+```r
+library(Biostrings)
+library(rtracklayer)
+library(GenomicRanges)
+
+# source: http://tritrypdb.org/common/downloads/release-8.0/LmajorFriedlin/gff/data/
+input_gff = 'TriTrypDB-8.0_LmajorFriedlin.gff'
+input_fasta = 'TriTrypDB-8.0_LmajorFriedlin_Genome.fasta'
+
+# load annotations
+gff = import.gff3(input_gff)
+gff = gff[gff$type == 'gene']
+
+# load genome sequence
+fasta = readDNAStringSet(input_fasta)
+names(fasta) = substring(names(fasta), 0, 7) # For L. major, normalize chromosome names
+
+# Example: 3'UTR
+utr_width = 500
+
+# For 5'UTR, use start=TRUE in call to flank()
+utr3 = flank(genes, utr_width, start=FALSE)
+
+pos_strand = utr3[as.character(strand(utr3)) == "+"]
+neg_strand = utr3[as.character(strand(utr3)) == "-"]
+
+seqs = fasta[pos_strand]
+seqs = append(seqs, reverseComplement(fasta[neg_strand]))
+names(seqs) = c(pos_strand$ID, neg_strand$ID)
+
+# Save as a FASTA file
+writeXStringSet(utr3, 'out.fasta')
+```
 
 ### Using EXTREME to detect motifs in the sequences
 
-Example run:
-
-```sh
-EXTREME_DIR=/path/to/extreme
-python $EXTREME_DIR/src/fasta-dinucleotide-shuffle.py -f input/cluster1.fasta > input/cluster1_shuffled.fasta
-python $EXTREME_DIR/src/GappedKmerSearch.py -l 5 -ming 0 -maxg 10 -minsites 4 cluster1.fasta GM12878_NRSF_ChIP_shuffled.fasta cluster1.words
-perl $EXTREME_DIR/src/run_consensus_clusering_using_wm.pl cluster1.words 0.3
-python $EXTREME_DIR/src/Consensus2PWM.py cluster1.words.cluster.aln cluster1.wm
-```
+#### Parameters
 
 See the docs on the [EXTREME github repo](https://github.com/uci-cbcl/EXTREME)
 for a more detailed explanation of the parameters available at each step of the
 pipeline.
 
+##### GappedKmerSearch.py
+
+-l HALFLENGTH Motif size (twice this + gap size) 
+-ming MINGAP. Min gap size
+-maxg MAXGAP. Max gap size
+-minsites MINSITES. Number of exact matches required for word to become a seed.
+
+##### run_consensus_clusering_using_wm.pl
+
+There is one parameter-- a threshold. Don't mess with it.
+
+##### EXTREME.py
+
+-s SEED. Which motif seed to use; you will likely want to run `EXTREME.py` a
+few times, using a different seed on each iteration.
+
+#### Example run:
+
+```sh
+# Set path to EXTREME
+EXTREME_DIR=/path/to/extreme
+
+# Execute pipeline
+python $EXTREME_DIR/src/fasta-dinucleotide-shuffle.py -f input/cluster1.fasta > input/cluster1_shuffled.fasta
+python $EXTREME_DIR/src/GappedKmerSearch.py -l 5 -ming 0 -maxg 10 -minsites 4 cluster1.fasta GM12878_NRSF_ChIP_shuffled.fasta cluster1.words
+perl   $EXTREME_DIR/src/run_consensus_clusering_using_wm.pl cluster1.words 0.3
+python $EXTREME_DIR/src/Consensus2PWM.py cluster1.words.cluster.aln cluster1.wm
+
+# Get three highest ranking motifs
+python ../src/EXTREME.py cluster1.fasta cluster1_shuffled.fasta cluster1.wm 1
+python ../src/EXTREME.py cluster1.fasta cluster1_shuffled.fasta cluster1.wm 2
+python ../src/EXTREME.py cluster1.fasta cluster1_shuffled.fasta cluster1.wm 3
+```
+
+Each call to `EXTREME.py` will produce a few files including a number of
+sequence logos in a couple different formats, and a position weight matrix
+(PWM) in a recent MEME version. None of the existing methods for reading PWMs
+into bioconductor recognized this format so I wrote my own method to do this
+(see below.)
+
+![example motif](images/example_motif.png)
+
 ### Filtering out repeat regions with RepeatMasker
+
+Will discuss if time permits... or.. leave for future presentation? (Matt?)
 
 ### Reading the resulting motifs back into R
 
+EXTREME outputs motifs using a format from a recent version of MEME. Here is a
+function to read those PWMs back into R/Bioconductor:
+
+```r
+###############################################################################
+#
+# load_meme_pwm
+# 
+# Loads a MEME 4.90 formatted PWM.
+#
+# Keith Hughitt (khughitt@umd.edu)
+#
+# Creates a matrix in a format usable by the Biostrings matchPWM and countPWM
+# functions.
+#
+# For parsing output from earlier versions of MEME, see:
+# - http://cran.r-project.org/web/packages/MEET/index.html
+#
+###############################################################################
+load_meme_pwm = function(filepath) {
+    # Read file contents
+    lines = readLines(filepath)
+
+    # Matrix starts on line 14 and goes until next to last line
+    MATRIX_START = 14
+    MATRIX_END   = length(lines) - 1
+
+    # Get matrix lines
+    lines = lines[MATRIX_START:MATRIX_END]
+
+    # Create matrix
+    pwm = matrix(nrow=length(lines), ncol=4)
+
+    i = 1
+    for (line in lines) {
+        parts = unlist(strsplit(line, '\\s'))
+        pwm[i,] = as.numeric(parts[parts != ""])
+        i = i + 1
+    }
+    colnames(pwm) = c("A", "C", "G", "T")
+    return(t(pwm))
+}
+
+```
+
 ### Counting the number of motif instances in a given sequence
+
+```r
+# count motif instance in a single sequence
+motif = load_meme_pwm('MEMEoutput.meme') 
+num_instances = countPWM(motif, utr)
+
+# we can also plot a sequence logo of the motif
+library(seqLogo)
+seqLogo(motif)
+```
+
+Results
+-------
+
+For my own work, I am particularly interested in looking for combinatorial
+effects of regulatory motifs. Using EXTREME, I was able to detect and quantify
+motif numbers of a bunch of motifs found in the 5'- and 3'UTRs of clusters of
+co-expressed genes. Currently, I'm working on a way to use this information to
+attempt to predict a gene's expression profile (cluster membership) from it's
+profile of motifs. (More on this when I do RIPs in a couple months...)
+
+![expression cluster motif profiles](images/cluster_motif_profiles.png)
+
+Discussion
+----------
+
+- EXTREME was pretty easy to get up and running
+- Provides a number of parameters to give you control over the motifs to look
+  for.
+- Questions/challenges:
+    - How do we choose the most meaningful parameters for motif detection?
+    - What other approaches have people used to detect motifs?
+    - What about structural motifs? Is the allowance for a gap in the motif
+        sufficient to detect many of them? Or do the approaches targetted
+        particularly at secondary structure motifs do other things that EXTREME
+        will miss? (probably...)
 
 References
 ----------
 
-- Quang, D., & Xie, X. (2014). EXTREME: an online EM algorithm for motif
-discovery. Bioinformatics (Oxford, England), 30(12), 1667–73.
-doi:10.1093/bioinformatics/btu093
+- Timothy L. Bailey and Charles Elkan, "Fitting a mixture model by expectation
+    maximization to discover motifs in biopolymers", Proceedings of the Second
+    International Conference on Intelligent Systems for Molecular Biology, pp.
+    28-36, AAAI Press, Menlo Park, California, 1994.
+- Quang, D., & Xie, X.  (2014). EXTREME: an online EM algorithm for motif
+    discovery. Bioinformatics (Oxford, England), 30(12), 1667–73.
+    doi:10.1093/bioinformatics/btu093
 - Clayton, C. E. (2002). Life without transcriptional control ? From fly to man
-and back again. The EMBO Journal, 21(8),
-1881–1888.
+    and back again. The EMBO Journal, 21(8),
+    1881–1888.
