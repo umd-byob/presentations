@@ -9,3 +9,5 @@ Contents
 * **05/06** The Traditional R Graphical System ([Kwame Okrah](https://github.com/kokrah))
 * **09/08** Unix command line tools: tips and tricks ([Chris Hill](https://github.com/cmhill))
 * **09/16** The NCGAS Mason Cluster and the Scholarly Data Archive (Will Gammerdinger)
+* **09/23** Comparative Genomics for Human Disease Using Conserved Protein Domains (Thomas Peterson)
+* **09/30** An EXTREME approach to motif detection ([Keith Hughitt](https://github.com/khughitt))
