@@ -149,7 +149,7 @@ input_fasta = 'TriTrypDB-8.0_LmajorFriedlin_Genome.fasta'
 
 # load annotations
 gff = import.gff3(input_gff)
-gff = gff[gff$type == 'gene']
+genes = gff[gff$type == 'gene']
 
 # load genome sequence
 fasta = readDNAStringSet(input_fasta)
