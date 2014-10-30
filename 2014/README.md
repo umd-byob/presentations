@@ -12,3 +12,4 @@ Contents
 * **09/23** Comparative Genomics for Human Disease Using Conserved Protein Domains (Thomas Peterson)
 * **09/30** An EXTREME approach to motif detection ([Keith Hughitt](https://github.com/khughitt))
 * **10/07** Phylotranscriptomics using Orthograph (Josie Reinhardt)
+* **10/21** Don't fear the REAPR: improved genome assembly with mate-pairs and long reads (Matt Conte)
