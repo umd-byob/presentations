@@ -4,13 +4,6 @@ Interactive data analysis with Shiny
 [Keith Hughitt](mailto:khughitt@umd.edu)
 February 2015
 
-TODO
-----
-
-- ggvis
-- shiny server
-- shinyapps.io
-
 Overview
 --------
 
@@ -155,11 +148,26 @@ shinyUI(fluidPage(
     window. If the browser is resized, the dimensions of the layout components
     will be recomputed.
 
-A couple more Shiny demo applications
--------------------------------------
+Additional examples:
+--------------------
+
+Here are a couple simple examples I put together to show some of the basic
+features of Shiny:
 
 1. [K-means Clustering](demo1/)
 2. [RNA-Seq normalization methods](demo2/)
+
+(Actually, it looks like someone else already created a better version of #2
+above: http://shiny.rstudio.com/gallery/kmeans-example.html)
+
+Probably, the best way to learn how to use Shiny, is to look at lots of
+examples. The Shiny gallery is really good for this:
+
+http://shiny.rstudio.com/gallery/
+
+In particular, checkout some of the widget and layout examples to get a feel
+for the building blocks you have available when constructing a Shiny
+application.
 
 Deploying Shiny applications
 ----------------------------
@@ -196,11 +204,38 @@ More info
 - [RStudio - Shiny tutorial](http://shiny.rstudio.com/tutorial/)
 - [RStudio - Shiny gallery](http://shiny.rstudio.com/gallery/)
 - [Show Me Shiny](http://www.showmeshiny.com/)
-- [ggvis](http://ggvis.rstudio.com/interactivity.html) (plays really well with
-    Shiny)
+- [ggvis](http://ggvis.rstudio.com/interactivity.html) 
 
 System info
 -----------
 
-```r
+```
+> sessionInfo()
+R version 3.1.2 (2014-10-31)
+Platform: x86_64-unknown-linux-gnu (64-bit)
+
+attached base packages:
+[1] stats4    parallel  stats     graphics  grDevices utils     datasets  methods  
+[9] base     
+
+other attached packages:
+ [1] reshape2_1.4.1        fission_1.0.0         GenomicRanges_1.18.4 
+ [4] GenomeInfoDb_1.2.4    IRanges_2.0.1         S4Vectors_0.4.0      
+ [7] preprocessCore_1.28.0 DESeq_1.18.0          lattice_0.20-30      
+[10] locfit_1.5-9.1        Biobase_2.26.0        BiocGenerics_0.12.1  
+[13] ggplot2_1.0.0         dplyr_0.4.1           shinyapps_0.3.63     
+[16] shiny_0.11.1          setwidth_1.0-3        colorout_1.0-3       
+
+loaded via a namespace (and not attached):
+ [1] annotate_1.44.0      AnnotationDbi_1.28.1 assertthat_0.1      
+ [4] colorspace_1.2-5     DBI_0.3.1            digest_0.6.8        
+ [7] genefilter_1.48.1    geneplotter_1.44.0   grid_3.1.2          
+[10] gtable_0.1.2         htmltools_0.2.6      httpuv_1.3.2        
+[13] magrittr_1.5         MASS_7.3-39          mime_0.2            
+[16] munsell_0.4.2        plyr_1.8.1           proto_0.3-10        
+[19] R6_2.0.1             RColorBrewer_1.1-2   Rcpp_0.11.4         
+[22] RJSONIO_1.3-0        RSQLite_1.0.0        scales_0.2.4        
+[25] splines_3.1.2        stringr_0.6.2        survival_2.38-1     
+[28] tcltk_3.1.2          tools_3.1.2          XML_3.98-1.1        
+[31] xtable_1.7-4         XVector_0.6.0     
 ```
