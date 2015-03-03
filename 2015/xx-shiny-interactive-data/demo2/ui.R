@@ -7,10 +7,13 @@ shinyUI(fluidPage(
             selectInput("norm_method", "Normalization method:",
                         c("None" = "none",
                           "Size Factor Normalization" = "size_factor",
-                          "Quantile Normalization" = "quantile"))
+                          "Quantile Normalization" = "quantile")),
+            width=2
         ),
         mainPanel(
-            plotOutput("count_distributions")
+            plotOutput("count_distributions"),
+            dataTableOutput('metadata_table')
+
         )
     )
 ))

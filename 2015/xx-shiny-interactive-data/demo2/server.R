@@ -44,14 +44,18 @@ shinyServer(function(input, output) {
         return(long)
     })
 
-    # plot colors
-    plot_colors = c(rep('red', 18), rep('blue', 18))
-
+    # Boxplot
     output$count_distributions = renderPlot({
         plt = ggplot(data=counts_long(), aes(x=sample_id, y=expr)) +
                geom_boxplot(aes(fill=strain)) + 
                theme(axis.text.x=element_text(angle=90, hjust=1))
         print(plt)
     })
+
+    # Summary table
+    output$metadata_table = renderDataTable(
+        cbind(id=rownames(metadata), data.frame(metadata)), 
+        options=list(pageLength=5)
+    )
 })
 
