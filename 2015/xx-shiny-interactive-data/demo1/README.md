@@ -4,7 +4,7 @@ Shiny demo: K-means clustering
 Overview
 --------
 
-![I. versicolor](../images/Iris_versicolor_3.jpg)
+![I. versicolor](../images/1280px-Iris_versicolor_3.jpg)
 (source: [Wikipedia](http://en.wikipedia.org/wiki/Iris_flower_data_set#mediaviewer/File:Iris_versicolor_3.jpg))
 
 The first demo application is a very simple Shiny app which includes one UI
@@ -16,6 +16,8 @@ length, etc.) for a collection of representative flowers from each species.
 
 Usage
 -----
+
+![demo 1](../images/demo1.png)
 
 To run this demo, open up an R console in the directory containing `server.R`
 and `ui.R` and type:
