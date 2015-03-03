@@ -27,6 +27,15 @@ using the [httpuv](https://github.com/rstudio/httpuv) library. This way, events
 triggered on the web page can trigger actions in R, and then return a response
 such as an updated plot.
 
+In this tutorial, I will describe some of the basic components of a Shiny app,
+discuss the overall structure of a Shiny application, and provide a couple
+simple example applications to demonstrate some of the basic functionality
+provided by Shiny. Shiny has been rapidly developing over the past couple
+years and there is already a lot of useful functionality which I won't have the
+time to describe here. I will attempt to provide some useful links at the
+conclusion of the tutorial, however, to point people in the direction of other
+tutorials and sites where they can expand their knowledge of Shiny.
+
 Getting started
 ---------------
 
@@ -83,6 +92,9 @@ Recently, there are a couple alternative to this basic architecture including:
 A simple example
 ----------------
 
+Below is the source code for the '01_hello' example application that ships with
+shiny (see above).
+
 **server.R**
 
 ```r
@@ -99,7 +111,10 @@ shinyServer(function(input, output) {
 })
 ```
 
-- ...reactive...
+- Plots are generated in `server.R`.
+- The `renderPlot` is automatically called whenever `input$bins` is changed.
+- The final value returned from `renderPlot` (in this case, the output from
+    `hist`) is what gets assigned to `output$plot`.
 
 **ui.R**
 
@@ -125,6 +140,26 @@ shinyUI(fluidPage(
   )
 ))
 ```
+
+- The `ui.R` file is where the layout and UI componenets for a Shiny
+    application are described.
+- Each application will use one or more [layouts](http://shiny.rstudio.com/articles/layout-guide.html) to determine
+    the placement of plots, text, controls, etc.
+- Shiny uses the [Bootstrap](http://getbootstrap.com/) framework to handle
+    layouts.
+- Layouts are generally nestable, enabling all kinds of configurations.
+- Here the top-level layout/container used in the `fluidPage` layout.
+- `FluidRow`s and `column`s can then be created within the `fluidPage` to
+    divide the page up into separate sections.
+- Each sub-section will attempt to fill up available space in the browser
+    window. If the browser is resized, the dimensions of the layout components
+    will be recomputed.
+
+A couple more Shiny demo applications
+-------------------------------------
+
+1. [K-means Clustering](demo1/)
+2. [RNA-Seq normalization methods](demo2/)
 
 Deploying Shiny applications
 ----------------------------
@@ -160,6 +195,9 @@ More info
 
 - [RStudio - Shiny tutorial](http://shiny.rstudio.com/tutorial/)
 - [RStudio - Shiny gallery](http://shiny.rstudio.com/gallery/)
+- [Show Me Shiny](http://www.showmeshiny.com/)
+- [ggvis](http://ggvis.rstudio.com/interactivity.html) (plays really well with
+    Shiny)
 
 System info
 -----------
