@@ -333,6 +333,12 @@ The `--default-names` option prevents Homebrew from prefixing the 'g' onto the b
 
 If you like to use `man` you can prepend `/usr/local/opt/coreutils/libexec/gnuman` to your MANPATH variable in `~/.bashrc` to have these manfiles automatically available.
 
+##Other OSX Tips
+
+###X11 Based software
+
+Some bioinformatics software includes graphics subsystems that rely on X11 or X.Org X Windowing System. Fortunately Homebrew includes very good support for XQuartz, an implementation of the X.Org Windowing System for the OSX Window Manager. You must install this manually using a standard OSX package installer, and keep it updated yourself, but Homebrew *will* prompt you to do so when necessary.
+
 ###Bash config files
 
 If you want to modify your shell, OSX confusingly provides several options. By default OSX uses bash, for good reason, but this has two places that you can provide commands to run for new shells, `.bashrc` and `.bash_profile`. These two files are for two different types of shells, non-login and login shells. When you log into a new shell/terminal window OSX runs `.bash_profile` to set up your shell before the command prompt. Non-login shells on the other hand, for instance a new terminal window in ssh after already being logged in, will run `.bashrc`. Confusingly the Terminal.app program that ships with OSX, as well as many of the other GUI apps like iTerm2, create a new login shell for every window/tab, calling `.bash_profile` each time. A suggestion from [Josh Staiger](http://www.joshstaiger.org/archives/2005/07/bash_profile_vs.html) that I use is to modify your PATH settings in `.bashrc` and add the following to your `.bash_profile`.
@@ -344,3 +350,9 @@ fi
 ```
 
 If you do this make sure to never call `.bash_profile` from inside your `.bashrc` or you get an infinite loop that will freeze your shell.
+
+###Awesome things about OSX
+
+The biggest downside to using OSX for bioinformatics is the relative difficulty of installing and managing packages relative to Linux, but we have fixed that with Homebrew! Once we have everything installed we get to enjoy some of the things that make OSX great, like its user interface. 
+
+Most of us will heavily be using scripting languages like Bash, Python, Perl, or R for our work. We can easily install and update all of these to the most up-to-date and powerful versions using Homebrew. Homebrew/Science provides us with access to many bioinformatics packages. There are great IDEs made for all of these (except Perl, why are you writing new Perl?) and the OSX Windowing and graphical user environment are far superior to anything available on Linux (and Windows is near-useless for bioinformatics). IDE's like Jetbrains IDEs (Free for academic use), RStudio, or SublimeText can all easily handle Homebrew installations seamlessly. (If you are tempted to say something snarky about vim/EMACS here, I'll dismiss you because you are almost certainly not actually interested in using OSX for this work!)
