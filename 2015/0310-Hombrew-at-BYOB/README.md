@@ -63,6 +63,8 @@ Once you have Homebrew installed, especially if you have previously used your sy
 
 Hopefully you don't have any problems, if you do there is usually a good amount of documentation available on Homebrew's Github page to help solve your problem. Due to the relative homogeneity of OSX installations compared to the myriad varieties of Linux, if you have a problem it has probably already been solved on StackOverflow.
 
+![Homebrew Installation](homebrew_install.png)
+
 #Using brew
 
 Installing software using Homebrew is incredibly simple, as easy as typing `brew install wget`. If Homebrew needs to install dependencies it should prompt you to verify installation of those. 
@@ -107,4 +109,39 @@ Optional: libressl ✘, pcre ✔
 	Install HEAD version
 ```
 
+Homebrew works based on git, and in order to keep things simple does not ever create any automated tasks. All available formula are stored in a special folder in `/usr/local/Library` which happens to also be a local git repository. In order to keep your recipes up to date and to pull new recipes you need to `brew update`.
+
+```bash
+$ brew update
+Updated Homebrew from 9c9f2a53 to 336017cd.
+==> Updated Formulae
+cfengine     chromaprint  ejabberd     ffmpeg	    fossil	 ghostscript  git	   glib		javarepl     libmagic	  mesos	       passenger    pbzip2	 pipemeter    unarj
+```
+
+This can easily be automated using your favorite automation system such as cron, launchd, or even iCal.
+
 ##Advanced Homebrew
+
+Probably the most important advanced use of Homebrew for our purposes are Taps. (Are you seeing a theme in Homebrew terminology by this point?). As we saw, Homebrew is at its base a collections of scripts and recipes held in a git repository, heavily integrated with Github. In additional to the several thousand base recipes included in the main Homebrew repository, there are thousands more which have been judged of too limited appeal to include in the main repo. Instead, Homebrew encourages the creation of additional recipe repositories containing complementary recipes. The biggest and most used of these additional repositories is homebrew/science.
+
+#Using a Tap
+
+Gaining access to all of the software available in alternative repos like homebrew/science is as simple as 
+
+```bash
+$ brew tap homebrew/science
+Cloning into '/usr/local/Library/Taps/homebrew/homebrew-science'...
+remote: Counting objects: 9154, done.
+remote: Compressing objects: 100% (17/17), done.
+remote: Total 9154 (delta 6), reused 0 (delta 0), pack-reused 9137
+Receiving objects: 100% (9154/9154), 2.41 MiB | 0 bytes/s, done.
+Resolving deltas: 100% (5106/5106), done.
+Checking connectivity... done.
+Tapped 440 formulae
+```
+
+Once tapped, all of the formula are available from all of the standard `brew` commands like `install`, `info`, and `search`.
+
+#Brewing
+
+Creating and editing Homebrew formulas is fairly simple. 
