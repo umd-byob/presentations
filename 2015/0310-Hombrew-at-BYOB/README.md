@@ -329,6 +329,18 @@ brew install vim
 brew install nano
 ```
 
-The `--default-names` option prevents Homebrew from prefixing the 'g' onto the binary names for those formula.
+The `--default-names` option prevents Homebrew from prefixing the 'g' onto the binary names for those formula. (List of utils from [here](https://www.topbug.net/blog/2013/04/14/install-and-use-gnu-command-line-tools-in-mac-os-x/))
 
 If you like to use `man` you can prepend `/usr/local/opt/coreutils/libexec/gnuman` to your MANPATH variable in `~/.bashrc` to have these manfiles automatically available.
+
+###Bash config files
+
+If you want to modify your shell, OSX confusingly provides several options. By default OSX uses bash, for good reason, but this has two places that you can provide commands to run for new shells, `.bashrc` and `.bash_profile`. These two files are for two different types of shells, non-login and login shells. When you log into a new shell/terminal window OSX runs `.bash_profile` to set up your shell before the command prompt. Non-login shells on the other hand, for instance a new terminal window in ssh after already being logged in, will run `.bashrc`. Confusingly the Terminal.app program that ships with OSX, as well as many of the other GUI apps like iTerm2, create a new login shell for every window/tab, calling `.bash_profile` each time. A suggestion from [Josh Staiger](http://www.joshstaiger.org/archives/2005/07/bash_profile_vs.html) that I use is to modify your PATH settings in `.bashrc` and add the following to your `.bash_profile`.
+
+```bash
+if [ -f ~/.bashrc ]; then
+   source ~/.bashrc
+fi
+```
+
+If you do this make sure to never call `.bash_profile` from inside your `.bashrc` or you get an infinite loop that will freeze your shell.
