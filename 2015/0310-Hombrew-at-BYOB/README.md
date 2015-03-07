@@ -351,8 +351,10 @@ fi
 
 If you do this make sure to never call `.bash_profile` from inside your `.bashrc` or you get an infinite loop that will freeze your shell.
 
-###Awesome things about OSX
+###Awesome things about OSX for bioinformatics
 
 The biggest downside to using OSX for bioinformatics is the relative difficulty of installing and managing packages relative to Linux, but we have fixed that with Homebrew! Once we have everything installed we get to enjoy some of the things that make OSX great, like its user interface. 
 
-Most of us will heavily be using scripting languages like Bash, Python, Perl, or R for our work. We can easily install and update all of these to the most up-to-date and powerful versions using Homebrew. Homebrew/Science provides us with access to many bioinformatics packages. There are great IDEs made for all of these (except Perl, why are you writing new Perl?) and the OSX Windowing and graphical user environment are far superior to anything available on Linux (and Windows is near-useless for bioinformatics). IDE's like Jetbrains IDEs (Free for academic use), RStudio, or SublimeText can all easily handle Homebrew installations seamlessly. (If you are tempted to say something snarky about vim/EMACS here, I'll dismiss you because you are almost certainly not actually interested in using OSX for this work!)
+Most of us will heavily be using scripting languages like Bash, Python, Perl, or R for our work. We can easily install and update all of these to the most up-to-date and powerful versions using Homebrew. Homebrew/Science provides us with access to many bioinformatics packages. There are great IDEs made for all of these (except Perl, why are you writing new Perl?) and the OSX Windowing and graphical user environment are far superior to anything available on Linux (and Windows is near-useless for bioinformatics). IDE's like Jetbrains IDEs (Free for academic use), RStudio, or SublimeText can all easily handle Homebrew installations seamlessly and look nicer and function more smoothly on OSX compared to Linux. (If you are tempted to say something snarky about vim/EMACS here, I'll dismiss you because you are almost certainly not actually interested in using OSX for this work!)
+
+Another great feature of OSX that you will benefit from in this work is Time Machine. While there exist good automated backup solutions for Linux, they are far from user-friendly. Time Machine to a networked storage device can provide a lot more security for your work.
