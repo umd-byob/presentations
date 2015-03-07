@@ -33,13 +33,13 @@ There are three solutions you may come across that serve as package managers for
 
 #Starting with Homebrew
 
-As opposed to being based on an existing package manager like apt or ports, Homebrew is based around the idea of recipes written in Ruby and managed by git. **Homebrew works best when you give in and let it completely own your /usr/local/ folder.** By default OSX reserves the /usr/local/ folder for non-OS installed libraries and software, so the folder does not even exist in a fresh install of OSX, and will usually only exist if created by manual compilation or installation of command-line software. If you have already used the /usr/local/ folder, I would recommend simply deleting everything you had previously installed and reinstalling it with Homebrew. Alternatively Homebrew is flexible and can be installed in any other folder, and will generally work well, but may be slightly more difficult to support if you are less familiar with Unix-like systems.
+As opposed to being based on an existing package manager like apt or ports, Homebrew is based around the idea of recipes written in Ruby and managed by git. **Homebrew works best when you give in and let it completely own your** `/usr/local/` **folder.** By default OSX reserves the `/usr/local/` folder for non-OS installed libraries and software, so the folder does not even exist in a fresh install of OSX, and will usually only exist if created by manual compilation or installation of command-line software. If you have already used the `/usr/local/` folder, I would recommend simply deleting everything you had previously installed and reinstalling it with Homebrew. Alternatively Homebrew is flexible and can be installed in any other folder, and will generally work well, but may be slightly more difficult to support if you are less familiar with Unix-like systems.
 
-Before we begin, two warnings about the controversial philosphies behind Homebrew that differentiate it from MacPorts.
+Before we begin, two warnings about the controversial philosophies behind Homebrew that differentiate it from MacPorts.
 
 1. Homebrew works closely with existing software. OSX and Xcode include many frameworks and libraries and Homebrew will use them if available. This is good because you will not be out-of-sync with what Apple is doing, and this is bad because Apple is often very slow in updating these sorts of base software, so you may be running quite out of data software. (Homebrew has a special feature known as taps that let you bypass this problem simply)
 
-2. Homebrew does not use sudo. As mentioned above, Homebrew works best when you allow it to create a special /usr/local/ folder that is accessible for software installation without adminstrator priveleges, which is good because it keeps things incredibly simple and streamlined, but is bad because it does not play well with manually installed software in the same folder. (Solutions: install everything using Homebrew, surprisngly easy even for non-Homebrew packages, or manually install in an alternative location)
+2. Homebrew does not use sudo. As mentioned above, Homebrew works best when you allow it to create a special `/usr/local/` folder that is accessible for software installation without administrator privileges, which is good because it keeps things incredibly simple and streamlined, but is bad because it does not play well with manually installed software in the same folder. (Solutions: install everything using Homebrew, surprisingly easy even for non-Homebrew packages, or manually install in an alternative location)
 
 Homebrew is incredibly easy to install. If you have not already installed Xcode or Xcode command line tools, opening up Terminal and typing 
 
@@ -65,4 +65,14 @@ Hopefully you don't have any problems, if you do there is usually a good amount 
 
 #Using brew
 
-Installing software using Homebrew is incredibly simple, as easy as typing `brew install wget`.
+Installing software using Homebrew is incredibly simple, as easy as typing `brew install wget`. If Homebrew needs to install dependencies it should prompt you to verify installation of those. 
+
+You will may not know the exact format of the name needed to install your favorite software (although it is usually pretty simple!~) so you can easily search all the available Homebrew recipes using the `brew search` function. 
+
+```bash
+brew search mysql
+automysqlbackup		     mysql			  mysql-cluster		       mysql-connector-c++	    mysql-proxy			 mysql-search-replace
+groonga-normalizer-mysql     mysql++			  mysql-connector-c	       mysql-connector-odbc	    mysql-sandbox		 mysqlreport
+homebrew/versions/mysql51	  homebrew/php/php53-mysqlnd\_ms	    homebrew/php/php55-mysqlnd\_ms     Caskroom/cask/mysqlworkbench
+homebrew/versions/mysql55	  homebrew/php/php54-mysqlnd\_ms	    homebrew/php/php56-mysqlnd\_ms     Caskroom/cask/navicat-for-mysql
+```
