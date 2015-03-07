@@ -122,6 +122,8 @@ This can easily be automated using your favorite automation system such as cron,
 
 #Advanced Homebrew
 
+###Taps
+
 Probably the most important advanced use of Homebrew for our purposes are Taps. (Are you seeing a theme in Homebrew terminology by this point?). As we saw, Homebrew is at its base a collections of scripts and formulas held in a git repository, heavily integrated with Github. In additional to the several thousand base formulas included in the main Homebrew repository, there are thousands more which have been judged of too limited appeal to include in the main repo. Instead, Homebrew encourages the creation of additional formula repositories containing complementary formulas. The biggest and most used of these additional repositories is homebrew/science.
 
 ###Using a Tap
@@ -141,6 +143,30 @@ Tapped 440 formulae
 ```
 
 Once tapped, all of the formula are available from all of the standard `brew` commands like `install`, `info`, and `search`.
+
+###Other Taps of interest
+
+Other interesting taps (from the main documentation)
+*   [homebrew/dupes](https://github.com/Homebrew/homebrew-dupes)
+    - Need GDB or a newer Tk? System duplicates go here.
+
+*   [homebrew/versions](https://github.com/Homebrew/homebrew-versions)
+    - Need e.g. older or newer versions of Postgresql? Older versions of GCC?
+
+*   [homebrew/games](https://github.com/Homebrew/homebrew-games)
+    - Game or gaming-emulation related formulae.
+
+*   [homebrew/apache](https://github.com/Homebrew/homebrew-apache)
+    - A tap for Apache modules, extending OS X's built-in Apache. These brews may require unconventional additional setup, as explained in the caveats.
+
+*   [homebrew/head-only](https://github.com/Homebrew/homebrew-head-only)
+    - A tap for brews that only have unstable, unreleased versions.
+
+*   [homebrew/boneyard](https://github.com/Homebrew/homebrew-boneyard)
+    - Formula are not deleted, they are moved here.
+
+*   [homebrew/binary](https://github.com/Homebrew/homebrew-binary)
+    - Precompiled binary formulae.
 
 ###Brewing
 
@@ -192,3 +218,13 @@ Editing recipes is as simple as opening the .rb formula file and editing it in p
 ###Creating your own brew
 
 Creation of your own Formulas is also simple. In general what you want to do is either run `brew create [name]` or directly create a [name].rb file in the Formulas folder, and use a simple recipe as a template. Fill in the attributes at the top, either put in the same `system` commands you would use to install the software manually as from the software's instructions, even including `make install`, or use some of the `*.install` functions to include only the files you are interested in, and finally a test can be as simple as `system "[main binary]"`. 
+
+Extensive information and guides on how to create good Homebrew Formulas and troubleshooting are available on Github. 
+
+[https://github.com/Homebrew/homebrew/blob/master/share/doc/homebrew/Formula-Cookbook.md#formula-cookbook](https://github.com/Homebrew/homebrew/blob/master/share/doc/homebrew/Formula-Cookbook.md)
+
+## Other Homebrew tips/tricks/info
+
+### Some details on how Homebrew installs things
+
+Homebrew keeps each piece of software separate from both other Homebrew-installed software and OSX-provided software, by storing each installation in a folder in `/usr/local/Cellar/` and then symlinking the installed files into the main `/usr/local/` folder. 
