@@ -136,7 +136,7 @@ By default Homebrew installs all software binaries in `/usr/local/bin`. By defau
 /usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
 ```
 
-meaning that OSX provided tools will take priority over Homebrew-installed utilities. Without any modifications, if you wished to install Homebrewed Perl and run that, you would need to call `/usr/local/bin/perl` to avoid calling system Perl. If you wish to rearrange your path, for instance to automatically call Homebrewed software, you can set your path in `~/.bash_profile` in your user home folder.
+meaning that OSX provided tools will take priority over Homebrew-installed utilities. Without any modifications, if you wished to install Homebrewed Perl and run that, you would need to call `/usr/local/bin/perl` to avoid calling system Perl. If you wish to rearrange your path, for instance to automatically call Homebrewed software, you can set your path in `~/.bashrc` in your user home folder.
 
 #Advanced Homebrew
 
@@ -288,3 +288,47 @@ There are some programs however, that persist in failing to build on OSX. The mo
 
 The Homebrew StackOverflow and Github pages are excellent resources for help building incompatible software for OSX, for those situations where there is difficulty.
 
+### Using GNU utilities instead of BSD
+
+As a result of the origin of the Darwin system as a fork of an early BSD derivative NeXTSTEP, many of the commonly used utilties, like `ls`, `cat`, `grep`, and `awk`, included with OSX are very old versions of the BSD utilities, and are missing many of the more powerful features of those utilities including with modern GNU/Linux operation systems.
+
+```bash
+$ brew install coreutils
+```
+
+GNU Coreutils includes the very basic software needed for POSIX systems. By default Homebrew will build and install the latest versions, and put them in two places. It will symlink all the binaries to the usual `/usr/local/bin`, however to avoid shocking unsuspecting users, these symlinks are all prefixed with the letter 'g', to signify that they are the GNU versions. Additionally Homebrew symlinks these binaries to the `{brew_prefix}/libexec/gnubin` folder with their default names. If you would like your shell to always use the GNU versions of these utilities, you can add 
+
+```bash
+export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
+```
+
+To your `~/.bashrc`. This is a good time to remind you that if you would like other Homebrew installed binaries to be automatically used you should prepend `/usr/local/bin/` to your path as well. Other commonly used GNU utilities can be installed. Some of these may require you to tap homebrew/dupes.
+
+```bash 
+brew install binutils
+brew install diffutils
+brew install ed --default-names
+brew install findutils --with-default-names
+brew install gawk
+brew install gnu-indent --with-default-names
+brew install gnu-sed --with-default-names
+brew install gnu-tar --with-default-names
+brew install gnu-which --with-default-names
+brew install gnutls
+brew install grep --with-default-names
+brew install gzip
+brew install screen
+brew install tmux
+brew install watch
+brew install wdiff --with-gettext
+brew install wget
+brew install bash
+brew install make
+brew install emacs
+brew install vim
+brew install nano
+```
+
+The `--default-names` option prevents Homebrew from prefixing the 'g' onto the binary names for those formula.
+
+If you like to use `man` you can prepend `/usr/local/opt/coreutils/libexec/gnuman` to your MANPATH variable in `~/.bashrc` to have these manfiles automatically available.
