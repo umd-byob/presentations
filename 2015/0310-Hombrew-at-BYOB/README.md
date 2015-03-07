@@ -44,7 +44,7 @@ Before we begin, two warnings about the controversial philosophies behind Homebr
 Homebrew is incredibly easy to install. If you have not already installed Xcode or Xcode command line tools, opening up Terminal and typing 
 
 ```bash
-gcc --version
+$ gcc --version
 ```
 
 will prompt you to install Xcode command line tools. Alternatively they are available for manual download at https://developer.apple.com/downloads/index.action
@@ -52,7 +52,7 @@ will prompt you to install Xcode command line tools. Alternatively they are avai
 Once you have Command-Line Tools installed one way or another, installation of Homebrew is as simple as
 
 ```bash
-ruby -e "$(curl -fsS http://gist.github.com/raw/323731/install_homebrew.rb)"
+$ ruby -e "$(curl -fsS http://gist.github.com/raw/323731/install_homebrew.rb)"
 ```
 
 This starts up an interactive installation process, which will be the first and last time you need to use sudo with Homebrew. 
@@ -67,12 +67,44 @@ Hopefully you don't have any problems, if you do there is usually a good amount 
 
 Installing software using Homebrew is incredibly simple, as easy as typing `brew install wget`. If Homebrew needs to install dependencies it should prompt you to verify installation of those. 
 
-You will may not know the exact format of the name needed to install your favorite software (although it is usually pretty simple!~) so you can easily search all the available Homebrew recipes using the `brew search` function. 
+You will may not know the exact format of the name needed to install your favorite software (although it is usually pretty simple!) so you can easily search all the base or installed Homebrew recipes using the `brew search` function. 
 
 ```bash
-brew search mysql
+$ brew search mysql
 automysqlbackup		     mysql			  mysql-cluster		       mysql-connector-c++	    mysql-proxy			 mysql-search-replace
 groonga-normalizer-mysql     mysql++			  mysql-connector-c	       mysql-connector-odbc	    mysql-sandbox		 mysqlreport
-homebrew/versions/mysql51	  homebrew/php/php53-mysqlnd\_ms	    homebrew/php/php55-mysqlnd\_ms     Caskroom/cask/mysqlworkbench
-homebrew/versions/mysql55	  homebrew/php/php54-mysqlnd\_ms	    homebrew/php/php56-mysqlnd\_ms     Caskroom/cask/navicat-for-mysql
 ```
+
+Additionally, [http://searchbrew.com/](http://searchbrew.com/) is available to search most available recipes with descriptions of each package. All recipes are also easily visible directly from the [source Github page](https://github.com/Homebrew/homebrew/tree/master/Library/Formula). 
+
+Once you find anything that interests you, you can get more information about a package using `brew info`.
+
+```bash
+$ brew info wget 
+wget: stable 1.16.2 (bottled), HEAD
+https://www.gnu.org/software/wget/
+/usr/local/Cellar/wget/1.15_2 (9 files, 908K)
+  Poured from bottle
+/usr/local/Cellar/wget/1.16.1 (9 files, 940K) *
+  Poured from bottle
+From: https://github.com/Homebrew/homebrew/blob/master/Library/Formula/wget.rb
+==> Dependencies
+Build: xz ✘
+Recommended: openssl ✔
+Optional: libressl ✘, pcre ✔
+==> Options
+--with-debug
+	Build with debug support
+--with-iri
+	Enable iri support
+--with-libressl
+	Build with libressl support
+--with-pcre
+	Build with pcre support
+--without-openssl
+	Build without openssl support
+--HEAD
+	Install HEAD version
+```
+
+##Advanced Homebrew
