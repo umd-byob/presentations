@@ -120,6 +120,19 @@ cfengine     chromaprint  ejabberd     ffmpeg	    fossil	 ghostscript  git	   gl
 
 This can easily be automated using your favorite automation system such as cron, launchd, or even iCal.
 
+###Homebrew and language packages
+
+Homebrew supports installation of languages such as Ruby, Perl, Python, or R that may or may not be included in OSX itself. It will install these in its standard `/usr/local/` folder, separate from the OSX Frameworks folder. In general Homebrew will avoid duplication relative to these languages native package managers. For instance, Homebrew will rarely install anything included in Python's `pip` or R's `install.packages` or Bioconductor. It is recommended to install the languages package manager, for instance install Pip on Homebrew's Python and use that to install Numpy or Biopython. In almost all situations these package managers will automatically detect Homebrew-installed libraries and build packages properly. 
+
+###Managing Homebrew Paths
+By default Homebrew installs all software binaries in `/usr/local/bin`. By default the OSX PATH is
+
+```
+/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
+```
+
+meaning that OSX provided tools will take priority over Homebrew-installed utilities. Without any modifications, if you wished to install Homebrewed Perl and run that, you would need to call `/usr/local/bin/perl` to avoid calling system Perl. If you wish to rearrange your path, for instance to automatically call Homebrewed software, you can set your path in `~/.bash_profile` in your user home folder.
+
 #Advanced Homebrew
 
 ###Taps
