@@ -33,7 +33,7 @@ There are three solutions you may come across that serve as package managers for
 
 ###Starting with Homebrew
 
-As opposed to being based on an existing package manager like apt or ports, Homebrew is based around the idea of recipes written in Ruby and managed by git. **Homebrew works best when you give in and let it completely own your** `/usr/local/` **folder.** By default OSX reserves the `/usr/local/` folder for non-OS installed libraries and software, so the folder does not even exist in a fresh install of OSX, and will usually only exist if created by manual compilation or installation of command-line software. If you have already used the `/usr/local/` folder, I would recommend simply deleting everything you had previously installed and reinstalling it with Homebrew. Alternatively Homebrew is flexible and can be installed in any other folder, and will generally work well, but may be slightly more difficult to support if you are less familiar with Unix-like systems.
+As opposed to being based on an existing package manager like apt or ports, Homebrew is based around the idea of formulas written in Ruby and managed by git. **Homebrew works best when you give in and let it completely own your** `/usr/local/` **folder.** By default OSX reserves the `/usr/local/` folder for non-OS installed libraries and software, so the folder does not even exist in a fresh install of OSX, and will usually only exist if created by manual compilation or installation of command-line software. If you have already used the `/usr/local/` folder, I would recommend simply deleting everything you had previously installed and reinstalling it with Homebrew. Alternatively Homebrew is flexible and can be installed in any other folder, and will generally work well, but may be slightly more difficult to support if you are less familiar with Unix-like systems.
 
 Before we begin, two warnings about the controversial philosophies behind Homebrew that differentiate it from MacPorts.
 
@@ -69,7 +69,7 @@ Hopefully you don't have any problems, if you do there is usually a good amount 
 
 Installing software using Homebrew is incredibly simple, as easy as typing `brew install wget`. If Homebrew needs to install dependencies it should prompt you to verify installation of those. 
 
-You will may not know the exact format of the name needed to install your favorite software (although it is usually pretty simple!) so you can easily search all the base or installed Homebrew recipes using the `brew search` function. 
+You will may not know the exact format of the name needed to install your favorite software (although it is usually pretty simple!) so you can easily search all the base or installed Homebrew formulas using the `brew search` function. 
 
 ```bash
 $ brew search mysql
@@ -77,7 +77,7 @@ automysqlbackup		     mysql			  mysql-cluster		       mysql-connector-c++	    my
 groonga-normalizer-mysql     mysql++			  mysql-connector-c	       mysql-connector-odbc	    mysql-sandbox		 mysqlreport
 ```
 
-Additionally, [http://searchbrew.com/](http://searchbrew.com/) is available to search most available recipes with descriptions of each package. All recipes are also easily visible directly from the [source Github page](https://github.com/Homebrew/homebrew/tree/master/Library/Formula). 
+Additionally, [http://searchbrew.com/](http://searchbrew.com/) is available to search most available formulas with descriptions of each package. All formulas are also easily visible directly from the [source Github page](https://github.com/Homebrew/homebrew/tree/master/Library/Formula). 
 
 Once you find anything that interests you, you can get more information about a package using `brew info`.
 
@@ -109,7 +109,7 @@ Optional: libressl ✘, pcre ✔
 	Install HEAD version
 ```
 
-Homebrew works based on git, and in order to keep things simple does not ever create any automated tasks. All available formula are stored in a special folder in `/usr/local/Library` which happens to also be a local git repository. In order to keep your recipes up to date and to pull new recipes you need to `brew update`.
+Homebrew works based on git, and in order to keep things simple does not ever create any automated tasks. All available formula are stored in a special folder in `/usr/local/Library` which happens to also be a local git repository. In order to keep your formulas up to date and to pull new formulas you need to `brew update`.
 
 ```bash
 $ brew update
@@ -122,7 +122,7 @@ This can easily be automated using your favorite automation system such as cron,
 
 #Advanced Homebrew
 
-Probably the most important advanced use of Homebrew for our purposes are Taps. (Are you seeing a theme in Homebrew terminology by this point?). As we saw, Homebrew is at its base a collections of scripts and recipes held in a git repository, heavily integrated with Github. In additional to the several thousand base recipes included in the main Homebrew repository, there are thousands more which have been judged of too limited appeal to include in the main repo. Instead, Homebrew encourages the creation of additional recipe repositories containing complementary recipes. The biggest and most used of these additional repositories is homebrew/science.
+Probably the most important advanced use of Homebrew for our purposes are Taps. (Are you seeing a theme in Homebrew terminology by this point?). As we saw, Homebrew is at its base a collections of scripts and formulas held in a git repository, heavily integrated with Github. In additional to the several thousand base formulas included in the main Homebrew repository, there are thousands more which have been judged of too limited appeal to include in the main repo. Instead, Homebrew encourages the creation of additional formula repositories containing complementary formulas. The biggest and most used of these additional repositories is homebrew/science.
 
 ###Using a Tap
 
@@ -142,6 +142,53 @@ Tapped 440 formulae
 
 Once tapped, all of the formula are available from all of the standard `brew` commands like `install`, `info`, and `search`.
 
-#Brewing
+###Brewing
 
-Creating and editing Homebrew formulas is fairly simple. 
+Creating and editing Homebrew formulas is fairly simple. To take a look at a fairly simple formula take a look at the Bowtie2 formula
+
+```bash
+$ brew edit bowtie2
+```
+
+```ruby
+require 'formula'
+
+class Bowtie2 < Formula
+  homepage "http://bowtie-bio.sourceforge.net/bowtie2/index.shtml"
+  #doi "10.1038/nmeth.1923"
+  head "https://github.com/BenLangmead/bowtie2.git"
+
+  url "https://github.com/BenLangmead/bowtie2/archive/v2.2.4.tar.gz"
+  sha1 "ab9f1bef67a3a704fd9b91d09dee5c74c2bc6159"
+
+  def install
+    system "make"
+    bin.install %W[bowtie2
+                   bowtie2-align-l bowtie2-align-s
+                   bowtie2-build   bowtie2-build-l   bowtie2-build-s
+                   bowtie2-inspect bowtie2-inspect-l bowtie2-inspect-s]
+
+    doc.install %W[AUTHORS LICENSE MANUAL
+                   NEWS README TUTORIAL VERSION]
+
+    share.install %W[example scripts]
+  end
+
+  test do
+    system "bowtie2-build", "#{share}/example/reference/lambda_virus.fa", "lambda_virus"
+    assert File.exist?("lambda_virus.1.bt2")
+  end
+end
+```
+
+This formula takes advantage of many of the commonly used features of Homebrew formulas. This is written in a Ruby-based domain-specific language (DSL). The first line pulls the Ruby code necessary to interpret the remainder as a Homebrew Formula. Then it creates a Ruby class with the name of the formula, and inherits from Formula. The first attributes are defining traits of this Formula, the homepage, url, and hash of the download are all required, while the head attribute points to a git repository for optional installation direct from the repository instead of a numbered release.
+
+Then the install section handles the actual building and installation of the problem. `system` lines directly send the quoted text to the bash shell, in this case calling GNU Make to build the software. Many programs that this point will simply include a line `system "make install"`, relying on the makefile to install all of the required files, which Homebrew will then redirect to install in the correct folder and then symlink all of the installed binaries from its folder into `/usr/local/bin`. Bowtie2 does not come with a makefile that handles installation, so this Formula uses the *.install functions to transfer specific binaries, documentation, and additional data files to the correct Homebrew directories.
+
+All Homebrew recipes must now include a test section, which is run after installation to verify that the software installed and runs correctly. Many time this is done by simply calling the main binary and checking that it does not return an error code. In the case of Bowtie2, the test uses another `system` line to run `bowtie2-build` to generate an index for the included lambda genome data, and checks that an index file is made.
+
+Editing recipes is as simple as opening the .rb formula file and editing it in place. Since the Homebrew folder is simply a git repository, it can handle merging your changes with upstream changes. If you want to contribute new formulas or changes, it simple git use to fork the Github repository, `brew tap` your own repo, and then pull request your changes for the main repository or tap.
+
+###Creating your own brew
+
+Creation of your own Formulas is also simple. In general what you want to do is either run `brew create [name]` or directly create a [name].rb file in the Formulas folder, and use a simple recipe as a template. Fill in the attributes at the top, either put in the same `system` commands you would use to install the software manually as from the software's instructions, even including `make install`, or use some of the `*.install` functions to include only the files you are interested in, and finally a test can be as simple as `system "[main binary]"`. 
