@@ -1,5 +1,10 @@
-Homebrew at BOYB -or- Using OSX for Bioinformatics
-==================================================
+Homebrew at BOYB
+================
+
+###or
+
+Using OSX for Bioinformatics
+----------------------------
 
 #What is OSX?
 
@@ -274,3 +279,12 @@ lrwxr-xr-x  1 jonathan  admin    45B Dec 19 11:19 /usr/local/bin/bowtie2-inspect
 ```
 
 You can uninstall Homebrewed formula by `brew uninstall` to completely delete the files from `/usr/local/Cellar`, although you can also simply remove the symlinks by using `brew unlink` if you want to have the software available but prevent conflicts in the system-accessible `/usr/local` folders.
+
+### Incompatible software
+
+Fortunately, the vast majority of bioinformatics or POSIX utility software will play well with OSX. Many of the commonly used pieces of software that are slightly incompatible with OSX or will not install with default settings have Homebrew Formula that apply OSX compatibility patches automatically, so by using MacPorts or Homebrew you are a step up over trying to install things manually. 
+
+There are some programs however, that persist in failing to build on OSX. The most common issue that I have come across with obscure libraries or utilities is use of incompatible Pthreads multithreading libraries that are Linux-specific and will not function on OSX or BSD. If these are currently maintained pieces of software, developers can often be convinced to make slight changes to their headers to use BSD-compatible threading libraries. If the software is not currently maintained, you may be out of luck unless you are a more talented C programmer than I am. I have only come across this problem once, and I was able to find an alternative library that performed the same function and was currently maintained and BSD-compatible! 
+
+The Homebrew StackOverflow and Github pages are excellent resources for help building incompatible software for OSX, for those situations where there is difficulty.
+
