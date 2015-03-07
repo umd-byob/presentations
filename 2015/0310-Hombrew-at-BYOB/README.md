@@ -240,4 +240,37 @@ Extensive information and guides on how to create good Homebrew Formulas and tro
 
 ### Some details on how Homebrew installs things
 
-Homebrew keeps each piece of software separate from both other Homebrew-installed software and OSX-provided software, by storing each installation in a folder in `/usr/local/Cellar/` and then symlinking the installed files into the main `/usr/local/` folder. 
+Homebrew keeps each piece of software separate from both other Homebrew-installed software and OSX-provided software, by storing each installation in a folder in `/usr/local/Cellar/` and then symlinking the installed files into the main `/usr/local/` folder. You can investigate the structure of an installed package by calling `brew ls`:
+
+```bash
+$ brew ls bowtie2
+/usr/local/Cellar/bowtie2/2.2.4/bin/bowtie2
+/usr/local/Cellar/bowtie2/2.2.4/bin/bowtie2-align-l
+/usr/local/Cellar/bowtie2/2.2.4/bin/bowtie2-align-s
+/usr/local/Cellar/bowtie2/2.2.4/bin/bowtie2-build
+/usr/local/Cellar/bowtie2/2.2.4/bin/bowtie2-build-l
+/usr/local/Cellar/bowtie2/2.2.4/bin/bowtie2-build-s
+/usr/local/Cellar/bowtie2/2.2.4/bin/bowtie2-inspect
+/usr/local/Cellar/bowtie2/2.2.4/bin/bowtie2-inspect-l
+/usr/local/Cellar/bowtie2/2.2.4/bin/bowtie2-inspect-s
+/usr/local/Cellar/bowtie2/2.2.4/share/doc/ (7 files)
+/usr/local/Cellar/bowtie2/2.2.4/share/example/ (11 files)
+/usr/local/Cellar/bowtie2/2.2.4/share/scripts/ (45 files)
+```
+
+As we saw earlier from the bowtie2.rb Formula, these are the files specified by `bin.install`, `share.install`, and `doc.install`, installed automatically in their place. Conversely:
+
+```bash
+$ ls -la /usr/local/bin/bowtie*
+lrwxr-xr-x  1 jonathan  admin    35B Dec 19 11:19 /usr/local/bin/bowtie2@ -> ../Cellar/bowtie2/2.2.4/bin/bowtie2
+lrwxr-xr-x  1 jonathan  admin    43B Dec 19 11:19 /usr/local/bin/bowtie2-align-l@ -> ../Cellar/bowtie2/2.2.4/bin/bowtie2-align-l
+lrwxr-xr-x  1 jonathan  admin    43B Dec 19 11:19 /usr/local/bin/bowtie2-align-s@ -> ../Cellar/bowtie2/2.2.4/bin/bowtie2-align-s
+lrwxr-xr-x  1 jonathan  admin    41B Dec 19 11:19 /usr/local/bin/bowtie2-build@ -> ../Cellar/bowtie2/2.2.4/bin/bowtie2-build
+lrwxr-xr-x  1 jonathan  admin    43B Dec 19 11:19 /usr/local/bin/bowtie2-build-l@ -> ../Cellar/bowtie2/2.2.4/bin/bowtie2-build-l
+lrwxr-xr-x  1 jonathan  admin    43B Dec 19 11:19 /usr/local/bin/bowtie2-build-s@ -> ../Cellar/bowtie2/2.2.4/bin/bowtie2-build-s
+lrwxr-xr-x  1 jonathan  admin    43B Dec 19 11:19 /usr/local/bin/bowtie2-inspect@ -> ../Cellar/bowtie2/2.2.4/bin/bowtie2-inspect
+lrwxr-xr-x  1 jonathan  admin    45B Dec 19 11:19 /usr/local/bin/bowtie2-inspect-l@ -> ../Cellar/bowtie2/2.2.4/bin/bowtie2-inspect-l
+lrwxr-xr-x  1 jonathan  admin    45B Dec 19 11:19 /usr/local/bin/bowtie2-inspect-s@ -> ../Cellar/bowtie2/2.2.4/bin/bowtie2-inspect-s
+```
+
+You can uninstall Homebrewed formula by `brew uninstall` to completely delete the files from `/usr/local/Cellar`, although you can also simply remove the symlinks by using `brew unlink` if you want to have the software available but prevent conflicts in the system-accessible `/usr/local` folders.
