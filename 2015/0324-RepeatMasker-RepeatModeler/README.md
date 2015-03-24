@@ -1,4 +1,4 @@
-Getting started
+##Getting started
 
 Installation
 The installations of both RepeatMasker and RepeatModeler are fairly straight forward and easy to follow as described on their websites:
