@@ -1,8 +1,6 @@
 ---
 title: A Simple Markdown Document
-author:
-- name: Keith Hughitt
-  affiliation: "Department of Cell Biology and Molecular Genetics, University of Maryland, College Park"
+author: Keith Hughitt
 date: 2015/09/09
 ---
 
@@ -40,14 +38,35 @@ output from the knitr `kable` function.
 |103 |          7.1|         3.0|          5.9|         2.1|virginica  |
 |104 |          6.3|         2.9|          5.6|         1.8|virginica  |
 
-Table: Subset of the Iris dataset.
+Table: Subset of the Iris [1] dataset.
 
 For more examples of table styles supported by Pandoc Markdown, see the
 [Pandoc
 Documentation](http://pandoc.org/README.html#tables).
 
+### Formulas
+
+Pandoc and RMarkdown (which uses Pandoc under the hood) both support arbitrary
+inline or block LaTeX expressions.
+
+$$
+\arg\min_{\mathbf{w},\mathbf{\xi}, b } \left\{\frac{1}{2} \|\mathbf{w}\|^2 + C\sum_{i=1}^n \xi_i \right\}
+$$
+
+Soft margin SVM objective function. (source:
+[Wikipedia](http://en.wikipedia.org/wiki/Support_vector_machine))
+
 ### Figure example
 
 ![Figure 1: Classification of Iris datasets using SVMs](images/iris_svm.png)
+
+
+References
+----------
+
+1. R. A. FISHER. “THE USE OF MULTIPLE MEASUREMENTS IN TAXONOMIC PROBLEMS”. In: _Annals of Eugenics_ 7.2 (Sep.
+1936), pp. 179-188. DOI: 10.1111/j.1469-1809.1936.tb02137.x. <URL:
+http://dx.doi.org/10.1111/j.1469-1809.1936.tb02137.x>.
+
 
 
