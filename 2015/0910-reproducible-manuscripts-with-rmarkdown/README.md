@@ -71,7 +71,17 @@ Example 1: Basic Markdown document
 To begin, lets create a simply Markdown example to demonstrate how to include 
 figures, tables, and formulas.
 
-[examples](examples/01-simple-markdown-document.md)
+- [Example 1](examples/01-simple-markdown-document.md)
+
+Example 2: Adding LaTeX to improve flexibility
+----------------------------------------------
+
+In the next example, we will see how adding a bit of LaTeX to our Markdown
+documents can give us a much finer control of image placement and other
+formatting issues.
+
+- [Example 2](examples/02-markdown-and-latex.md)
+
 
 Further reading
 ---------------
@@ -82,4 +92,5 @@ Further reading
 2. [Writing academic papers in Markdown using Sublime Text and Pandoc](http://nikolasander.com/writing-in-markdown/)
 3. [Writing Scientific Papers Using Markdown](https://danieljhocking.wordpress.com/2014/12/09/writing-scientific-papers-using-markdown/)
 4. [Markdown-for-Manuscripts](https://github.com/djhocking/Markdown-for-Manuscripts)
+5. [Opening Science (a book written in Markdown)](http://book.openingscience.org/)
 
