@@ -15,7 +15,7 @@ In this tutorial, we will explore the use of
 manuscripts. After discussing some of the strengths and weaknesses of using
 Markdown over other approaches such as [LaTeX](http://www.latex-project.org/)
 or [Google Docs](https://www.google.com/docs/about/), the basic steps of
-putting togehter a Markdown-based paper will be described. Next, examples will
+putting together a Markdown-based paper will be described. Next, examples will
 be provided on various aspects of Markdown manuscript generation, including:
 
 - Figures and tables
@@ -41,20 +41,20 @@ using Markdown for writing scientific manuscripts in the first place.
 - Plain-text
     - Simple, light-weight syntax
     - Use any editor
-    - Unrendered markdown is nearly as readable as rendered
+    - Un-rendered markdown is nearly as readable as rendered
     - Can use version control to track history
 - Markdown is becoming increasingly common (Github, Stack overflow, etc.)
 - Easier to learn than LaTeX
 - Supports embedded LaTeX and HTML
 - Can be rendered to PDF, HTML, LaTeX, Word, etc.
-- Easy bibliography management using Bibtex and Pandoc
+- Easy bibliography management using BibTeX and Pandoc
 - Can be readily combined with R to automatically generate plots and tables
   using R code.
 
 ### Disadvantages
 
 - Collaborative writing not as straight-forward
-    - For technically-savy, using Git to provides a simple way to collaborate 
+    - For technically-savvy, using Git to provides a simple way to collaborate 
       on a document
     - [Markx](https://github.com/yoavram/markx) is another potentially interesting
       collaborative Markdown editor aimed at scientists.
@@ -97,7 +97,9 @@ Example 3: Using BibTeX to add a bibliography
 ---------------------------------------------
 
 In the next example, we will see how BibTeX and the pandoc `citeproc` extension
-can be used to simpl
+can be used include references into a manuscript.
+
+- [Example 3](examples/03-including-a-bibliography.md)
 
 For RMarkdown documents, another approach would be to use the `knitcitations`
 package by Carl Boettiger:
@@ -107,7 +109,14 @@ http://www.carlboettiger.info/2012/05/30/knitcitations.html
 This allows you to simply include DOIs inline and have a bibliography
 automatically generated for you.
 
+Example 4: Reproducible manuscripts with RMarkdown
+--------------------------------------------------
 
+Finally, bringing it all together, we will look at an example RMarkdown
+document which includes all of the above elements with figures and
+tables generated on-the-fly using knitr.
+
+- [Example 4](examples/04-rmarkdown-manuscript-example.Rmd)
 
 Further reading
 ---------------
@@ -119,4 +128,5 @@ Further reading
 3. [Writing Scientific Papers Using Markdown](https://danieljhocking.wordpress.com/2014/12/09/writing-scientific-papers-using-markdown/)
 4. [Markdown-for-Manuscripts](https://github.com/djhocking/Markdown-for-Manuscripts)
 5. [Opening Science (a book written in Markdown)](http://book.openingscience.org/)
+6. [Library Data: R Markdown and Figures](http://www.rci.rutgers.edu/~ag978/litdata/figs/)
 

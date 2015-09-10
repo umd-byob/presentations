@@ -1,0 +1,144 @@
+---
+title: RMarkdown Manuscript Example
+author: Keith Hughitt
+date: 2015/09/10
+bibliography: 04-rmarkdown-manuscript-example.bib
+csl: nucleic-acids-research.csl
+header-includes:
+   - \usepackage[font=small,labelfont=bf]{caption}
+   - \usepackage{wrapfig}
+   - \usepackage{framed}
+   - \usepackage{float}
+   - \pagenumbering{gobble}
+output:
+    pdf_document:
+        keep_tex: true
+        fig_caption: yes
+---
+
+<!-- eliminate white-space above figures
+ http://tex.stackexchange.com/questions/27695/strange-space-left-above-wrapfig-figures
+-->
+\setlength\intextsep{0pt}
+
+<!-- 
+	Pandoc work-around 2015/01/04:
+    LaTeX includegraphics calls do not work unless at least one markdown
+    image has been included.
+-->
+<div style='display:none;'>
+![](images/placeholder.png)
+</div>
+
+Overview
+--------
+
+RMarkdown [@Allaire2015] documents are simply Markdown documents with chunks of
+R code embedded in them. When building the document, R code chunks are executed
+using knitr [@Yihui2015] and the outputs from each code block are embedded in
+the resulting file.
+
+To parse our example RMarkdown file, instead of calling pandoc directly, we
+will now use the `render()` function of the
+[rmarkdown](http://rmarkdown.rstudio.com/) library.
+
+For example, to render this file, open up an R console in the directory
+containing this file and run:
+
+```r
+library('rmarkdown')
+render('04-rmarkdown-manuscript-example.Rmd')
+```
+
+You will have to first install rmarkdown if it is not already installed on your
+system.
+
+RMarkdown figures
+-----------------
+
+Example figure from the [ggtree](https://github.com/GuangchuangYu/ggtree)
+[@Guangchuang2015; @Wickham2009] vignette:
+
+```{r load_libraries, include=FALSE, echo=FALSE}
+# load libraries
+library("ggtree")
+library("ggplot2")
+library("colorspace")
+```
+
+```{r ggtree_example, echo=FALSE, warning=FALSE, dpi=96, fig.width=600/96, fig.cap='ggtree example figure'}
+# load tree
+nwk = system.file("extdata", "sample.nwk", package="ggtree")
+tree = read.tree(nwk)
+
+# assign OTUs
+cls = list(c1=c("A", "B", "C", "D", "E"),
+           c2=c("F", "G", "H"),
+           c3=c("L", "K", "I", "J"),
+           c4="M")
+tree = groupOTU(tree, cls)
+
+# plot tree
+ggtree(tree, aes(color=group, linetype=group)) + 
+    geom_text(aes(label=label), hjust=-.25) +
+    scale_color_manual(values=c("black", rainbow_hcl(4))) +
+    theme(legend.position="right")
+```
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+culpa qui officia deserunt mollit anim id est laborum.
+
+```{r ggtree_example2, dpi=96, out.width='0.5\\textwidth', fig.align='right', fig.cap='Another example from the ggtree vignette'}
+ggtree(tree) %>% hilight(21, "steelblue")
+```
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+culpa qui officia deserunt mollit anim id est laborum.
+
+Some additional tips
+--------------------
+
+### Getting BibTeX entries for R packages
+
+To get a BibTeX-formatted reference entry for an R package, use the
+`citation()`  and `toBibtex()` functions:
+
+```r
+toBibtex(citation('package-name')) 
+```
+
+Note that you will have to manually add a reference @key for each entry
+generated this way.
+
+### Set fig_caption: true to ensure that captions show up
+
+Figure captions can be specified in knitr using the `fig.cap` [chunk
+option](http://yihui.name/knitr/options/). To ensure that the captions are
+displayed properly, however, you will want to set `fig_caption: true` in the
+YAML header block, under the `pdf_document` section.
+
+### Set keep_tex: true to help with debugging
+
+RMarkdown documents are converted to LaTeX first before being converted into
+PDF and other formats. When debugging formatting, etc. issues, it may be help
+to enable this option in the `pdf_document` section on the YAML metadata block
+at the top of your file.
+
+System information
+------------------
+
+```{r sysinfo}
+sessionInfo()
+```
+
+References
+----------
+
