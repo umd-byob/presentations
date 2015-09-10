@@ -65,6 +65,16 @@ using Markdown for writing scientific manuscripts in the first place.
     - In particular, image handling is very basic in Markdown.
     - This can be overcome, however, by using bits of embedded LaTeX.
 
+Converting Markdown to PDF
+--------------------------
+
+To render a plain Markdown document (as opposed to an RMarkdown document), you
+can use the Pandoc command:
+
+```sh
+pandoc -i input.md output.pdf
+```
+
 Example 1: Basic Markdown document
 ----------------------------------
 
@@ -72,6 +82,7 @@ To begin, lets create a simply Markdown example to demonstrate how to include
 figures, tables, and formulas.
 
 - [Example 1](examples/01-simple-markdown-document.md)
+
 
 Example 2: Adding LaTeX to improve flexibility
 ----------------------------------------------
@@ -81,6 +92,21 @@ documents can give us a much finer control of image placement and other
 formatting issues.
 
 - [Example 2](examples/02-markdown-and-latex.md)
+
+Example 3: Using BibTeX to add a bibliography
+---------------------------------------------
+
+In the next example, we will see how BibTeX and the pandoc `citeproc` extension
+can be used to simpl
+
+For RMarkdown documents, another approach would be to use the `knitcitations`
+package by Carl Boettiger:
+
+http://www.carlboettiger.info/2012/05/30/knitcitations.html
+
+This allows you to simply include DOIs inline and have a bibliography
+automatically generated for you.
+
 
 
 Further reading
