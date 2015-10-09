@@ -65,6 +65,7 @@ Rules describe how to create output files from input files.
 
 When your script gets too unwieldy and you think *"there must be a better way"*
 then it's probably time to use a workflow management system.
+
 ---
 
 # Example use-case: complete RNA-seq analysis
@@ -85,7 +86,7 @@ ready to send to collaborator.
 
 ---
 
-!image[rnaseq-dag.png]
+![image](rnaseq-dag.png)
 
 ---
 # Other workflow management systems
