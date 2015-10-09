@@ -1,0 +1,21 @@
+
+samples = ['A', 'B', 'C']
+final_files =  expand("mapped_reads/{s}.bam", s=samples)
+#print(final_files)
+
+rule a:
+    input: final_files
+
+rule bwa_map:
+    input: 
+        fasta="data/genome.fa",
+        fastq="data/samples/{sample}.fastq"
+
+    output: "mapped_reads/{sample}.bam"
+    shell:
+        """
+        bwa mem {input.fasta} {input.fastq} \\
+                | samtools view -Sb - > {output}
+        """
+
+# vim: ft=python
