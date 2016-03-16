@@ -13,6 +13,7 @@ header-includes:
 output:
     pdf_document:
         keep_tex: true
+
         fig_caption: yes
 ---
 
